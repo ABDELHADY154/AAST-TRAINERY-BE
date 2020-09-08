@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/student', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::group([
+    'middleware' => ['studentAuth']
+], function () {
+    Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
+    Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 });
 
 

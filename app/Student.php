@@ -11,6 +11,6 @@ class Student extends User
 {
     use HasApiTokens, Notifiable;
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password', 'reg_no', 'period', 'gpa', 'college'
     ];
 }

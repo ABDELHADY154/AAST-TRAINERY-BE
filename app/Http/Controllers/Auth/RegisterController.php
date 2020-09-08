@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\StudentResource;
 use App\Providers\RouteServiceProvider;
 use App\Student;
 use App\User;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    use CoreJsonResponse;
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -79,6 +82,10 @@ class RegisterController extends Controller
             'name' => 'required',
             'email' => ['required', 'email', 'unique:students,email'],
             'password' => ['required'],
+            'gpa' => 'required|max:4|regex:/^\d*(\.\d{2})?$/',
+            'period' => ['required', 'integer', 'max:10'],
+            'reg_no' => ['required', 'integer'],
+            'college' => ['required', 'string']
 
         ]);
 
@@ -86,6 +93,10 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'gpa' => $request->gpa,
+            'period' => $request->period,
+            'reg_no' => $request->reg_no,
+            'college' => $request->college
         ]);
     }
 }
