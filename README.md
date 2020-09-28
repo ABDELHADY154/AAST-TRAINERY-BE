@@ -1,4 +1,4 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -6,6 +6,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
+
+<!-- ## Installing
+
+```shell
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan storage:link
+php artisan db:seed
+php artisan serve
+
+User1: admin@admin.com . 123123123
+User2: admin@gmail.com . 123213123 -->
+
+```
 
 ## About Laravel
 
@@ -42,31 +57,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 -   **[Many](https://www.many.co.uk)**
 -   **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
 -   **[DevSquad](https://devsquad.com)**
-
-### Community Sponsors
-
-<a href="https://op.gg"><img src="http://opgg-static.akamaized.net/icon/t.rectangle.png" width="150"></a>
-
--   [UserInsights](https://userinsights.com)
--   [Fragrantica](https://www.fragrantica.com)
--   [SOFTonSOFA](https://softonsofa.com/)
--   [User10](https://user10.com)
--   [Soumettre.fr](https://soumettre.fr/)
--   [CodeBrisk](https://codebrisk.com)
--   [1Forge](https://1forge.com)
--   [TECPRESSO](https://tecpresso.co.jp/)
--   [Runtime Converter](http://runtimeconverter.com/)
--   [WebL'Agence](https://weblagence.com/)
--   [Invoice Ninja](https://www.invoiceninja.com)
--   [iMi digital](https://www.imi-digital.de/)
--   [Earthlink](https://www.earthlink.ro/)
--   [Steadfast Collective](https://steadfastcollective.com/)
--   [We Are The Robots Inc.](https://watr.mx/)
--   [Understand.io](https://www.understand.io/)
--   [Abdel Elrafa](https://abdelelrafa.com)
--   [Hyper Host](https://hyper.host)
--   [Appoly](https://www.appoly.co.uk)
--   [云软科技](http://www.yunruan.ltd/)
+-   **[OP.GG](https://op.gg)**
 
 ## Contributing
 
@@ -83,3 +74,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
