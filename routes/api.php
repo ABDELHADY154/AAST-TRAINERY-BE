@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
+Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -23,7 +26,3 @@ Route::group([
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
     Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 });
-
-
-Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
-Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
