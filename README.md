@@ -7,18 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-<!-- ## Installing
+## Installing
 
 ```shell
-composer install
-php artisan key:generate
-php artisan migrate
-php artisan storage:link
-php artisan db:seed
-php artisan serve
+# composer install
+# php artisan key:generate
+# php artisan migrate
+# php artisan storage:link
+# php artisan db:seed
+# php artisan serve
 
-User1: admin@admin.com . 123123123
-User2: admin@gmail.com . 123213123 -->
+# User1: admin@admin.com . 123123123
+# User2: admin@gmail.com . 123213123
 
 ```
 
@@ -74,4 +74,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-```
