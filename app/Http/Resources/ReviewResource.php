@@ -16,9 +16,11 @@ class ReviewResource extends JsonResource
     {
         return [
             'student_name' => $this->student->name,
-            'college' => 'aast',
             'rate' => intval($this->rate),
             'comment' => $this->comment,
+            'college' => new CollegeResource($this->student->college),
+            'department' => new DepartmentResource($this->student->department),
+
         ];
     }
 }

@@ -17,7 +17,7 @@ class CollegeResource extends JsonResource
         return [
             'id' => $this->id,
             'college_name' => $this->college_name,
-            'departments' =>  DepartmentResource::collection($this->departments),
+            // 'departments' =>  DepartmentResource::collection($this->departments),
         ];
     }
 }
