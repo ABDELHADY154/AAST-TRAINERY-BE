@@ -21,7 +21,6 @@ class StudentController extends Controller
     public function getProfile()
     {
         $student = Student::where('id', auth('api')->id())->first();
-        // dd($student);
         switch (true) {
             case $student:
                 $data = (new StudentResource($student))->resolve();

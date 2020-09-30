@@ -13,4 +13,10 @@ class Student extends User
     protected $fillable = [
         'name', 'email', 'password', 'reg_no', 'period', 'gpa', 'college'
     ];
+
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
