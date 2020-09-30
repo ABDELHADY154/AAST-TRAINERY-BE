@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
     use CoreJsonResponse;
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
 
     public function index()
     {
@@ -20,7 +24,8 @@ class StudentController extends Controller
 
     public function getProfile()
     {
-        $student = Student::where('id', auth('api')->id())->first();
+        $student = $this->student;
+        // Student::where('id', auth('api')->id())->first();
         switch (true) {
             case $student:
                 $data = (new StudentResource($student))->resolve();

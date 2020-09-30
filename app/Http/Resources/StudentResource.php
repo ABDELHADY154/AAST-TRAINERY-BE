@@ -22,9 +22,8 @@ class StudentResource extends JsonResource
             "reg_no" => $this->reg_no,
             "period" => $this->period,
             "gpa" => $this->gpa,
-            "college" => $this->college,
+            "college" => $this->college->college_name,
             "created_at" => $this->created_at->timestamp,
-
         ];
     }
 }

@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
+Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list');
+
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/review      s', 'API\V1\ReviewController@index')->name('reviews-list');
+Route::get('/reviews', 'API\V1\ReviewController@index')->name('reviews-list');
 
 Route::group([
     'middleware' => ['studentAuth']

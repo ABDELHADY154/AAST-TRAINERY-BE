@@ -79,24 +79,25 @@ class RegisterController extends Controller
     public function studentRegister(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:students,email'],
             'password' => ['required'],
-            'gpa' => 'required|max:4|regex:/^\d*(\.\d{2})?$/',
+            'gpa' => ['required', 'max:4', 'regex:/^\d*(\.\d{2})?$/'],
             'period' => ['required', 'integer', 'max:10'],
             'reg_no' => ['required', 'integer'],
-            'college' => ['required', 'string']
-
+            'college_id' => ['required', 'exists:colleges,id'],
         ]);
+        // dd($request->all());
 
-        return Student::create([
+        $student =  Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'gpa' => $request->gpa,
             'period' => $request->period,
+            'college_id' => $request->college_id,
             'reg_no' => $request->reg_no,
-            'college' => $request->college
         ]);
+        return $this->created((new StudentResource($student))->resolve());
     }
 }

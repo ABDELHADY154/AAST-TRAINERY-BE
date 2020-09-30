@@ -1,5 +1,7 @@
 <?php
 
+use App\College;
+use App\Department;
 use App\Student;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -26,7 +28,8 @@ class StudentSeeder extends Seeder
             'password' => Hash::make('123123123'), // password
             'period' => '7',
             'gpa' => '3.8',
-            'college' => 'business information systems',
+            // 'college_id' => rand(1, College::all()->count()),
+            'department_id' => rand(1, Department::all()->count()),
         ]);
         factory(Student::class, 10)->create();
     }
