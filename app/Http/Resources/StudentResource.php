@@ -23,6 +23,7 @@ class StudentResource extends JsonResource
             "period" => $this->period,
             "gpa" => $this->gpa,
             "college" => $this->college->college_name,
+            "department" => $this->department ? $this->department->dep_name : null,
             "created_at" => $this->created_at->timestamp,
         ];
     }
