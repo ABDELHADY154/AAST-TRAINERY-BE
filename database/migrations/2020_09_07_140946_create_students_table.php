@@ -20,10 +20,10 @@ class CreateStudentsTable extends Migration
             $table->integer('reg_no');
             $table->integer('period');
             $table->float('gpa');
-            $table->softDeletes();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

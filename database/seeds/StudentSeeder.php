@@ -20,7 +20,8 @@ class StudentSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('students')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        $college_id = rand(1, College::all()->count());
+        $college_id = 1;
+        //rand(1, College::all()->count());
         $departments = Department::where('college_id', $college_id)->get();
         Student::create([
             'name' => 'Mohamed Abdelhady Elshamy',

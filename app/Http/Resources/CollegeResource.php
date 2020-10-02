@@ -17,6 +17,7 @@ class CollegeResource extends JsonResource
         return [
             'id' => $this->id,
             'college_name' => $this->college_name,
+            'logo' => asset('storage/images/logo/' . $this->logo),
             // 'departments' =>  DepartmentResource::collection($this->departments),
         ];
     }

@@ -83,6 +83,7 @@
         @endif
 
         <div class="content">
+            {{-- <img src="http://localhost:8000/storage/images/avatars/default.png" alt="" srcset=""> --}}
             <div class="title m-b-md">
                 Laravel
             </div>

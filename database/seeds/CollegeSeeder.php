@@ -18,10 +18,12 @@ class CollegeSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         College::create([
-            'college_name' => 'AAST - CMT'
+            'college_name' => 'AAST - CMT',
+            'logo' => 'cmt.png'
         ]);
         College::create([
-            'college_name' => 'AAST - CLC'
+            'college_name' => 'AAST - CLC',
+            'logo' => 'clc.png'
         ]);
     }
 }

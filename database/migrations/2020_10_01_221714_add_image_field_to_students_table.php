@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCollegesTable extends Migration
+class AddImageFieldToStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateCollegesTable extends Migration
      */
     public function up()
     {
-        Schema::create('colleges', function (Blueprint $table) {
-            $table->id();
-            $table->string('college_name');
-            $table->string('logo');
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('students', function (Blueprint $table) {
+            $table->string('image')->default('default.png');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateCollegesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colleges');
+        Schema::table('students', function (Blueprint $table) {
+            $table->dropColumn('image');
+        });
     }
 }
