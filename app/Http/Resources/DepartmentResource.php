@@ -17,6 +17,7 @@ class DepartmentResource extends JsonResource
         return [
             'id' => $this->id,
             'department_name' => $this->dep_name,
+            'logo' => asset('storage/images/logo/' . $this->logo),
         ];
     }
 }

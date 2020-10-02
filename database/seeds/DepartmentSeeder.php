@@ -19,37 +19,46 @@ class DepartmentSeeder extends Seeder
 
         Department::create([
             'dep_name' => 'Business Information systems',
-            'college_id' => '1'
+            'college_id' => '1',
+            'logo' => 'bis.jpg'
         ]);
         Department::create([
-            'dep_name' => 'Accounting',
-            'college_id' => '1'
+            'dep_name' => 'Finance & Accounting',
+            'college_id' => '1',
+            'logo' => 'fad.jpg'
+
         ]);
-        Department::create([
-            'dep_name' => 'Finance',
-            'college_id' => '1'
-        ]);
+
         Department::create([
             'dep_name' => 'Marketing',
-            'college_id' => '1'
+            'college_id' => '1',
+            'logo' => 'mib.jpg'
+
         ]);
 
         Department::create([
             'dep_name' => 'Media Managemenet',
-            'college_id' => '1'
+            'college_id' => '1',
+            'logo' => 'mm.jpg'
+
         ]);
         Department::create([
             'dep_name' => 'Humanities',
-            'college_id' => '2'
+            'college_id' => '2',
+            'logo' => 'clc.jpg'
 
         ]);
         Department::create([
             'dep_name' => 'Language & Translation',
-            'college_id' => '2'
+            'college_id' => '2',
+            'logo' => 'clc.jpg'
+
         ]);
         Department::create([
             'dep_name' => 'Media',
-            'college_id' => '2'
+            'college_id' => '2',
+            'logo' => 'clc.jpg'
+
         ]);
     }
 }
