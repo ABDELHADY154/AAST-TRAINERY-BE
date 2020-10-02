@@ -10,7 +10,7 @@ class Department extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'dep_name', 'college_id'
+        'dep_name', 'college_id', 'logo'
     ];
 
 

@@ -14,7 +14,7 @@ class AddImageFieldToStudentsTable extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->string('image')->default('default.png');
+            $table->string('image')->default('default.png')->after('name');
         });
     }
 

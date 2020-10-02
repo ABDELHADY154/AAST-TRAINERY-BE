@@ -97,7 +97,9 @@ class RegisterController extends Controller
             'period' => $request->period,
             'college_id' => $request->college_id,
             'reg_no' => $request->reg_no,
+            'image' => 'default.png'
         ]);
+        // dd($student);
         return $this->created((new StudentResource($student))->resolve());
     }
 }

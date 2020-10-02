@@ -13,7 +13,7 @@ class Student extends User
 {
     use HasApiTokens, Notifiable, SoftDeletes;
     protected $fillable = [
-        'name', 'email', 'password', 'reg_no', 'period', 'gpa', 'college_id'
+        'name', 'email', 'password', 'reg_no', 'period', 'gpa', 'college_id', 'image'
     ];
 
 
