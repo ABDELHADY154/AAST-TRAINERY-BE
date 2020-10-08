@@ -20,6 +20,13 @@ class CreateStudentsTable extends Migration
             $table->integer('reg_no');
             $table->integer('period');
             $table->float('gpa');
+            $table->string('gender')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->longText('address')->nullable();
+            $table->string('phone_number')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -45,19 +45,19 @@ class DepartmentSeeder extends Seeder
         Department::create([
             'dep_name' => 'Humanities',
             'college_id' => '2',
-            'logo' => 'clc.jpg'
+            'logo' => 'clc.png'
 
         ]);
         Department::create([
             'dep_name' => 'Language & Translation',
             'college_id' => '2',
-            'logo' => 'clc.jpg'
+            'logo' => 'clc.png'
 
         ]);
         Department::create([
             'dep_name' => 'Media',
             'college_id' => '2',
-            'logo' => 'clc.jpg'
+            'logo' => 'clc.png'
 
         ]);
     }

@@ -20,8 +20,8 @@ class StudentSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('students')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         $college_id = 1;
-        //rand(1, College::all()->count());
         $departments = Department::where('college_id', $college_id)->get();
         Student::create([
             'name' => 'Mohamed Abdelhady Elshamy',
@@ -32,6 +32,13 @@ class StudentSeeder extends Seeder
             'gpa' => '3.8',
             'college_id' => $college_id,
             'department_id' => rand($departments->first()->id, $departments->last()->id),
+            'gender' => 'male',
+            'date_of_birth' => '1997-04-15',
+            'nationality' => 'Egypt',
+            'country' => 'Egypt',
+            'city' => 'Alexandria',
+            'address' => '22 syria street roushdy',
+            'phone_number' => '+201000015894'
         ]);
         factory(Student::class, 10)->create();
     }
