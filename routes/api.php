@@ -31,5 +31,7 @@ Route::group([
 ], function () {
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
     Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
+    Route::get('/student-workExperience', 'API\V1\WorkExperienceController@index')->name('students-workExperience');
+
     Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list');
 });

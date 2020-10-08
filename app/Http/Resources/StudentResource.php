@@ -34,6 +34,7 @@ class StudentResource extends JsonResource
             'phone_number' => $this->phone_number,
             "college" => $this->college->college_name,
             "department" => $this->department ? $this->department->dep_name : null,
+            'work_experience' =>  WorkExperienceResource::collection($this->workExperience)->resolve(),
             "created_at" => $this->created_at->timestamp,
         ];
     }

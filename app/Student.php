@@ -31,4 +31,8 @@ class Student extends User
     {
         return $this->belongsTo(Department::class, 'department_id');
     }
+    public function workExperience()
+    {
+        return $this->hasMany(WorkExperience::class);
+    }
 }
