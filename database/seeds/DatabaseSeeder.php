@@ -3,6 +3,7 @@
 use App\College;
 use App\ProfileCourse;
 use App\Review;
+use App\StudentLanguage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkExperienceSeeder::class);
         $this->call(ProfileCourseSeeder::class);
         $this->call(StudentSkillSeeder::class);
+        $this->call(StudentLanguageSeeder::class);
     }
 }
