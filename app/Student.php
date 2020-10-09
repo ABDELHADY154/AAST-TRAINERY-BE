@@ -35,4 +35,9 @@ class Student extends User
     {
         return $this->hasMany(WorkExperience::class);
     }
+
+    public function profileCourses()
+    {
+        return $this->hasMany(ProfileCourse::class);
+    }
 }

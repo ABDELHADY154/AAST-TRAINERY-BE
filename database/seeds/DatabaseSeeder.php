@@ -1,6 +1,7 @@
 <?php
 
 use App\College;
+use App\ProfileCourse;
 use App\Review;
 use Illuminate\Database\Seeder;
 
@@ -18,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentSeeder::class);
         $this->call(ReviewSeeder::class);
         $this->call(WorkExperienceSeeder::class);
+        $this->call(ProfileCourseSeeder::class);
     }
 }
