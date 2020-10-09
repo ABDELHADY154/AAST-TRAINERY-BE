@@ -33,7 +33,6 @@ Route::group([
     Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 
 
-
     // profile info test routes and will be removed later
     Route::get('/student-workExperience', 'API\V1\WorkExperienceController@index')->name('students-workExperience');
     Route::get('/student-profileCourses', 'API\V1\ProfileCourseController@index')->name('students-profileCourses');
