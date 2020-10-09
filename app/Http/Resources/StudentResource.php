@@ -36,6 +36,7 @@ class StudentResource extends JsonResource
             "department" => $this->department ? $this->department->dep_name : null,
             'work_experiences' =>  WorkExperienceResource::collection($this->workExperience)->resolve(),
             'courses' => ProfileCourseResource::collection($this->profileCourses)->resolve(),
+            'skills' => StudentSkillResource::collection($this->skills)->resolve(),
             "created_at" => $this->created_at->timestamp,
         ];
     }

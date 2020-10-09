@@ -18,6 +18,6 @@ class WorkExperienceSeeder extends Seeder
         DB::table('work_experiences')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(WorkExperience::class, 50)->create();
+        factory(WorkExperience::class, 20)->create();
     }
 }

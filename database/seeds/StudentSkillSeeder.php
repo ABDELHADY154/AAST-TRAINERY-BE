@@ -1,10 +1,10 @@
 <?php
 
-use App\ProfileCourse;
+use App\StudentSkill;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProfileCourseSeeder extends Seeder
+class StudentSkillSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +13,10 @@ class ProfileCourseSeeder extends Seeder
      */
     public function run()
     {
-
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('profile_courses')->truncate();
+        DB::table('student_skills')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(ProfileCourse::class, 20)->create();
+        factory(StudentSkill::class, 25)->create();
     }
 }
