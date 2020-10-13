@@ -16,7 +16,7 @@ class ProfileCourseResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'course_category' => $this->course_category . ' Course',
+            'course_category' => $this->course_category,
             'course_name' => $this->course_name,
             'additional_info' => $this->additional_info,
             'course_url' => $this->course_url
