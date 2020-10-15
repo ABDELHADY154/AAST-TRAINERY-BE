@@ -82,24 +82,26 @@ class RegisterController extends Controller
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:students,email'],
             'password' => ['required'],
-            'gpa' => ['required', 'max:4', 'regex:/^\d*(\.\d{2})?$/'],
-            'period' => ['required', 'integer', 'max:10'],
+            'start_year' => ['required', 'integer'],
+            'end_year' => ['required', 'integer'],
+            // 'gpa' => ['required', 'max:4', 'regex:/^\d*(\.\d{2})?$/'],
+            // 'period' => ['required', 'integer', 'max:10'],
             'reg_no' => ['required', 'integer'],
             'college_id' => ['required', 'exists:colleges,id'],
         ]);
-        // dd($request->all());
 
         $student =  Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'gpa' => $request->gpa,
-            'period' => $request->period,
+            'start_year' => $request->start_year,
+            'end_year' => $request->end_year,
+            // 'gpa' => $request->gpa,
+            // 'period' => $request->period,
             'college_id' => $request->college_id,
             'reg_no' => $request->reg_no,
             'image' => 'default.png'
         ]);
-        // dd($student);
         return $this->created((new StudentResource($student))->resolve());
     }
 }

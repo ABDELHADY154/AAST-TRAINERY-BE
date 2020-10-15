@@ -29,6 +29,8 @@ class StudentSeeder extends Seeder
             'reg_no' => '17200237',
             'password' => Hash::make('123123123'), // password
             'period' => '7',
+            'start_year' => 2017,
+            'end_year' => 2021,
             'gpa' => '3.8',
             'college_id' => $college_id,
             'department_id' => rand($departments->first()->id, $departments->last()->id),

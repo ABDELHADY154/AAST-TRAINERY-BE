@@ -25,6 +25,8 @@ $factory->define(Student::class, function (Faker $faker) {
         'reg_no' => '17200123',
         'password' => Hash::make('123123123'),
         'period' => rand(1, 9),
+        'start_year' => $faker->year(2016),
+        'end_year' => $faker->year(),
         'gpa' => floatval(rand(1.5, 4)),
         'college_id' => $college_id,
         'department_id' => rand($departments->first()->id, $departments->last()->id),

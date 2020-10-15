@@ -18,8 +18,10 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('reg_no');
-            $table->integer('period');
-            $table->float('gpa');
+            $table->integer('period')->nullable();
+            $table->float('gpa')->nullable();
+            $table->integer('start_year');
+            $table->integer('end_year');
             $table->string('gender')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('nationality')->nullable();

@@ -21,6 +21,8 @@ class StudentResource extends JsonResource
             "name" => $this->name,
             "image" => asset('storage/images/avatars/' . $this->image),
             "email" => $this->email,
+            'start_year' => $this->start_year,
+            'end_year' => $this->end_year,
             'date_of_birth' => $this->date_of_birth,
             'age' =>  $this->date_of_birth ? now()->year - $date['0'] : null,
             "reg_no" => $this->reg_no,
