@@ -36,6 +36,7 @@ Route::group([
     Route::get('/student-profileCourses', 'API\V1\ProfileCourseController@index')->name('students-profileCourses');
     Route::get('/student-skills', 'API\V1\StudentSkillController@index')->name('students-skills');
     Route::get('/student-lang', 'API\V1\StudentLangController@index')->name('students-lang');
+    Route::get('/student-acc', 'API\V1\ProfileAccountsController@index')->name('students-account');
     // ----------------//
     Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list');
 });

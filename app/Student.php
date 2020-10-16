@@ -50,4 +50,9 @@ class Student extends User
     {
         return $this->hasMany(StudentLanguage::class);
     }
+
+    public function accounts()
+    {
+        return $this->hasOne(ProfileAccounts::class);
+    }
 }
