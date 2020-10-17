@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\StudentResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list')
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return new StudentResource($request->user());
 });
 Route::get('/reviews', 'API\V1\ReviewController@index')->name('reviews-list');
 
