@@ -22,6 +22,7 @@ class WorkExperienceResource extends JsonResource
             'company_name' => $this->company_name,
             'country' => $this->country,
             'city' => $this->city,
+            'exp_url' => $this->exp_url,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'duration' => ((int)($duration / 30) <= 1) ? round(($duration / 30), 1) . ' Month' : round(($duration / 30), 1) . ' Months'

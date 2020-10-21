@@ -17,7 +17,7 @@ $factory->define(WorkExperience::class, function (Faker $faker) {
         'city' => $faker->city,
         'start_date' => $faker->date(),
         'end_date' => $faker->date(),
-        'additional_info' => $faker->text(500),
+        'exp_url' => $faker->url,
         'student_id' => rand(1, Student::all()->count())
     ];
 });

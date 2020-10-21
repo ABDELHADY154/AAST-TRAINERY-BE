@@ -18,7 +18,8 @@ class ProfileCourseResource extends JsonResource
             'id' => $this->id,
             'course_category' => $this->course_category,
             'course_name' => $this->course_name,
-            'additional_info' => $this->additional_info,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
             'course_url' => $this->course_url
         ];
         // return parent::toArray($request);

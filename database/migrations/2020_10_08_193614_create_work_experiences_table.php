@@ -23,7 +23,8 @@ class CreateWorkExperiencesTable extends Migration
             $table->string('city');
             $table->date('start_date');
             $table->date('end_date');
-            $table->longText('additional_info')->nullable();
+            $table->string('exp_url')->nullable();
+            // $table->longText('additional_info')->nullable();
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students');
             $table->softDeletes();

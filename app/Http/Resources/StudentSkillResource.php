@@ -17,6 +17,7 @@ class StudentSkillResource extends JsonResource
         return [
             'id' => $this->id,
             'skill_name' => $this->skill_name,
+            'level' => $this->level,
             'experience' => ($this->exp_years > 1) ? $this->exp_years . ' years' : $this->exp_years . ' year'
         ];
         // return parent::toArray($request);

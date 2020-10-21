@@ -17,6 +17,6 @@ class StudentLanguageSeeder extends Seeder
         DB::table('student_languages')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(StudentLanguage::class, 30)->create();
+        factory(StudentLanguage::class, 35)->create();
     }
 }

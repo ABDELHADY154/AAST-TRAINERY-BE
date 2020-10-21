@@ -12,7 +12,8 @@ $factory->define(ProfileCourse::class, function (Faker $faker) {
         'course_name' => $faker->jobTitle,
         'course_category' => $course_category[rand(0, (count($course_category) - 1))],
         'course_url' => $faker->url,
-        'additional_info' => $faker->text,
+        'start_date' => $faker->date(),
+        'end_date' => $faker->date(),
         'student_id' => rand(1, Student::all()->count())
     ];
 });

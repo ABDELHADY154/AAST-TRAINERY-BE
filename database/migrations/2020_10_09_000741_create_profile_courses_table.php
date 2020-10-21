@@ -18,7 +18,8 @@ class CreateProfileCoursesTable extends Migration
             $table->string('course_name');
             $table->string('course_category');
             $table->string('course_url')->nullable();
-            $table->longText('additional_info')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students');
             $table->softDeletes();

@@ -10,7 +10,8 @@ $factory->define(StudentSkill::class, function (Faker $faker) {
     return [
         'skill_name' => $faker->jobTitle,
         'exp_years' => $faker->numberBetween(1, 5),
-        'justification' => $faker->text,
+        'level' => rand(1, 5),
+        // 'justification' => $faker->text,
         'student_id' => rand(1, Student::all()->count())
     ];
 });

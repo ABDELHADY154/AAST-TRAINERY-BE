@@ -17,7 +17,8 @@ class CreateStudentSkillsTable extends Migration
             $table->id();
             $table->string('skill_name');
             $table->integer('exp_years');
-            $table->longText('justification')->nullable();
+            $table->integer('level');
+            // $table->longText('justification')->nullable();
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students');
             $table->softDeletes();

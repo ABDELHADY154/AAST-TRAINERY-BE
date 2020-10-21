@@ -17,6 +17,6 @@ class ProfileAccountsSeeder extends Seeder
         DB::table('profile_accounts')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(ProfileAccounts::class, 10)->create();
+        factory(ProfileAccounts::class, 50)->create();
     }
 }
