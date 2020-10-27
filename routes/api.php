@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
-Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list');
+Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list'); //removed
 
 
 
@@ -39,5 +39,5 @@ Route::group([
     Route::get('/student-lang', 'API\V1\StudentLangController@index')->name('students-lang');
     Route::get('/student-acc', 'API\V1\ProfileAccountsController@index')->name('students-account');
     // ----------------//
-    Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list');
+    Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list'); //remove
 });
