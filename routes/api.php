@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
-Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list'); //removed
+// Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list'); //removed
 
 
 
@@ -33,11 +33,11 @@ Route::group([
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
     Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
     // profile info test routes and will be removed later
-    Route::get('/student-workExperience', 'API\V1\WorkExperienceController@index')->name('students-workExperience');
-    Route::get('/student-profileCourses', 'API\V1\ProfileCourseController@index')->name('students-profileCourses');
-    Route::get('/student-skills', 'API\V1\StudentSkillController@index')->name('students-skills');
-    Route::get('/student-lang', 'API\V1\StudentLangController@index')->name('students-lang');
-    Route::get('/student-acc', 'API\V1\ProfileAccountsController@index')->name('students-account');
+    // Route::get('/student-workExperience', 'API\V1\WorkExperienceController@index')->name('students-workExperience');
+    // Route::get('/student-profileCourses', 'API\V1\ProfileCourseController@index')->name('students-profileCourses');
+    // Route::get('/student-skills', 'API\V1\StudentSkillController@index')->name('students-skills');
+    // Route::get('/student-lang', 'API\V1\StudentLangController@index')->name('students-lang');
+    // Route::get('/student-acc', 'API\V1\ProfileAccountsController@index')->name('students-account');
     // ----------------//
-    Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list'); //remove
+    // Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list'); //remove
 });
