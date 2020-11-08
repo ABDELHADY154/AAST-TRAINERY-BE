@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
-Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
+Route::get('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
 
 
 
@@ -25,12 +25,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new StudentResource($request->user());
 });
 
+Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 
 Route::group([
     'middleware' => ['studentAuth']
 ], function () {
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
-    Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 });
 
 
