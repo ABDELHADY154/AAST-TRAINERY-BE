@@ -17,42 +17,42 @@ class Student extends User
     ];
 
 
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
+    // public function reviews()
+    // {
+    //     return $this->hasMany(Review::class);
+    // }
 
-    public function college()
-    {
-        return $this->belongsTo(College::class);
-    }
+    // public function college()
+    // {
+    //     return $this->belongsTo(College::class);
+    // }
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'department_id');
-    }
-    public function workExperience()
-    {
-        return $this->hasMany(WorkExperience::class);
-    }
+    // public function department()
+    // {
+    //     return $this->belongsTo(Department::class, 'department_id');
+    // }
+    // public function workExperience()
+    // {
+    //     return $this->hasMany(WorkExperience::class);
+    // }
 
-    public function profileCourses()
-    {
-        return $this->hasMany(ProfileCourse::class);
-    }
+    // public function profileCourses()
+    // {
+    //     return $this->hasMany(ProfileCourse::class);
+    // }
 
-    public function skills()
-    {
-        return $this->hasMany(StudentSkill::class);
-    }
+    // public function skills()
+    // {
+    //     return $this->hasMany(StudentSkill::class);
+    // }
 
-    public function langs()
-    {
-        return $this->hasMany(StudentLanguage::class);
-    }
+    // public function langs()
+    // {
+    //     return $this->hasMany(StudentLanguage::class);
+    // }
 
-    public function accounts()
-    {
-        return $this->hasOne(ProfileAccounts::class);
-    }
+    // public function accounts()
+    // {
+    //     return $this->hasOne(ProfileAccounts::class);
+    // }
 }
