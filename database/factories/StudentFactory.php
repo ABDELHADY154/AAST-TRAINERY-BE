@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 $factory->define(Student::class, function (Faker $faker) {
-    $college_id = rand(1, College::all()->count());
-    $departments = Department::where('college_id', $college_id)->get();
+    // $college_id = rand(1, College::all()->count());
+    // $departments = Department::where('college_id', $college_id)->get();
 
     $gender = $faker->randomElement(['male', 'female']);
     $city = $faker->city;
@@ -28,8 +28,8 @@ $factory->define(Student::class, function (Faker $faker) {
         'start_year' => $faker->year(2016),
         'end_year' => $faker->year(),
         'gpa' => floatval(rand(1.5, 4)),
-        'college_id' => $college_id,
-        'department_id' => rand($departments->first()->id, $departments->last()->id),
+        // 'college_id' => $college_id,
+        // 'department_id' => rand($departments->first()->id, $departments->last()->id),
         'gender' => $gender,
         'date_of_birth' => $faker->date(),
         'nationality' => $faker->country,
