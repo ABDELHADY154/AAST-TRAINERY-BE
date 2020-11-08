@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\student;
+use App\Student;
+// use App\student;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -49,7 +51,7 @@ class LoginController extends Controller
             'password' => ['required'],
 
         ]);
-        $student = student::where('email', $request->email)->first();
+        $student = Student::where('email', $request->email)->first();
 
 
         if (!$student || !Hash::check($request->password, $student->password) || ($student->email != $request->email)) {
