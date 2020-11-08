@@ -34,14 +34,6 @@ class StudentResource extends JsonResource
             'city' => $this->city,
             'address' => $this->address,
             'phone_number' => $this->phone_number,
-            "college" => $this->college->college_name,
-            "department" => $this->department ? $this->department->dep_name : null,
-            'work_experiences' =>  WorkExperienceResource::collection($this->workExperience)->resolve(),
-            'courses' => ProfileCourseResource::collection($this->profileCourses)->resolve(),
-            'skills' => StudentSkillResource::collection($this->skills)->resolve(),
-            'languages' => StudentLangResource::collection($this->langs)->resolve(),
-            'accounts' => new ProfileAccountsResource($this->accounts),
-            //ProfileAccountsResource::collection($this->accounts)->resolve(),
             "created_at" => $this->created_at->timestamp,
         ];
     }

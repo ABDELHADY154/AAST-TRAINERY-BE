@@ -87,7 +87,7 @@ class RegisterController extends Controller
             // 'gpa' => ['required', 'max:4', 'regex:/^\d*(\.\d{2})?$/'],
             // 'period' => ['required', 'integer', 'max:10'],
             'reg_no' => ['required', 'integer'],
-            'college_id' => ['required', 'exists:colleges,id'],
+            // 'college_id' => ['required', 'exists:colleges,id'],
         ]);
 
         $student =  Student::create([
@@ -98,7 +98,7 @@ class RegisterController extends Controller
             'end_year' => $request->end_year,
             // 'gpa' => $request->gpa,
             // 'period' => $request->period,
-            'college_id' => $request->college_id,
+            // 'college_id' => $request->college_id,
             'reg_no' => $request->reg_no,
             'image' => 'default.png'
         ]);

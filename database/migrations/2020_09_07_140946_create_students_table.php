@@ -15,6 +15,7 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('image')->default('default.png');
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('reg_no');

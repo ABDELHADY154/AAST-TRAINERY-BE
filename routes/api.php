@@ -15,23 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+////AUTH/////
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
 
 
+Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new StudentResource($request->user());
 });
 
-Route::get('/reviews', 'API\V1\ReviewController@index')->name('reviews-list');
 
 Route::group([
     'middleware' => ['studentAuth']
 ], function () {
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
-    Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 });
 
 
@@ -48,3 +47,4 @@ Route::group([
     // Route::get('/student-acc', 'API\V1\ProfileAccountsController@index')->name('students-account');
     // ----------------//
     // Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list'); //remove
+    // Route::get('/reviews', 'API\V1\ReviewController@index')->name('reviews-list');
