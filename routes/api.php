@@ -15,12 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-////AUTH/////
-Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
+
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
+Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
 
 
-Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new StudentResource($request->user());
@@ -31,6 +30,7 @@ Route::group([
     'middleware' => ['studentAuth']
 ], function () {
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
+    Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 });
 
 
