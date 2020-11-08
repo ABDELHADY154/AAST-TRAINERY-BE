@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
-// Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list'); //removed
 
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new StudentResource($request->user());
 });
+
 Route::get('/reviews', 'API\V1\ReviewController@index')->name('reviews-list');
 
 Route::group([
@@ -32,7 +32,15 @@ Route::group([
 ], function () {
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
     Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
-    // profile info test routes and will be removed later
+});
+
+
+
+
+///////////////////////////COMMENTED APIS//////////////////////
+// Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list'); //removed
+
+ // profile info test routes and will be removed later
     // Route::get('/student-workExperience', 'API\V1\WorkExperienceController@index')->name('students-workExperience');
     // Route::get('/student-profileCourses', 'API\V1\ProfileCourseController@index')->name('students-profileCourses');
     // Route::get('/student-skills', 'API\V1\StudentSkillController@index')->name('students-skills');
@@ -40,4 +48,3 @@ Route::group([
     // Route::get('/student-acc', 'API\V1\ProfileAccountsController@index')->name('students-account');
     // ----------------//
     // Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list'); //remove
-});
