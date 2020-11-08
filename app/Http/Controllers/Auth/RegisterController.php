@@ -84,10 +84,7 @@ class RegisterController extends Controller
             'password' => ['required'],
             'start_year' => ['required', 'integer'],
             'end_year' => ['required', 'integer'],
-            // 'gpa' => ['required', 'max:4', 'regex:/^\d*(\.\d{2})?$/'],
-            // 'period' => ['required', 'integer', 'max:10'],
             'reg_no' => ['required', 'integer'],
-            // 'college_id' => ['required', 'exists:colleges,id'],
         ]);
 
         $student =  Student::create([
@@ -96,9 +93,6 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
             'start_year' => $request->start_year,
             'end_year' => $request->end_year,
-            // 'gpa' => $request->gpa,
-            // 'period' => $request->period,
-            // 'college_id' => $request->college_id,
             'reg_no' => $request->reg_no,
             'image' => 'default.png'
         ]);
