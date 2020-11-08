@@ -102,7 +102,6 @@ class RegisterController extends Controller
             'reg_no' => $request->reg_no,
             'image' => 'default.png'
         ]);
-        return $this->created();
-        // return $this->created((new StudentResource($student))->resolve());
+        return $this->created((new StudentResource($student))->resolve());
     }
 }
