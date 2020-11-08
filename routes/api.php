@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 ////AUTH/////
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
-Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
+Route::get('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
 
 
 Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
