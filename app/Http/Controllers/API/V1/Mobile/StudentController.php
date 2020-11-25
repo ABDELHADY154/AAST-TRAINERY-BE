@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API\V1;
+namespace App\Http\Controllers\API\V1\Mobile;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\StudentResource;
-use App\Student;
+use App\Http\Resources\Mobile\StudentResource;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -16,11 +15,6 @@ class StudentController extends Controller
         $this->student = auth('api')->user();
     }
 
-    public function index()
-    {
-        $students = StudentResource::collection(Student::all());
-        return $this->ok($students->resolve());
-    }
 
     public function getProfile()
     {
@@ -34,11 +28,4 @@ class StudentController extends Controller
         }
         return $this->ok($data);
     }
-
-    // public function getProfileImage()
-    // {
-    //     $student = $this->student;
-
-    //     return asset('storage/images/avatars/' . $student->image);
-    // }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AuthResource;
 use App\Providers\RouteServiceProvider;
 use App\Student;
 // use App\student;
@@ -26,6 +28,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    use CoreJsonResponse;
 
     /**
      * Where to redirect users after login.
@@ -59,6 +62,9 @@ class LoginController extends Controller
                 'email' => ['Invalid email or password'],
             ]);
         }
-        return $student->createToken('Auth Token')->accessToken;
+        // $student->getToke
+        // return $student->createToken('Auth Token')->accessToken;
+        $token = $student->createToken('Auth Token')->accessToken;
+        return $this->created((new AuthResource([$student, $token]))->resolve());
     }
 }
