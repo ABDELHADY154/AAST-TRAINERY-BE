@@ -18,21 +18,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::get('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
-
 Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new StudentResource($request->user());
 });
 
-
+//WEB API //////////
 Route::group([
-    'middleware' => ['studentAuth']
+    'middleware' => ['studentAuth'],
+    'prefix' => '/W',
 ], function () {
     Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
 });
 
 
+//APP API //////////
+Route::group([
+    'middleware' => ['studentAuth'],
+    'prefix' => '/A',
+], function () {
+    Route::get('/get-profile', 'API\V1\Mobile\StudentController@getProfile')->name('get-profile');
+});
 
 
 ///////////////////////////COMMENTED APIS//////////////////////

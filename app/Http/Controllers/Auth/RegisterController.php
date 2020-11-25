@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AuthResource;
 use App\Http\Resources\StudentResource;
 use App\Providers\RouteServiceProvider;
 use App\Student;
@@ -96,6 +97,8 @@ class RegisterController extends Controller
             'reg_no' => $request->reg_no,
             'image' => 'default.png'
         ]);
-        return $this->created((new StudentResource($student))->resolve());
+
+        $token = $student->createToken('Auth Token')->accessToken;
+        return $this->created((new AuthResource([$student, $token]))->resolve());
     }
 }
