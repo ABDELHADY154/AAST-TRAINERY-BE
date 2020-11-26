@@ -40,6 +40,14 @@ Route::group([
     Route::get('/get-profile', 'API\V1\Mobile\StudentController@getProfile')->name('get-profile');
 });
 
+// fallback route////
+Route::fallback(function () {
+    $message = [
+        'error' => 'Route is not found'
+    ];
+    return $message;
+});
+
 
 ///////////////////////////COMMENTED APIS//////////////////////
 // Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list'); //removed
