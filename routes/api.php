@@ -40,7 +40,7 @@ Route::group([
     Route::get('/get-profile', 'API\V1\Mobile\StudentController@getProfile')->name('get-profile');
 });
 
-// fallback route////
+// fallback route////  $todo : make a fallback function in a controller of the student
 Route::fallback(function () {
     $message = [
         'error' => 'Route is not found'
