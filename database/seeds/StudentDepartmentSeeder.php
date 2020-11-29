@@ -13,9 +13,9 @@ class StudentDepartmentSeeder extends Seeder
      */
     public function run()
     {
-        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        // DB::table('student_departments')->truncate();
-        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('student_departments')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         StudentDepartment::create([
             'department_name' => 'Business Information Systems'
@@ -41,5 +41,6 @@ class StudentDepartmentSeeder extends Seeder
         StudentDepartment::create([
             'department_name' => 'Humanities'
         ]);
+        factory(StudentDepartment::class, 1)->create();
     }
 }
