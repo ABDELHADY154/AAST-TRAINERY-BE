@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(StudentDepartment::class, function (Faker $faker) {
     $depArr = [
-        'Business Information Systems',
+
         'Marketing', 'Media Management',
         'Accounting & Finance', 'Political Science',
         'Media', 'Language and translation', 'Humanities'
@@ -15,6 +15,6 @@ $factory->define(StudentDepartment::class, function (Faker $faker) {
 
 
     return [
-        'department_name' => rand(1, count($depArr)),
+        'department_name' => $depArr[rand(1, count($depArr))],
     ];
 });
