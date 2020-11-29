@@ -19,12 +19,10 @@ class StudentDepartmentSeeder extends Seeder
 
         StudentDepartment::create([
             'department_name' => 'Business Information Systems'
-        ], [
+        ]);
+        StudentDepartment::create([
             'department_name' => 'Marketing'
         ]);
-        // StudentDepartment::create([
-        //     'department_name' => 'Marketing'
-        // ]);
         // StudentDepartment::create([
         //     'department_name' => 'Media Management'
         // ]);
