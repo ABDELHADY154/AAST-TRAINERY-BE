@@ -30,7 +30,7 @@ $factory->define(Student::class, function (Faker $faker) {
         'end_year' => $faker->year(),
         'gpa' => floatval(rand(1.5, 4)),
         // 'college_id' => $college_id,
-        'department_id' => rand(1, StudentDepartment::all()->count()),
+        'department_id' => 1, //rand(1, StudentDepartment::all()->count()),
 
         // 'department_id' => rand($departments->first()->id, $departments->last()->id),
         'gender' => $gender,
