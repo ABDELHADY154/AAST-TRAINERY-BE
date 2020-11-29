@@ -14,8 +14,8 @@ class AddForeignToStudentsTable extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
+            $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('student_departments');
-            $table->foreignId('department_id');
         });
     }
 
