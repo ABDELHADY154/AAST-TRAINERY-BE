@@ -6,7 +6,15 @@ use App\StudentDepartment;
 use Faker\Generator as Faker;
 
 $factory->define(StudentDepartment::class, function (Faker $faker) {
+    $depArr = [
+        'Business Information Systems',
+        'Marketing', 'Media Management',
+        'Accounting & Finance', 'Political Science',
+        'Media', 'Language and translation', 'Humanities'
+    ];
+
+
     return [
-        'department_name' => 'Business Information Systems',
+        'department_name' => rand(1, count($depArr)),
     ];
 });
