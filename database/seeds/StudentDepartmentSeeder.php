@@ -41,6 +41,5 @@ class StudentDepartmentSeeder extends Seeder
         StudentDepartment::create([
             'department_name' => 'Humanities'
         ]);
-        // factory(StudentDepartment::class, 0)->create();
     }
 }
