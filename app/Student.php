@@ -13,6 +13,11 @@ class Student extends User
 {
     use HasApiTokens, Notifiable, SoftDeletes;
     protected $fillable = [
-        'name', 'email', 'password', 'reg_no', 'period', 'gpa', 'image', 'start_year', 'end_year'
+        'name', 'email', 'password', 'reg_no', 'period', 'gpa', 'image', 'start_year', 'end_year', 'department_id'
     ];
+
+    public function studentDepartment()
+    {
+        return $this->belongsTo(StudentDepartment::class, 'department_id');
+    }
 }

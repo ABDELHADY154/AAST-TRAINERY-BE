@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentRegisterRequest;
 use App\Http\Resources\AuthResource;
 use App\Http\Resources\StudentResource;
 use App\Providers\RouteServiceProvider;
@@ -77,24 +78,14 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function studentRegister(Request $request)
+    public function studentRegister(StudentRegisterRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:students,email'],
-            'password' => ['required'],
-            'start_year' => ['required', 'integer'],
-            'end_year' => ['required', 'integer'],
-            'reg_no' => ['required', 'integer'],
-        ]);
-
         $student =  Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'start_year' => $request->start_year,
-            'end_year' => $request->end_year,
             'reg_no' => $request->reg_no,
+            'department_id' => $request->department_id,
             'image' => 'default.png'
         ]);
 

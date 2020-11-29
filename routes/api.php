@@ -19,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
 Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return new StudentResource($request->user());
-});
+Route::get('/departments', 'API\V1\StudentDepartmentController@index')->name('departments-list');
+
 
 //WEB API //////////
 Route::group([
@@ -61,3 +60,6 @@ Route::fallback(function () {
     // ----------------//
     // Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list'); //remove
     // Route::get('/reviews', 'API\V1\ReviewController@index')->name('reviews-list');
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return new StudentResource($request->user());
+// });

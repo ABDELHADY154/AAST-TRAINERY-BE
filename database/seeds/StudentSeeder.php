@@ -3,6 +3,7 @@
 use App\College;
 use App\Department;
 use App\Student;
+use App\StudentDepartment;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +34,7 @@ class StudentSeeder extends Seeder
             'end_year' => 2021,
             'gpa' => '3.8',
             // 'college_id' => $college_id,
-            // 'department_id' => rand($departments->first()->id, $departments->last()->id),
+            'department_id' => 1,
             'gender' => 'male',
             'date_of_birth' => '1997-04-15',
             'nationality' => 'Egypt',

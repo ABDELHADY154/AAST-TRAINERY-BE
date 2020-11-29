@@ -5,6 +5,7 @@
 use App\College;
 use App\Department;
 use App\Student;
+use App\StudentDepartment;
 use Faker\Generator as Faker;
 // use Faker\Provider\ar_SA\Address;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +30,8 @@ $factory->define(Student::class, function (Faker $faker) {
         'end_year' => $faker->year(),
         'gpa' => floatval(rand(1.5, 4)),
         // 'college_id' => $college_id,
+        'department_id' => rand(1, StudentDepartment::all()->count()),
+
         // 'department_id' => rand($departments->first()->id, $departments->last()->id),
         'gender' => $gender,
         'date_of_birth' => $faker->date(),

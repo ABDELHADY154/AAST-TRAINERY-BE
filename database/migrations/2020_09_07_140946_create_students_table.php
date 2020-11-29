@@ -21,8 +21,8 @@ class CreateStudentsTable extends Migration
             $table->integer('reg_no');
             $table->integer('period')->nullable();
             $table->float('gpa')->nullable();
-            $table->integer('start_year');
-            $table->integer('end_year');
+            $table->integer('start_year')->nullable();
+            $table->integer('end_year')->nullable();
             $table->string('gender')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('nationality')->nullable();
