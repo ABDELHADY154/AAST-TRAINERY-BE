@@ -19,6 +19,8 @@ class StudentDepartmentSeeder extends Seeder
 
         StudentDepartment::create([
             'department_name' => 'Business Information Systems'
+        ], [
+            'department_name' => 'Marketing'
         ]);
         // StudentDepartment::create([
         //     'department_name' => 'Marketing'
@@ -41,6 +43,6 @@ class StudentDepartmentSeeder extends Seeder
         // StudentDepartment::create([
         //     'department_name' => 'Humanities'
         // ]);
-        factory(StudentDepartment::class, 7)->create();
+        // factory(StudentDepartment::class, 0)->create();
     }
 }
