@@ -10,29 +10,21 @@
     <title>{{ config('app.name') }} | @yield('title')</title>
     @include('layouts.admin-parts.css')
 </head>
-<body>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        @include('layouts.admin-parts.navbar')
 
-    @include('layouts.admin-parts.navbar')
-    @include('layouts.admin-parts.menu')
+        @include('layouts.admin-parts.menu')
 
-
-
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Main content -->
-        <div class="content">
-            @yield('content')
+        <div class="content-wrapper">
+            <div class="content">
+                @yield('content')
+            </div>
         </div>
-        <!-- /.content -->
+
+        @include('layouts.admin-parts.footer')
+
     </div>
-    <!-- /.content-wrapper -->
-
-
-    @include('layouts.admin-parts.mainSide')
-    @include('layouts.admin-parts.footer')
-
-
     @include('layouts.admin-parts.js')
 
 </body>
