@@ -1,19 +1,9 @@
-<!-- Bootstrap core JavaScript-->
-<script src="/admin-style/vendor/jquery/jquery.min.js"></script>
-<script src="/admin-style/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="/admin-style/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="/admin-style/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="/admin-style/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/admin-style/js/demo/chart-area-demo.js"></script>
-<script src="/admin-style/js/demo/chart-pie-demo.js"></script>
+ <!-- jQuery -->
+ <script src="/admin-style/plugins/jquery/jquery.min.js"></script>
+ <!-- Bootstrap 4 -->
+ <script src="/admin-style/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <!-- AdminLTE App -->
+ <script src="/admin-style/dist/js/adminlte.min.js"></script>
 
 
-@yield('js')
+ @yield('js')

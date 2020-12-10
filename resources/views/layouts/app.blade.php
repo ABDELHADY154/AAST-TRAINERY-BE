@@ -10,47 +10,28 @@
     <title>{{ config('app.name') }} | @yield('title')</title>
     @include('layouts.admin-parts.css')
 </head>
-<body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<body>
 
-        @include('layouts.admin-parts.menu')
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                @include('layouts.admin-parts.navbar')
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-
-                    @yield('content')
+    @include('layouts.admin-parts.navbar')
+    @include('layouts.admin-parts.menu')
 
 
 
-                </div>
-                <!-- /.container-fluid -->
 
-            </div>
-            <!-- End of Main Content -->
-            @include('layouts.admin-parts.footer')
-
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <div class="content">
+            @yield('content')
         </div>
-        <!-- End of Content Wrapper -->
-
+        <!-- /.content -->
     </div>
-    <!-- End of Page Wrapper -->
+    <!-- /.content-wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
 
-    @include('layouts.admin-parts.logout')
+    @include('layouts.admin-parts.mainSide')
+    @include('layouts.admin-parts.footer')
+
 
     @include('layouts.admin-parts.js')
 
