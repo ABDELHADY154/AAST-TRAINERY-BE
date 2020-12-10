@@ -3,7 +3,11 @@
 @section('content')
 <div class="card-body login-card-body">
     <p class="login-box-msg">{{ __('Sign In') }}</p>
-
+    @if ($errors->first('email'))
+    <span class="text-danger">
+        {{ $errors->first('email') }}
+    </span>
+    @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="input-group mb-3">
@@ -37,6 +41,7 @@
                     </label>
                 </div>
             </div>
+
             <div class="col-4">
                 <button type="submit" class="btn btn-primary btn-block">
                     Sign In
