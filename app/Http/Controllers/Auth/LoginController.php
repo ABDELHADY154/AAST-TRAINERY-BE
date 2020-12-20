@@ -56,8 +56,7 @@ class LoginController extends Controller
         ]);
         $student = Student::where('email', $request->email)->first();
 
-
-        if (!$student || !Hash::check($request->password, $student->password) || ($student->email != $request->email)) {
+        if (!$student || !Hash::check($request->password, $student->password) || ($student == null)) {
             throw ValidationException::withMessages([
                 'email' => ['Invalid email or password'],
             ]);
