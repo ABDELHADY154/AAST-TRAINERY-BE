@@ -26,7 +26,7 @@ class StudentRegisterRequest extends FormRequest
         return [
             'name' => ['required', "regex:/[a-z][A-Z]$/i"],
             'email' => ['required', 'email', 'unique:students,email'], //regex:/(.*)@myemail\.com/i
-            'password' => ['required', 'min:6'],
+            'password' => ['required', 'min:6', 'confirmed'],
             'reg_no' => ['required', 'integer'],
             'department_id' => ['required', 'exists:student_departments,id']
         ];
