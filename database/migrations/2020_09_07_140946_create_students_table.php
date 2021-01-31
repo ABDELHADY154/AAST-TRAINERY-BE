@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->float('gpa')->nullable();
             $table->integer('start_year')->nullable();
             $table->integer('end_year')->nullable();
-            $table->string('gender')->nullable();
+            $table->string('gender');
             $table->date('date_of_birth')->nullable();
             $table->string('nationality')->nullable();
             $table->string('country')->nullable();
