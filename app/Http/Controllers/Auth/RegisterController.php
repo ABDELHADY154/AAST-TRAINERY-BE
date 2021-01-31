@@ -80,11 +80,13 @@ class RegisterController extends Controller
 
     public function studentRegister(StudentRegisterRequest $request)
     {
+        // dd($request->input());
         $student =  Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'reg_no' => $request->reg_no,
+            'gender' => $request->gender,
             'department_id' => $request->department_id,
             'image' => 'default.png'
         ]);
