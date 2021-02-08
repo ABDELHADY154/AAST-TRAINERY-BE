@@ -30,7 +30,7 @@ Route::group([
 });
 
 
-//APP API //////////
+//APP API ////////// Change get profile route name
 Route::group([
     'middleware' => ['studentAuth'],
     'prefix' => '/A',
