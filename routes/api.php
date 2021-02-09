@@ -23,12 +23,13 @@ Route::get('/departments', 'API\V1\StudentDepartmentController@index')->name('de
 
 //WEB API //////////
 Route::group([
-    'middleware' => ['studentAuth'],
     'prefix' => '/W',
 ], function () {
-    Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
+    Route::get('/landingCount', 'API\V1\InternshipPostController@getLandingCounts');
+    Route::group(['middleware' => ['studentAuth']], function () {
+        Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
+    });
 });
-
 
 //APP API //////////
 Route::group([

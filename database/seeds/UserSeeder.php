@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@aast-trainery.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123123123'),
             'remember_token' => Str::random(10),
