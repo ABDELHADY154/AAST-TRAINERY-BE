@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Student;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\DB;
@@ -29,25 +28,28 @@ class ForgotPasswordController extends Controller
         ]);
         Mail::send('Email.ForgetPassword', ['token' => $token], function (Message $message) use ($email) {
             $message->to($email);
-            $message->subject('reset your password');
+            $message->subject('Password Reset');
         });
         return $this->created(['message' => 'reset password email sent successfully']);
     }
+
 
     public function resetForm($token)
     {
         return view('Email.Form', ['token' => $token]);
     }
+
+
     public function reset(Request $request, $token)
     {
         $request->validate([
             'password' => ['required', 'min:6', 'confirmed'],
         ]);
         if (!$passwordResets = DB::table('forget_password_resets')->where('token', $token)->first()) {
-            return $this->badRequest(['message' => 'invalid token']);
+            return view('Email.ResetError', ['error' => 'Invalid Token, please check your email!']);
         }
         if (!$student = Student::where('email', $passwordResets->email)->first()) {
-            return $this->notFound(['message' => 'not found user ']);
+            return view('Email.ResetError', ['error' => 'User not found, please check your email!']);
         }
         $student->password = Hash::make($request->input('password'));
         $student->save();
