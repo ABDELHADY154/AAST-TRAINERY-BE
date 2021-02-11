@@ -61,8 +61,7 @@ class LoginController extends Controller
                 'email' => ['Invalid email or password'],
             ]);
         }
-        // $student->getToke
-        // return $student->createToken('Auth Token')->accessToken;
+
         $token = $student->createToken('Auth Token')->accessToken;
         return $this->created((new AuthResource([$student, $token]))->resolve());
     }
