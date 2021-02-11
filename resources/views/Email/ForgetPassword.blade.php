@@ -55,6 +55,7 @@
     <div class="row">
         <div class="column">
             <div class="card">
+                <img src="{{asset('storage/images/AAST-TRAINERY/AAST-TRAINERY-LOGO.png')}}" alt="">
                 <h2>AAST TRAINERY</h2>
                 <h4>
                     To reset your password Please <a href="{{config('app.url')}}/student/reset/{{$token}}">Click here</a>
