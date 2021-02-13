@@ -36,6 +36,9 @@ class ForgotPasswordController extends Controller
 
     public function resetForm($token)
     {
+        if (!$passwordResets = DB::table('forget_password_resets')->where('token', $token)->first()) {
+            return view('Email.ResetError', ['error' => 'Invalid Token, please check your email!']);
+        }
         return view('Email.Form', ['token' => $token]);
     }
 
@@ -53,6 +56,7 @@ class ForgotPasswordController extends Controller
         }
         $student->password = Hash::make($request->input('password'));
         $student->save();
+        DB::table('forget_password_resets')->where('email', $passwordResets->email)->delete();
         return redirect('https://www.aast-trainery.com');
     }
 }
