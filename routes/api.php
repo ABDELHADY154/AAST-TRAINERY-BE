@@ -23,7 +23,7 @@ Route::get('/students', 'API\V1\StudentController@index')->name('students-list')
 Route::get('/departments', 'API\V1\StudentDepartmentController@index')->name('departments-list');
 
 
-//WEB API //////////
+//WEB API //
 Route::group([
     'prefix' => '/W',
 ], function () {
@@ -33,7 +33,7 @@ Route::group([
     });
 });
 
-//APP API //////////
+//APP API //
 Route::group([
     'middleware' => ['studentAuth'],
     'prefix' => '/A',

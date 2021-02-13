@@ -16,8 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes(['register' => false]);
-Route::get('student/reset/{token}', 'ForgotPasswordController@resetForm')->name('student-reset-password');
-Route::post('/reset/{token}', 'ForgotPasswordController@reset')->name('student-reset-password-result');
+Route::prefix('student')->group(function () {
+    Route::get('/reset/{token}', 'ForgotPasswordController@resetForm')->name('student-reset-password');
+    Route::post('/reset/{token}', 'ForgotPasswordController@reset')->name('student-reset-password-result');
+});
+
+
+
+/////////////////////
 Route::group([
     'middleware' => 'auth'
 ], function () {
