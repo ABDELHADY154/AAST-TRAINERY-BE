@@ -33,7 +33,7 @@ class StudentResource extends JsonResource
             'nationality' => $this->nationality,
             'country' => $this->country,
             'city' => $this->city,
-            'address' => $this->address,
+            'university' => $this->university,
             'phone_number' => $this->phone_number,
             "created_at" => $this->created_at->timestamp,
         ];

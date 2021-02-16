@@ -38,7 +38,7 @@ $factory->define(Student::class, function (Faker $faker) {
         'nationality' => $faker->country,
         'country' => $faker->country,
         'city' => $faker->city,
-        'address' => $faker->address,
+        'university' => $faker->company,
         'phone_number' => $faker->phoneNumber
 
     ];

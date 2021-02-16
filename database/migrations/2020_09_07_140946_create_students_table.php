@@ -28,7 +28,7 @@ class CreateStudentsTable extends Migration
             $table->string('nationality')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
-            $table->longText('address')->nullable();
+            $table->longText('university')->nullable(); //
             $table->string('phone_number')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
