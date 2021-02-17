@@ -30,7 +30,7 @@ class ForgotPasswordController extends Controller
             $message->to($email);
             $message->subject('Password Reset');
         });
-        return $this->created(['message' => 'reset password email sent successfully']);
+        return $this->created(['message' => 'Email with link to reset password will be sent to you if the email matches our credentials']);
     }
 
 
