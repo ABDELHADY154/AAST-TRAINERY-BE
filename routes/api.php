@@ -30,6 +30,12 @@ Route::group([
     Route::get('/landingCount', 'API\V1\InternshipPostController@getLandingCounts');
     Route::group(['middleware' => ['studentAuth']], function () {
         Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
+        Route::prefix('student')->group(function () {
+            Route::prefix('profile')->group(function () {
+                Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
+                Route::apiResource('/education', 'API\V1\StudentEducationController');
+            });
+        });
     });
 });
 

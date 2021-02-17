@@ -40,7 +40,7 @@ class StudentSeeder extends Seeder
             'nationality' => 'Egypt',
             'country' => 'Egypt',
             'city' => 'Alexandria',
-            'address' => '22 syria street roushdy',
+            'university' => 'Arab academy for science and technology',
             'phone_number' => '+201000015894'
         ]);
         factory(Student::class, 10)->create();
