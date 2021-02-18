@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API\V1;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentEducationRequest;
 use App\Http\Resources\StudentEducationResource;
 use App\StudentEducation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentEducationController extends Controller
 {
@@ -28,17 +30,26 @@ class StudentEducationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentEducationRequest $request)
     {
-        $request->validate([
-            'school_name' => ['required', 'string'],
-            'cred' => ['file'],
-            'cred_url' => ['url'],
-            'country' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'from' => ['required', 'date'],
-            'to' => ['required', 'date'],
-        ]);
+        if ($request->file('cred')) {
+            $fileName = $request->file('cred')->hashName();
+            $path = $request->file('cred')->storeAs(
+                'public/files/student/educations',
+                $fileName
+            );
+            $studentEdu = StudentEducation::create([
+                'school_name' => $request->input('school_name'),
+                'cred' => $fileName,
+                'cred_url' => $request->input('cred_url'),
+                'country' => $request->input('country'),
+                'city' => $request->input('city'),
+                'from' => $request->input('from'),
+                'to' => $request->input('to'),
+                'student_id' => auth('api')->id(),
+            ]);
+            return $this->created((new StudentEducationResource($studentEdu))->resolve());
+        }
 
         $studentEdu = StudentEducation::create([
             'school_name' => $request->input('school_name'),
@@ -72,9 +83,42 @@ class StudentEducationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentEducationRequest $request, $id)
     {
-        //
+        if ($request->file('cred')) {
+            $fileName = $request->file('cred')->hashName();
+            $path = $request->file('cred')->storeAs(
+                'public/files/student/educations',
+                $fileName
+            );
+            $studentEdu = StudentEducation::find($id);
+            $studentEdu->update([
+                'school_name' => $request->input('school_name'),
+                'cred' => $fileName,
+                'cred_url' => $request->input('cred_url'),
+                'country' => $request->input('country'),
+                'city' => $request->input('city'),
+                'from' => $request->input('from'),
+                'to' => $request->input('to'),
+                'student_id' => auth('api')->id(),
+            ]);
+            $studentEdu->save();
+
+            return $this->created((new StudentEducationResource($studentEdu))->resolve());
+        }
+
+        $studentEdu = StudentEducation::find($id);
+        $studentEdu->update([
+            'school_name' => $request->input('school_name'),
+            'cred_url' => $request->input('cred_url'),
+            'country' => $request->input('country'),
+            'city' => $request->input('city'),
+            'from' => $request->input('from'),
+            'to' => $request->input('to'),
+            'student_id' => auth('api')->id(),
+        ]);
+        $studentEdu->save();
+        return $this->created((new StudentEducationResource($studentEdu))->resolve());
     }
 
     /**
@@ -85,6 +129,12 @@ class StudentEducationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $studentEdu = StudentEducation::find($id);
+        Storage::delete(
+            'public/files/student/educations/' .
+                $studentEdu->cred
+        );
+        $studentEdu->destroy($id);
+        return $this->ok(['message' => 'Deleted']);
     }
 }
