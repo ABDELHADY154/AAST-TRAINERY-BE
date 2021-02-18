@@ -33,7 +33,8 @@ Route::group([
         Route::prefix('student')->group(function () {
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
-                Route::apiResource('/education', 'API\V1\StudentEducationController');
+                Route::apiResource('/education', 'API\V1\StudentEducationController')->except(['update']);
+                Route::post('/education/{id}', 'API\V1\StudentEducationController@update')->name('student.edu.update');
             });
         });
     });

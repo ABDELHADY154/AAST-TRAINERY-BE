@@ -22,6 +22,7 @@ class StudentEducationResource extends JsonResource
             'from' => $this->from,
             'to' => $this->to,
             'credential' => $this->cred,
+            'credential_url' => $this->cred_url,
         ];
     }
 }
