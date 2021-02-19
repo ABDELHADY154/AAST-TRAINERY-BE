@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'Auth\LoginController@studentLogin')->name('student-login');
 Route::post('/register', 'Auth\RegisterController@studentRegister')->name('student-register');
 Route::post('/forgot', 'ForgotPasswordController@forgot')->name('forgot-password');
-
 Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 Route::get('/departments', 'API\V1\StudentDepartmentController@index')->name('departments-list');
 
@@ -29,6 +28,7 @@ Route::group([
 ], function () {
     Route::get('/landingCount', 'API\V1\InternshipPostController@getLandingCounts');
     Route::group(['middleware' => ['studentAuth']], function () {
+        Route::get('/studentImg', 'API\V1\StudentController@getImg')->name('student.get.image');
         Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
         Route::prefix('student')->group(function () {
             Route::prefix('profile')->group(function () {
