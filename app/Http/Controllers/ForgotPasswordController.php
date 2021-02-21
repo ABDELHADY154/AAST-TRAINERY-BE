@@ -66,6 +66,6 @@ class ForgotPasswordController extends Controller
             $message->sender('Trainery Team');
             $message->subject('Password Reset');
         });
-        return redirect('https://www.aast-trainery.com');
+        return redirect('http://www.dev.aast-trainery.com/Login');
     }
 }
