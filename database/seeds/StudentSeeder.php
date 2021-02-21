@@ -28,7 +28,7 @@ class StudentSeeder extends Seeder
             'name' => 'Mohamed Abdelhady Elshamy',
             'email' => 'hady@hady.com',
             'reg_no' => '17200237',
-            'password' => Hash::make('123123123'), // password
+            'password' => Hash::make('Trainery@123'), // password
             'period' => '7',
             'start_year' => 2017,
             'end_year' => 2021,

@@ -28,6 +28,8 @@ class ForgotPasswordController extends Controller
         ]);
         Mail::send('Email.ForgetPassword', ['token' => $token], function (Message $message) use ($email) {
             $message->to($email);
+            $message->from('admin@aast-trainery.com');
+            $message->sender('Trainery Team');
             $message->subject('Password Reset');
         });
         return $this->created(['message' => 'Email with link to reset password will be sent to you if the email matches our credentials']);
@@ -46,7 +48,7 @@ class ForgotPasswordController extends Controller
     public function reset(Request $request, $token)
     {
         $request->validate([
-            'password' => ['required', 'min:6', 'confirmed'],
+            'password' => ['required', 'min:6', 'confirmed', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{2,}$/'],
         ]);
         if (!$passwordResets = DB::table('forget_password_resets')->where('token', $token)->first()) {
             return view('Email.ResetError', ['error' => 'Invalid Token, please check your email!']);
@@ -56,7 +58,14 @@ class ForgotPasswordController extends Controller
         }
         $student->password = Hash::make($request->input('password'));
         $student->save();
+        $email = $passwordResets->email;
         DB::table('forget_password_resets')->where('email', $passwordResets->email)->delete();
+        Mail::send('Email.ResetSuccess',  function (Message $message) use ($email) {
+            $message->to($email);
+            $message->from('admin@aast-trainery.com');
+            $message->sender('Trainery Team');
+            $message->subject('Password Reset');
+        });
         return redirect('https://www.aast-trainery.com');
     }
 }

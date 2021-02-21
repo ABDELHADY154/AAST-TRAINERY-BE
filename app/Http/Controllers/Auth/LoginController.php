@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentLoginRequest;
 use App\Http\Resources\AuthResource;
 use App\Providers\RouteServiceProvider;
 use App\Student;
@@ -47,18 +48,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function studentLogin(Request $request)
+    public function studentLogin(StudentLoginRequest $request)
     {
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
 
-        ]);
         $student = Student::where('email', $request->email)->first();
 
         if (!$student || !Hash::check($request->password, $student->password) || ($student == null)) {
             throw ValidationException::withMessages([
-                'email' => ['Invalid email or password'],
+                'email' => ['Incorrect Email or Password'],
             ]);
         }
 

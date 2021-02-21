@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ForgotPasswordRequest extends FormRequest
+class StudentLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class ForgotPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'exists:students,email']
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:6', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{2,}$/'],
         ];
     }
 
@@ -33,7 +34,9 @@ class ForgotPasswordRequest extends FormRequest
         return [
             'email.required' => 'Please Enter Your Email',
             'email.email' => 'The Entered Email is Incorrect',
-            'email.exists' => 'The Entered Email is Not Registered'
+            'password.required' => 'Please Enter Your Password',
+            'password.min' => 'Your Password Must be At Least 6 Charachters',
+            'password.regex' => 'Your Password Must Contain Upper and lower case, Numbers and Symbols'
         ];
     }
 }
