@@ -29,7 +29,6 @@ class ForgotPasswordController extends Controller
         Mail::send('Email.ForgetPassword', ['token' => $token], function (Message $message) use ($email) {
             $message->to($email);
             $message->from('admin@aast-trainery.com');
-            $message->sender('Trainery Team');
             $message->subject('Password Reset');
         });
         return $this->created(['message' => 'Email with link to reset password will be sent to you if the email matches our credentials']);
@@ -63,7 +62,6 @@ class ForgotPasswordController extends Controller
         Mail::send('Email.ResetSuccess',  function (Message $message) use ($email) {
             $message->to($email);
             $message->from('admin@aast-trainery.com');
-            $message->sender('Trainery Team');
             $message->subject('Password Reset');
         });
         return redirect('http://www.dev.aast-trainery.com/Login');
