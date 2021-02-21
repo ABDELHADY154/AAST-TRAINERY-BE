@@ -58,7 +58,7 @@
                 <img src="{{asset('storage/images/AAST-TRAINERY/AAST-TRAINERY-LOGO.png')}}" alt="">
                 <h2>AAST TRAINERY</h2>
                 <h4>
-                    Your Password has been changed successfully 😁🎉
+                    Your Password has been updated successfully! 🎉
                 </h4>
             </div>
         </div>
