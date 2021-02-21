@@ -25,7 +25,7 @@ class StudentLoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:6', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{2,}$/'],
+            'password' => ['required', 'min:6'],
         ];
     }
 
