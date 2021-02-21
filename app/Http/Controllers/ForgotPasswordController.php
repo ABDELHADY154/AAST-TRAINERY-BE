@@ -59,7 +59,7 @@ class ForgotPasswordController extends Controller
         $student->save();
         $email = $passwordResets->email;
         DB::table('forget_password_resets')->where('email', $passwordResets->email)->delete();
-        Mail::send('Email.ResetSuccess',  function (Message $message) use ($email) {
+        Mail::send('Email.ResetSuccess', ['token' => $token], function (Message $message) use ($email) {
             $message->to($email);
             $message->from('admin@aast-trainery.com');
             $message->subject('Password Reset');
