@@ -80,7 +80,6 @@ class RegisterController extends Controller
 
     public function studentRegister(StudentRegisterRequest $request)
     {
-        // dd($request->input());
         $student =  Student::create([
             'name' => $request->name,
             'email' => $request->email,
