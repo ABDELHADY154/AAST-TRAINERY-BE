@@ -18,6 +18,8 @@ class AuthResource extends JsonResource
         $date = explode("-", $this[0]->date_of_birth);
         return [
             'id' => $this[0]->id,
+            'profile_updated' => $this[0]->profile_updated == 0 ? false : true,
+            'profile_score' =>  $this[0]->profile_score * 100,
             'token' => $this[1], //$this[0]->token(),
             "name" => $this[0]->name,
             "image" => asset('storage/images/avatars/' . $this[0]->image),

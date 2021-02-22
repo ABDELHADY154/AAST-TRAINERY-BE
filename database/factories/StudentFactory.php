@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 $factory->define(Student::class, function (Faker $faker) {
     // $college_id = rand(1, College::all()->count());
     // $departments = Department::where('college_id', $college_id)->get();
-
+    $images = ['MaleAvatar.png', 'FemaleAvatar.png'];
     $gender = $faker->randomElement(['male', 'female']);
     $city = $faker->city;
     // $city =  $faker->addProvider(new Address($faker));
@@ -39,7 +39,8 @@ $factory->define(Student::class, function (Faker $faker) {
         'country' => $faker->country,
         'city' => $faker->city,
         'university' => $faker->company,
-        'phone_number' => $faker->phoneNumber
+        'phone_number' => $faker->phoneNumber,
+        'image' => $gender == "male" ? $images[0] : $images[1],
 
     ];
 });
