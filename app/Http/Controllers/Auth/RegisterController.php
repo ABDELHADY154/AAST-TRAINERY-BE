@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'reg_no' => $request->reg_no,
             'gender' => $request->gender,
             'department_id' => $request->department_id,
-            'image' => 'default.png'
+            'image' => $request->gender == "male" ? 'MaleAvatar.png' : 'FemaleAvatar.png'
         ]);
 
         $token = $student->createToken('Auth Token')->accessToken;

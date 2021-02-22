@@ -33,6 +33,8 @@ class StudentResource extends JsonResource
             'nationality' => $this->nationality,
             'country' => $this->country,
             'city' => $this->city,
+            'profile_updated' => $this->profile_updated  == 0 ? false : true,
+            'profile_score' => $this->profile_score * 100,
             'university' => $this->university,
             'phone_number' => $this->phone_number,
             "created_at" => $this->created_at->timestamp,

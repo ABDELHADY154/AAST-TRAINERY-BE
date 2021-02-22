@@ -27,6 +27,7 @@ class StudentSeeder extends Seeder
         Student::create([
             'name' => 'Mohamed Abdelhady Elshamy',
             'email' => 'hady@hady.com',
+            'image' => 'MaleAvatar.png',
             'reg_no' => '17200237',
             'password' => Hash::make('Trainery@123'), // password
             'period' => '7',
@@ -41,7 +42,9 @@ class StudentSeeder extends Seeder
             'country' => 'Egypt',
             'city' => 'Alexandria',
             'university' => 'Arab academy for science and technology',
-            'phone_number' => '+201000015894'
+            'phone_number' => '+201000015894',
+            'profile_updated' => 1,
+            "profile_score" => 0.65,
         ]);
         factory(Student::class, 10)->create();
     }
