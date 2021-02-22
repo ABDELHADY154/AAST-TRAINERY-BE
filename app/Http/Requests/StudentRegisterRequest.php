@@ -43,6 +43,7 @@ class StudentRegisterRequest extends FormRequest
             'gender.in' => 'Gender is Invalid',
             'password.required' => 'Please Enter Your Password',
             'password.min' => 'Password Must be At least 6 Characters',
+            'password.regex' => 'Your Password Must Contain Upper and lower case, Numbers and Symbols'
             'password.confirm' => 'Password Confirmation Does Not Match',
             "reg_no.required" => 'Please Enter Your Registration Number',
             "reg_no.integer" => 'Letters or Symbols are Not Allowed',

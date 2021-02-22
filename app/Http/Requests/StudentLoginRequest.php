@@ -36,7 +36,7 @@ class StudentLoginRequest extends FormRequest
             'email.email' => 'The Entered Email is Incorrect',
             'password.required' => 'Please Enter Your Password',
             'password.min' => 'Your Password Must be At Least 6 Charachters',
-            'password.regex' => 'Your Password Must Contain Upper and lower case, Numbers and Symbols'
+
         ];
     }
 }
