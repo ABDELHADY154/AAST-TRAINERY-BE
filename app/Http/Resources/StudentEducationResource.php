@@ -21,7 +21,7 @@ class StudentEducationResource extends JsonResource
             'city' => $this->city,
             'from' => $this->from,
             'to' => $this->to,
-            'credential' => $this->cred,
+            'credential' => $this->cred ? asset('storage/files/student/educations/' . $this->cred) : null,
             'credential_url' => $this->cred_url,
         ];
     }

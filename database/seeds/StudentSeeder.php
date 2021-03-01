@@ -90,6 +90,6 @@ class StudentSeeder extends Seeder
             'profile_updated' => 0,
             "profile_score" => 0.10,
         ]);
-        factory(Student::class, 10)->create();
+        factory(Student::class, 50)->create();
     }
 }

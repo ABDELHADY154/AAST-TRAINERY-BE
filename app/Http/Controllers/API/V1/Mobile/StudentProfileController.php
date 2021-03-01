@@ -19,13 +19,13 @@ class StudentProfileController extends Controller
     }
     public function personalInfo(StudentPersonalInfoRequest $request)
     {
-        $this->student->update($request->all()); //auth('api')->user()))->resolve()
+        $this->student->update($request->all());
         $this->student->save();
         return $this->created((new StudentPersonalInfoResource($this->student))->resolve());
     }
     public function academicInfo(StudentAcademicInfoRequest $request)
     {
-        $this->student->update($request->all()); //auth('api')->user()))->resolve()
+        $this->student->update($request->all());
         $this->student->save();
         return $this->created((new StudentAcademicInfoResource($this->student))->resolve());
     }

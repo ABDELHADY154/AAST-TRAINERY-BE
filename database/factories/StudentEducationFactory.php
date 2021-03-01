@@ -15,6 +15,6 @@ $factory->define(StudentEducation::class, function (Faker $faker) {
         'from' => $faker->date(),
         'to' => $faker->date(),
         'cred_url' => $faker->url,
-        'cred' => $faker->imageUrl(),
+
     ];
 });
