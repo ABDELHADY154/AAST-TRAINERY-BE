@@ -37,7 +37,7 @@ class StudentController extends Controller
     public function getImg()
     {
         $student = $this->student;
-        return $this->ok(['image' => asset('storage/images/avatars/' . $student->image)]);
+        return $this->ok(['fullName' => $student->name, 'image' => asset('storage/images/avatars/' . $student->image)]);
     }
     // public function getProfileImage()
     // {
