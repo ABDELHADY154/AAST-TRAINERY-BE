@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\V1;
+namespace App\Http\Controllers\API\V1\Mobile;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Storage;
 class StudentEducationController extends Controller
 {
     use CoreJsonResponse;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+
         $eduResource = StudentEducationResource::collection(StudentEducation::where('student_id', auth('api')->id())->get());
         return $this->ok($eduResource->resolve());
     }
@@ -142,16 +138,19 @@ class StudentEducationController extends Controller
     public function destroy($id)
     {
         $studentEdu = StudentEducation::find($id);
+
         if (!$studentEdu) {
             return  $this->notFound(['message' => 'education not found']);
         }
         if ($studentEdu->student_id !== auth('api')->id()) {
             return $this->unauthorized();
         }
-        Storage::delete(
-            'public/files/student/educations/' .
-                $studentEdu->cred
-        );
+        if ($studentEdu->cred !== null) {
+            Storage::delete(
+                'public/files/student/educations/' .
+                    $studentEdu->cred
+            );
+        }
         $studentEdu->destroy($id);
         return $this->ok(['message' => 'Deleted']);
     }
