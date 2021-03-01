@@ -29,10 +29,11 @@ Route::group([
     Route::get('/landingCount', 'API\V1\InternshipPostController@getLandingCounts');
     Route::group(['middleware' => ['studentAuth']], function () {
         Route::get('/studentImg', 'API\V1\StudentController@getImg')->name('student.get.image');
-        Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
         Route::prefix('student')->group(function () {
+            Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
+                Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');
                 Route::apiResource('/education', 'API\V1\StudentEducationController')->except(['update']);
                 Route::post('/education/{id}', 'API\V1\StudentEducationController@update')->name('student.edu.update');
             });
@@ -45,7 +46,17 @@ Route::group([
     'middleware' => ['studentAuth'],
     'prefix' => '/A',
 ], function () {
-    Route::get('/get-profile', 'API\V1\Mobile\StudentController@getProfile')->name('get-profile');
+    Route::prefix('student')->group(function () {
+        Route::get('/get-profile', 'API\V1\Mobile\StudentController@getProfile')->name('get-profile');
+        Route::prefix('profile')->group(function () {
+            Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
+            Route::put('/academic', 'API\V1\Mobile\StudentProfileController@academicInfo')->name('student.update.academic.info');
+            Route::get('/personal', 'API\V1\Mobile\StudentProfileController@getPersonalInfo')->name('student.get.personal.info');
+            Route::get('/academic', 'API\V1\Mobile\StudentProfileController@getAcademicInfo')->name('student.get.academic.info');
+            // Route::apiResource('/education', 'API\V1\StudentEducationController')->except(['update']);
+            // Route::post('/education/{id}', 'API\V1\StudentEducationController@update')->name('student.edu.update');
+        });
+    });
 });
 
 // fallback route////  $todo : make a fallback function in a controller of the student
