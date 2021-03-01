@@ -26,7 +26,23 @@ class StudentProfileController extends Controller
                 $imageName
             );
         }
-        $student = $this->student->update($request->all());
+        // dd($request->all());
+        $student = $this->student->update([
+            'phone_number' => $request->input('phone_number'),
+            'university' => $request->input('university'),
+            'city' => $request->input('city'),
+            'country' => $request->input('country'),
+            'nationality' => $request->input('nationality'),
+            'date_of_birth' => $request->input('date_of_birth'),
+            'gender' => $request->input('gender'),
+            'start_year' => $request->input('start_year'),
+            'end_year' => $request->input('end_year'),
+            'gpa' => $request->input('gpa'),
+            'period' => $request->input('preiod'),
+            'reg_no' => $request->input('reg_no'),
+            'name' => $request->input('name'),
+            'image' => $imageName
+        ]);
         $this->student->save();
         return $this->created((new StudentGeneralInfoResource(auth('api')->user()))->resolve());
     }

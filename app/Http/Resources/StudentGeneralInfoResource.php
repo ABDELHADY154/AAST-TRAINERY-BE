@@ -16,6 +16,7 @@ class StudentGeneralInfoResource extends JsonResource
     {
         return [
             'fullName' => $this->name,
+            "image" => asset('storage/images/avatars/' . $this->image),
             'gender' => $this->gender,
             'dob' => $this->date_of_birth,
             'nationality' => $this->nationality,
