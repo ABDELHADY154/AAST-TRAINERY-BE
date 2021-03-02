@@ -36,6 +36,8 @@ Route::group([
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');
                 Route::apiResource('/education', 'API\V1\StudentEducationController')->except(['update']);
                 Route::post('/education/{id}', 'API\V1\StudentEducationController@update')->name('student.edu.update');
+                Route::apiResource('/experience', 'API\V1\StudentWorkExperienceController')->except(['update']);
+                Route::post('/experience/{id}', 'API\V1\StudentWorkExperienceController@update')->name('student.exp.update');
             });
         });
     });

@@ -7,23 +7,44 @@ namespace App\Virtual\Requests;
  *      title="Student Login Request",
  *      description="Student Login Request body data",
  *      type="object",
- *      required={"school_name", "city", "country" ,"from","to","cred_url"
+ *      required={"experience_type", "city", "country" ,"from","to",
+ *              "currently_work","job_title","company_name"
  *      }
  * )
  */
-class StudentEducationInfoRequest
+class StudentWorkExperienceInfoRequest
 {
     /**
      * @OA\Property(
-     *      title="School name",
-     *      description="School name",
-     *      example="Arab academy school"
+     *      title="experience type",
+     *      description="experience type",
+     *      example="Internship"
      * )
      *
      * @var string
      */
-    public $school_name;
+    public $experience_type;
+    /**
+     * @OA\Property(
+     *      title="Job Title",
+     *      description="Job Title",
+     *      example="Developer"
+     * )
+     *
+     * @var string
+     */
+    public $job_title;
 
+    /**
+     * @OA\Property(
+     *      title="Company Name",
+     *      description="Company Name",
+     *      example="Apple"
+     * )
+     *
+     * @var string
+     */
+    public $company_name;
     /**
      * @OA\Property(
      *      title="city",
@@ -85,8 +106,8 @@ class StudentEducationInfoRequest
 
     /**
      * @OA\Property(
-     *      title="School Image",
-     *      description="School Image",
+     *      title="School Credential",
+     *      description="School Credential",
      *      type="string",
      *      format="binary"
      * )
@@ -94,4 +115,16 @@ class StudentEducationInfoRequest
      * @var string
      */
     public $cred;
+
+    /**
+     * @OA\Property(
+     *      title="Currently working in the company",
+     *      description="Currently working in the company",
+     *      type="integer",
+     *      example=0
+     * )
+     *
+     * @var string
+     */
+    public $currently_work;
 }
