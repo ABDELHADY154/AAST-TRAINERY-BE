@@ -38,6 +38,7 @@ class StudentResource extends JsonResource
             'university' => $this->university,
             'phone_number' => $this->phone_number,
             'educations' => StudentEducationResource::collection($this->studentEducations)->resolve(),
+            'work_experience' => StudentWorkExperienceResource::collection($this->studentExperience)->resolve(),
             "created_at" => $this->created_at->timestamp,
         ];
     }
