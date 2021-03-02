@@ -18,6 +18,7 @@ class StudentAcademicInfoResource extends JsonResource
             'university' => $this->university,
             'department' => $this->studentDepartment->department_name,
             'reg_no' => $this->reg_no,
+            'period' => $this->period,
             'gpa' => $this->gpa,
             'start_year' => $this->start_year,
             'end_year' => $this->end_year
