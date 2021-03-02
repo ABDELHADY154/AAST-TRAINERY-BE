@@ -53,6 +53,7 @@ class StudentProfileController extends Controller
      */
     public function personalInfo(StudentPersonalInfoRequest $request)
     {
+
         $this->student->update($request->all());
         $this->student->save();
         return $this->created((new StudentPersonalInfoResource($this->student))->resolve());

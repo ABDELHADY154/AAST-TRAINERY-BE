@@ -26,7 +26,7 @@ class StudentPersonalInfoRequest extends FormRequest
         return [
             'name' => ['required', 'string', "regex:/[a-z][A-Z]$/i"],
             'gender' => ['required', 'in:male,female'],
-            'phoneNumber' => ['required', "numeric"],
+            'phone_number' => ['required', "numeric"],
             'date_of_birth' => ["required", 'date'],
             'nationality' => ['required', 'string', "regex:/[a-z][A-Z]$/i"],
             'country' => ['required', 'string', "regex:/[a-z][A-Z]$/i"],
