@@ -15,6 +15,40 @@ use Illuminate\Support\Str;
 class ForgotPasswordController extends Controller
 {
     use CoreJsonResponse;
+
+
+    /**
+     * @OA\Post(
+     *     path="/forgot",
+     *     description="Student Forget Password  Endpoint",
+     *     tags={"Authentication"},
+     *
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StudentForgetPasswordRequest")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student login success message and data",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Unprocessable Entity/Validation Error",
+     *          @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Bad Request/Incorrect Username or Password",
+     *          @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      )
+     * )
+     */
+
     public function forgot(ForgotPasswordRequest $request)
     {
         $email  = $request->input('email');

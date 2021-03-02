@@ -18,6 +18,37 @@ class StudentEducationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\GET(
+     *      path="/W/student/profile/education",
+     *      operationId="getStudentEducationInfo",
+     *      description="Get Student education Info",
+     *      summary="Get Student education information",
+     *      tags={"W-Student Education Info"},
+
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="200",
+     *          description="Student Data to success",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
+     */
     public function index()
     {
         $eduResource = StudentEducationResource::collection(StudentEducation::where('student_id', auth('api')->id())->get());
@@ -29,6 +60,43 @@ class StudentEducationController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\POST(
+     *      path="/W/student/profile/education",
+     *      description="Create Student Education Info",
+     *      summary="Create Student Education Info",
+     *      tags={"W-Student Education Info"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *          mediaType="multipart/form-data",
+     *          @OA\Schema(ref="#/components/schemas/StudentEducationInfoRequest")
+     *   )
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
      */
     public function store(StudentEducationRequest $request)
     {
@@ -70,6 +138,48 @@ class StudentEducationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @OA\Get(
+     *      path="/W/student/profile/education/{id}",
+     *      operationId="getStudentEducation",
+     *      summary="Get Student Education Info",
+     *      tags={"W-Student Education Info"},
+     *      description="Get Student Education Info",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Education id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
     public function show($id)
     {
         $studentEducation = StudentEducation::find($id);
@@ -88,6 +198,52 @@ class StudentEducationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\POST(
+     *      path="/W/student/profile/education/{id}",
+     *      summary="Update Student Education Info",
+     *      tags={"W-Student Education Info"},
+     *      description="Update Student Education Info",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Education id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *          mediaType="multipart/form-data",
+     *              @OA\Schema(ref="#/components/schemas/StudentEducationInfoRequest")
+     *   )
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
      */
     public function update(StudentEducationRequest $request, $id)
     {
@@ -138,6 +294,48 @@ class StudentEducationController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\Delete(
+     *      path="/W/student/profile/education/{id}",
+     *      operationId="deleteStudentEducation",
+     *      summary="Delete Student Education Info",
+     *      tags={"W-Student Education Info"},
+     *      description="delete Student Education Info",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Education id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
      */
     public function destroy($id)
     {
