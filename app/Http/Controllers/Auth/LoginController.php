@@ -48,6 +48,40 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
+    /**
+     * @OA\Post(
+     *     path="/login",
+     *     description="Student Login Endpoint",
+     *     tags={"Authentication"},
+     *
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StudentLoginRequest")
+     *     ),
+     *
+     *
+     *     @OA\Response(
+     *          response="200",
+     *          description="Student login success message and data",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Unprocessable Entity/Validation Error",
+     *               @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Bad Request/Incorrect Username or Password",
+     *          @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      )
+     * )
+     */
+
+
     public function studentLogin(StudentLoginRequest $request)
     {
 
@@ -60,6 +94,6 @@ class LoginController extends Controller
         }
 
         $token = $student->createToken('Auth Token')->accessToken;
-        return $this->created((new AuthResource([$student, $token]))->resolve());
+        return $this->ok((new AuthResource([$student, $token]))->resolve());
     }
 }

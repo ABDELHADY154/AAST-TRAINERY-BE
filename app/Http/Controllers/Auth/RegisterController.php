@@ -78,6 +78,38 @@ class RegisterController extends Controller
         ]);
     }
 
+
+    /**
+     * @OA\Post(
+     *     path="/register",
+     *     description="Student Register Endpoint",
+     *     tags={"Authentication"},
+     *
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StudentRegisterRequest")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Register success message and data",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Unprocessable Entity/Validation Error",
+     * @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Bad Request/Incorrect Username or Password",
+     *  @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      )
+     * )
+     */
+
     public function studentRegister(StudentRegisterRequest $request)
     {
         $student =  Student::create([

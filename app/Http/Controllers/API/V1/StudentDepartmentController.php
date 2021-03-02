@@ -12,6 +12,30 @@ class StudentDepartmentController extends Controller
 {
     use CoreJsonResponse;
 
+    /**
+     * @OA\Get(
+     *      path="/departments",
+     *      operationId="getDepartments",
+     *      tags={"Departments"},
+     *      summary="Get list of departments",
+     *      description="Returns list of departments",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      )
+     *     )
+     */
 
     public function index()
     {
