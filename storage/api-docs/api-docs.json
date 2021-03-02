@@ -1387,7 +1387,7 @@
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/StudentEducationInfoRequest"
+                                "$ref": "#/components/schemas/StudentWorkExperienceInfoRequest"
                             }
                         }
                     }

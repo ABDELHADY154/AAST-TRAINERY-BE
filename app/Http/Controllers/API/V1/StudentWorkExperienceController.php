@@ -230,7 +230,7 @@ class StudentWorkExperienceController extends Controller
      *          required=true,
      *          @OA\MediaType(
      *          mediaType="multipart/form-data",
-     *              @OA\Schema(ref="#/components/schemas/StudentEducationInfoRequest")
+     *              @OA\Schema(ref="#/components/schemas/StudentWorkExperienceInfoRequest")
      *   )
      *     ),
      *
