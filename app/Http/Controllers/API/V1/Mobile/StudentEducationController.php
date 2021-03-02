@@ -215,7 +215,7 @@ class StudentEducationController extends Controller
      *     ),
      *
      *     @OA\Response(
-     *          response="201",
+     *          response="200",
      *          description="Student Data to success",
      *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
      *      ),
