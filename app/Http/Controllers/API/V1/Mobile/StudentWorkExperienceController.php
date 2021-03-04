@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API\V1;
+namespace App\Http\Controllers\API\V1\Mobile;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentWorkExperienceRequest;
-use App\Http\Resources\StudentWorkExperienceResource;
+use App\Http\Resources\Mobile\StudentWorkExperienceResource;
 use App\StudentWorkExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,14 +18,13 @@ class StudentWorkExperienceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     /**
      * @OA\GET(
-     *      path="/W/student/profile/experience",
+     *      path="/A/student/profile/experience",
      *      operationId="getStudentExperienceInfo",
      *      description="Get Student Experience Info",
      *      summary="Get Student Experience information",
-     *      tags={"W-Student Experience Info"},
+     *      tags={"A-Student Experience Info"},
 
      *     security={
      *          {"passport": {}},
@@ -56,19 +55,13 @@ class StudentWorkExperienceController extends Controller
         return $this->ok($workExp->resolve());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     /**
      * @OA\POST(
-     *      path="/W/student/profile/experience",
+     *      path="/A/student/profile/experience",
      *      description="Create Student Experience",
      *      summary="Create Student Experience",
-     *      tags={"W-Student Experience Info"},
+     *      tags={"A-Student Experience Info"},
      *     security={
      *          {"passport": {}},
      *     },
@@ -99,9 +92,14 @@ class StudentWorkExperienceController extends Controller
      *     )
      * )
      */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(StudentWorkExperienceRequest $request)
     {
-
         if ($request->file('cred')) {
             $fileName = $request->file('cred')->hashName();
             $path = $request->file('cred')->storeAs(
@@ -146,13 +144,12 @@ class StudentWorkExperienceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     /**
      * @OA\Get(
-     *      path="/W/student/profile/experience/{id}",
+     *      path="/A/student/profile/experience/{id}",
      *      operationId="showStudentExperience",
      *      summary="Show Student Experience ",
-     *      tags={"W-Student Experience Info"},
+     *      tags={"A-Student Experience Info"},
      *      description="Get Student Experience Info",
      *      @OA\Parameter(
      *          name="id",
@@ -210,9 +207,9 @@ class StudentWorkExperienceController extends Controller
 
     /**
      * @OA\POST(
-     *      path="/W/student/profile/experience/{id}",
+     *      path="/A/student/profile/experience/{id}",
      *      summary="Update Student Experience",
-     *      tags={"W-Student Experience Info"},
+     *      tags={"A-Student Experience Info"},
      *      description="Update Student Experience",
      *      @OA\Parameter(
      *          name="id",
@@ -260,6 +257,7 @@ class StudentWorkExperienceController extends Controller
             return  $this->notFound(['message' => 'education not found']);
         }
         if ($studentExp->student_id !== auth('api')->id()) {
+
             return $this->unauthorized();
         }
         if ($request->file('cred')) {
@@ -283,7 +281,6 @@ class StudentWorkExperienceController extends Controller
                 'student_id' => auth('api')->id(),
             ]);
             $studentExp->save();
-
             return $this->created((new StudentWorkExperienceResource($studentExp))->resolve());
         }
         $studentExp->update([
@@ -302,20 +299,12 @@ class StudentWorkExperienceController extends Controller
         $studentExp->save();
         return $this->created((new StudentWorkExperienceResource($studentExp))->resolve());
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
     /**
      * @OA\Delete(
-     *      path="/W/student/profile/experience/{id}",
+     *      path="/A/student/profile/experience/{id}",
      *      operationId="deleteStudentExperience",
      *      summary="Delete Student Experience ",
-     *      tags={"W-Student Experience Info"},
+     *      tags={"A-Student Experience Info"},
      *      description="delete Student Experience ",
      *      @OA\Parameter(
      *          name="id",
@@ -350,6 +339,12 @@ class StudentWorkExperienceController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
      *      )
      * )
+     */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

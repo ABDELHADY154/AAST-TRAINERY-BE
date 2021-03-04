@@ -57,6 +57,8 @@ Route::group([
             Route::get('/academic', 'API\V1\Mobile\StudentProfileController@getAcademicInfo')->name('student.get.academic.info');
             Route::apiResource('/education', 'API\V1\Mobile\StudentEducationController')->except(['update']);
             Route::post('/education/{id}', 'API\V1\Mobile\StudentEducationController@update')->name('student.edu.update');
+            Route::apiResource('/experience', 'API\V1\Mobile\StudentWorkExperienceController')->except(['update']);
+            Route::post('/experience/{id}', 'API\V1\Mobile\StudentWorkExperienceController@update')->name('student.exp.update');
         });
     });
 });
