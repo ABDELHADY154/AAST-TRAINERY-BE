@@ -20,8 +20,8 @@ Route::post('/register', 'Auth\RegisterController@studentRegister')->name('stude
 Route::post('/forgot', 'ForgotPasswordController@forgot')->name('forgot-password');
 Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 Route::get('/departments', 'API\V1\StudentDepartmentController@index')->name('departments-list');
-
-
+Route::get('/countriesList', 'API\V1\StudentDepartmentController@countriesList')->name('countries-list');
+Route::get('/stateList/{code}', 'API\V1\StudentDepartmentController@states')->name('countries-list');
 //WEB API //
 Route::group([
     'prefix' => '/W',
