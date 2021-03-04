@@ -346,10 +346,12 @@ class StudentEducationController extends Controller
         if ($studentEdu->student_id !== auth('api')->id()) {
             return $this->unauthorized();
         }
-        Storage::delete(
-            'public/files/student/educations/' .
-                $studentEdu->cred
-        );
+        if ($studentEdu->cred !== null) {
+            Storage::delete(
+                'public/files/student/educations/' .
+                    $studentEdu->cred
+            );
+        }
         $studentEdu->destroy($id);
         return $this->ok(['message' => 'Deleted']);
     }
