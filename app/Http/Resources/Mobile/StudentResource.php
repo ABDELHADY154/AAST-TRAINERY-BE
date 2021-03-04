@@ -2,6 +2,9 @@
 
 namespace App\Http\Resources\Mobile;
 
+use App\Http\Resources\StudentCourseResource;
+use App\Http\Resources\StudentEducationResource;
+
 use Carbon\Traits\Timestamp;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -36,6 +39,9 @@ class StudentResource extends JsonResource
             'profile_score' => $this->profile_score,
             'address' => $this->address,
             'phone_number' => $this->phone_number,
+            'educations' => StudentEducationResource::collection($this->studentEducations)->resolve(),
+            'work_experience' => StudentWorkExperienceResource::collection($this->studentExperience)->resolve(),
+            'courses' => StudentCourseResource::collection($this->studentCourses)->resolve(),
             "created_at" => $this->created_at->timestamp,
         ];
     }
