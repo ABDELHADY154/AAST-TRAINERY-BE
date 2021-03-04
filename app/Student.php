@@ -28,8 +28,14 @@ class Student extends User
     {
         return $this->hasMany(StudentEducation::class);
     }
+
     public function studentExperience()
     {
         return $this->hasMany(StudentWorkExperience::class);
+    }
+
+    public function studentCourses()
+    {
+        return $this->hasMany(StudentCourse::class);
     }
 }

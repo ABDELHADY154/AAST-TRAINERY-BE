@@ -285,7 +285,6 @@ class StudentWorkExperienceController extends Controller
         }
         $studentExp->update([
             'experience_type' => $request->input('experience_type'),
-            'cred' =>  $request->input('cred'),
             'cred_url' => $request->input('cred_url'),
             'country' => $request->input('country'),
             "currently_work" => $request->input('currently_work'),

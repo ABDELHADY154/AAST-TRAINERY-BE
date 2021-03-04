@@ -15,6 +15,15 @@ class CreateStudentCoursesTable extends Migration
     {
         Schema::create('student_courses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('student_id');
+            $table->string('course_name');
+            $table->string("course_provider");
+            $table->date('from');
+            $table->date('to');
+            $table->string('cred')->nullable();
+            $table->string('cred_url')->nullable();
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
