@@ -8,7 +8,7 @@ namespace App\Virtual\Requests;
  *      description="Student Login Request body data",
  *      type="object",
  *      required={"experience_type", "city", "country" ,"from","to",
- *              "currently_work","job_title","company_name"
+ *              "currently_work","job_title","company_name","company_website"
  *      }
  * )
  */
@@ -45,10 +45,21 @@ class StudentWorkExperienceInfoRequest
      * @var string
      */
     public $company_name;
+
+    /**
+     * @OA\Property(
+     *      title="Company Website",
+     *      description="Company Website",
+     *      example="https://facebook.com"
+     * )
+     *
+     * @var string
+     */
+    public $company_website;
     /**
      * @OA\Property(
      *      title="city",
-     *      description="School city",
+     *      description="city",
      *      example="Cairo"
      * )
      *
@@ -60,7 +71,7 @@ class StudentWorkExperienceInfoRequest
     /**
      * @OA\Property(
      *      title="country",
-     *      description="School country",
+     *      description="country",
      *      example="Egypt"
      * )
      *
@@ -72,8 +83,8 @@ class StudentWorkExperienceInfoRequest
 
     /**
      * @OA\Property(
-     *      title="school start date",
-     *      description="school start date",
+     *      title="Experience start date",
+     *      description="Experience start date",
      *      example="2001-1-1"
      * )
      *
@@ -83,8 +94,8 @@ class StudentWorkExperienceInfoRequest
 
     /**
      * @OA\Property(
-     *      title="school end date",
-     *      description="school end date",
+     *      title="Experience end date",
+     *      description="Experience end date",
      *      example="2017-1-1"
      * )
      *
@@ -95,8 +106,8 @@ class StudentWorkExperienceInfoRequest
 
     /**
      * @OA\Property(
-     *      title="School credential URL",
-     *      description="School credential URL",
+     *      title="Experience credential URL",
+     *      description="Experience credential URL",
      *      example="https://www.google.com"
      * )
      *
@@ -106,8 +117,8 @@ class StudentWorkExperienceInfoRequest
 
     /**
      * @OA\Property(
-     *      title="School Credential",
-     *      description="School Credential",
+     *      title="Experience Credential",
+     *      description="Experience Credential",
      *      type="string",
      *      format="binary"
      * )

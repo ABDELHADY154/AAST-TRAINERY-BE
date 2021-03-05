@@ -181,7 +181,7 @@ class StudentCourseController extends Controller
     {
         $studentCourse = StudentCourse::find($id);
         if (!$studentCourse) {
-            return  $this->notFound(['message' => 'education not found']);
+            return  $this->notFound(['message' => 'course not found']);
         }
         if ($studentCourse->student_id !== auth('api')->id()) {
             return $this->unauthorized();
@@ -244,7 +244,7 @@ class StudentCourseController extends Controller
     {
         $studentCourse = StudentCourse::find($id);
         if (!$studentCourse) {
-            return  $this->notFound(['message' => 'education not found']);
+            return  $this->notFound(['message' => 'course not found']);
         }
         if ($studentCourse->student_id !== auth('api')->id()) {
             return $this->unauthorized();
@@ -334,7 +334,7 @@ class StudentCourseController extends Controller
     {
         $studentCourse = StudentCourse::find($id);
         if (!$studentCourse) {
-            return  $this->notFound(['message' => 'education not found']);
+            return  $this->notFound(['message' => 'course not found']);
         }
         if ($studentCourse->student_id !== auth('api')->id()) {
             return $this->unauthorized();
