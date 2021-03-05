@@ -38,4 +38,9 @@ class Student extends User
     {
         return $this->hasMany(StudentCourse::class);
     }
+
+    public function studentSkills()
+    {
+        return $this->hasMany(StudentSkill::class);
+    }
 }

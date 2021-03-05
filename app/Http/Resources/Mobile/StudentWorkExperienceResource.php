@@ -20,6 +20,7 @@ class StudentWorkExperienceResource extends JsonResource
             'id' => $this->id,
             'job_title' => $this->job_title,
             'company_name' => $this->company_name,
+            'company_website' => $this->company_website,
             'experience_type' => $this->experience_type,
             'city' => $this->city,
             'country' => $this->country,

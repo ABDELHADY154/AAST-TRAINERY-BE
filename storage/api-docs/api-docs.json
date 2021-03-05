@@ -913,6 +913,308 @@
                 ]
             }
         },
+        "/A/student/profile/skill": {
+            "get": {
+                "tags": [
+                    "A-Student Skills"
+                ],
+                "summary": "Get Student Skills List",
+                "description": "Get Student All Skills",
+                "operationId": "getStudentAllSkills",
+                "responses": {
+                    "200": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "A-Student Skills"
+                ],
+                "summary": "Create Student Skill",
+                "description": "Create Student Skill",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\Mobile\\StudentSkillController::store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentSkillInfoRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/profile/skill/{id}": {
+            "get": {
+                "tags": [
+                    "A-Student Skills"
+                ],
+                "summary": "Get Student Skill",
+                "description": "Get Student Skill",
+                "operationId": "showStudentSkill",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "A-Student Skills"
+                ],
+                "summary": "Update Student Skill",
+                "description": "Update Student Skill",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\Mobile\\StudentSkillController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentSkillInfoRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "A-Student Skills"
+                ],
+                "summary": "Delete Student Skill ",
+                "description": "delete Student Skill ",
+                "operationId": "deleteStudentSkill",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/A/student/profile/experience": {
             "get": {
                 "tags": [
@@ -2191,6 +2493,308 @@
                 ]
             }
         },
+        "/W/student/profile/skill": {
+            "get": {
+                "tags": [
+                    "W-Student Skills"
+                ],
+                "summary": "Get Student Skills List",
+                "description": "Get Student All Skills",
+                "operationId": "getStudentAllSkills",
+                "responses": {
+                    "200": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "W-Student Skills"
+                ],
+                "summary": "Create Student Skill",
+                "description": "Create Student Skill",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentSkillController::store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentSkillInfoRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/student/profile/skill/{id}": {
+            "get": {
+                "tags": [
+                    "W-Student Skills"
+                ],
+                "summary": "Get Student Skill",
+                "description": "Get Student Skill",
+                "operationId": "showStudentSkill",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "W-Student Skills"
+                ],
+                "summary": "Update Student Skill",
+                "description": "Update Student Skill",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentSkillController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentSkillInfoRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "W-Student Skills"
+                ],
+                "summary": "Delete Student Skill ",
+                "description": "delete Student Skill ",
+                "operationId": "deleteStudentSkill",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/W/student/profile/experience": {
             "get": {
                 "tags": [
@@ -3104,6 +3708,29 @@
                 },
                 "type": "object"
             },
+            "StudentSkillInfoRequest": {
+                "title": "Student Login Request",
+                "description": "Student Login Request body data",
+                "required": [
+                    "skill_name",
+                    "years_of_exp"
+                ],
+                "properties": {
+                    "skill_name": {
+                        "title": "Skill name",
+                        "description": "Skill name",
+                        "type": "string",
+                        "example": "Programming"
+                    },
+                    "years_of_exp": {
+                        "title": "Skill years of experience",
+                        "description": "Skill years of experience",
+                        "type": "integer",
+                        "example": 3
+                    }
+                },
+                "type": "object"
+            },
             "StudentWorkExperienceInfoRequest": {
                 "title": "Student Login Request",
                 "description": "Student Login Request body data",
@@ -3115,7 +3742,8 @@
                     "to",
                     "currently_work",
                     "job_title",
-                    "company_name"
+                    "company_name",
+                    "company_website"
                 ],
                 "properties": {
                     "experience_type": {
@@ -3136,39 +3764,45 @@
                         "type": "string",
                         "example": "Apple"
                     },
+                    "company_website": {
+                        "title": "Company Website",
+                        "description": "Company Website",
+                        "type": "string",
+                        "example": "https://facebook.com"
+                    },
                     "city": {
                         "title": "city",
-                        "description": "School city",
+                        "description": "city",
                         "type": "string",
                         "example": "Cairo"
                     },
                     "country": {
                         "title": "country",
-                        "description": "School country",
+                        "description": "country",
                         "type": "string",
                         "example": "Egypt"
                     },
                     "from": {
-                        "title": "school start date",
-                        "description": "school start date",
+                        "title": "Experience start date",
+                        "description": "Experience start date",
                         "type": "string",
                         "example": "2001-1-1"
                     },
                     "to": {
-                        "title": "school end date",
-                        "description": "school end date",
+                        "title": "Experience end date",
+                        "description": "Experience end date",
                         "type": "string",
                         "example": "2017-1-1"
                     },
                     "cred_url": {
-                        "title": "School credential URL",
-                        "description": "School credential URL",
+                        "title": "Experience credential URL",
+                        "description": "Experience credential URL",
                         "type": "string",
                         "example": "https://www.google.com"
                     },
                     "cred": {
-                        "title": "School Credential",
-                        "description": "School Credential",
+                        "title": "Experience Credential",
+                        "description": "Experience Credential",
                         "type": "string",
                         "format": "binary"
                     },
