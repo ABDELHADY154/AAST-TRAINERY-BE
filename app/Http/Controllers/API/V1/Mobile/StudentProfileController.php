@@ -64,7 +64,7 @@ class StudentProfileController extends Controller
      *      description="Update Student Academic Info",
      *      summary="Update Student Academic Info",
      *      tags={"A-Student Academic Info"},
-     *     security={
+     *      security={
      *          {"passport": {}},
      *     },
      *         @OA\RequestBody(

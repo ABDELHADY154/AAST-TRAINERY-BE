@@ -192,7 +192,7 @@ class StudentWorkExperienceController extends Controller
     {
         $studentExp = StudentWorkExperience::find($id);
         if (!$studentExp) {
-            return  $this->notFound(['message' => 'education not found']);
+            return  $this->notFound(['message' => 'experience not found']);
         }
         if ($studentExp->student_id !== auth('api')->id()) {
             return $this->unauthorized();
@@ -257,7 +257,7 @@ class StudentWorkExperienceController extends Controller
     {
         $studentExp = StudentWorkExperience::find($id);
         if (!$studentExp) {
-            return  $this->notFound(['message' => 'education not found']);
+            return  $this->notFound(['message' => 'experience not found']);
         }
         if ($studentExp->student_id !== auth('api')->id()) {
             return $this->unauthorized();
@@ -354,7 +354,7 @@ class StudentWorkExperienceController extends Controller
     {
         $studentExp = StudentWorkExperience::find($id);
         if (!$studentExp) {
-            return  $this->notFound(['message' => 'education not found']);
+            return  $this->notFound(['message' => 'experience not found']);
         }
         if ($studentExp->student_id !== auth('api')->id()) {
             return $this->unauthorized();

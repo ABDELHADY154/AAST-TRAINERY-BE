@@ -27,6 +27,7 @@ class StudentWorkExperienceRequest extends FormRequest
             'experience_type' => ['required', 'string', "in:Internship,Volunteer"],
             'job_title' => ['required', 'string'],
             'company_name' => ['required', 'string'],
+            'company_website' => ['required', 'url'],
             'city' => ['required', 'string'],
             'country' => ['required', 'string'],
             'from' => ['required', 'date'],
