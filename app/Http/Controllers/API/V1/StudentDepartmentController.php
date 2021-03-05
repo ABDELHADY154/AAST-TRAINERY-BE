@@ -114,7 +114,7 @@ class StudentDepartmentController extends Controller
     {
         $citiesList = [];
         $countries = new Countries();
-        $cities = $countries->where('cca3', $code)->first()->hydrate('Cities')->cities;
+        $cities = $countries->where('adm0_a3', $code)->first()->hydrate('Cities')->cities;
         foreach ($cities as $key => $city) {
             $citiesList[] = $city["name"];
         }
