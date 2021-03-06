@@ -28,7 +28,7 @@ class StudentGeneralInfoRequest extends FormRequest
             'reg_no' => ['required', 'integer', 'digits:8'],
             'period' => ['required', 'integer', 'between:2,9'],
             'gpa' => ['required', 'numeric', 'between:1.0,4'],
-            'image' => ['image', 'mimes:png,jpg,jpeg'],
+            'image' => ['file', 'mimes:png,jpg,jpeg'],
             'start_year' => ['required', 'integer'],
             'end_year' => ['required', 'integer'],
             'department_id' => ['required', 'integer', 'exists:student_departments,id'],
