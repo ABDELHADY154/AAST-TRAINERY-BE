@@ -73,7 +73,7 @@ class StudentProfileController extends Controller
                 'start_year' => $request->input('start_year'),
                 'end_year' => $request->input('end_year'),
                 'gpa' => $request->input('gpa'),
-                'period' => $request->input('preiod'),
+                'period' => $request->input('period'),
                 'reg_no' => $request->input('reg_no'),
                 'name' => $request->input('name'),
                 'image' => $imageName
@@ -91,7 +91,7 @@ class StudentProfileController extends Controller
             'start_year' => $request->input('start_year'),
             'end_year' => $request->input('end_year'),
             'gpa' => $request->input('gpa'),
-            'period' => $request->input('preiod'),
+            'period' => $request->input('period'),
             'reg_no' => $request->input('reg_no'),
             'name' => $request->input('name'),
             // 'image' => $imageName
