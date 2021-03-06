@@ -76,6 +76,7 @@ class StudentProfileController extends Controller
                 'period' => $request->input('period'),
                 'reg_no' => $request->input('reg_no'),
                 'name' => $request->input('name'),
+                'department_id' => $request->input('department_id'),
                 'image' => $imageName
             ]);
         }
@@ -94,6 +95,7 @@ class StudentProfileController extends Controller
             'period' => $request->input('period'),
             'reg_no' => $request->input('reg_no'),
             'name' => $request->input('name'),
+            'department_id' => $request->input('department_id'),
             // 'image' => $imageName
         ]);
         $this->student->save();
