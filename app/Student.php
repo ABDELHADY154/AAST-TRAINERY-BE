@@ -48,4 +48,8 @@ class Student extends User
     {
         return $this->hasMany(StudentInterest::class);
     }
+    public function studentLanguages()
+    {
+        return $this->hasMany(StudentLanguage::class);
+    }
 }

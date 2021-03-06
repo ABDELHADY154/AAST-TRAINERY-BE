@@ -42,6 +42,7 @@ Route::group([
                 Route::post('/course/{id}', 'API\V1\StudentCourseController@update')->name('student.course.update');
                 Route::apiResource('/skill', 'API\V1\StudentSkillController');
                 Route::apiResource('/interest', 'API\V1\StudentInterestController')->except(["update"]);
+                Route::apiResource('/language', 'API\V1\StudentLanguageController');
             });
         });
     });
@@ -67,6 +68,7 @@ Route::group([
             Route::post('/course/{id}', 'API\V1\Mobile\StudentCourseController@update')->name('student.course.update');
             Route::apiResource('/skill', 'API\V1\Mobile\StudentSkillController');
             Route::apiResource('/interest', 'API\V1\Mobile\StudentInterestController')->except(["update"]);
+            Route::apiResource('/language', 'API\V1\Mobile\StudentLanguageController');
         });
     });
 });
