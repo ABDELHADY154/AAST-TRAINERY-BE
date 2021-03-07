@@ -61,6 +61,107 @@
                 }
             }
         },
+        "/A/student/profile/account": {
+            "get": {
+                "tags": [
+                    "A-Student Accounts"
+                ],
+                "summary": "Get Student Accounts Info",
+                "description": "Get Student All Accounts",
+                "operationId": "getStudentAllAccounts",
+                "responses": {
+                    "200": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "A-Student Accounts"
+                ],
+                "summary": "Update Student Account",
+                "description": "Update Student Account",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAccountRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/A/student/get-profile": {
             "get": {
                 "tags": [
@@ -2042,6 +2143,107 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/student/profile/account": {
+            "get": {
+                "tags": [
+                    "W-Student Accounts"
+                ],
+                "summary": "Get Student Accounts Info",
+                "description": "Get Student All Accounts",
+                "operationId": "getStudentAllAccounts",
+                "responses": {
+                    "200": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "W-Student Accounts"
+                ],
+                "summary": "Update Student Account",
+                "description": "Update Student Account",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAccountRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
                                 }
                             }
                         }
@@ -4406,6 +4608,55 @@
                         "description": "Student period",
                         "type": "string",
                         "example": "8"
+                    }
+                },
+                "type": "object"
+            },
+            "StudentAccountRequest": {
+                "title": "Student Login Request",
+                "description": "Student Login Request body data",
+                "properties": {
+                    "website": {
+                        "title": "website",
+                        "description": "website",
+                        "type": "string",
+                        "example": "https://www.google.com"
+                    },
+                    "facebook": {
+                        "title": "Facebook Account",
+                        "description": "Facebook Account",
+                        "type": "string",
+                        "example": "https://www.facebook.com/myProfile"
+                    },
+                    "instagram": {
+                        "title": "Instagram Account",
+                        "description": "Instagram Account",
+                        "type": "string",
+                        "example": "https://www.instagram.com/myProfile"
+                    },
+                    "youtube": {
+                        "title": "Youtube Account",
+                        "description": "Youtube Account",
+                        "type": "string",
+                        "example": "https://www.youtube.com/myProfile"
+                    },
+                    "linkedin": {
+                        "title": "LinkedIn Account",
+                        "description": "LinkedIn Account",
+                        "type": "string",
+                        "example": "https://www.linkedin.com/myProfile"
+                    },
+                    "behance": {
+                        "title": "Behance Account",
+                        "description": "Behance Account",
+                        "type": "string",
+                        "example": "https://www.behance.net/myProfile"
+                    },
+                    "github": {
+                        "title": "Github Account",
+                        "description": "Github Account",
+                        "type": "string",
+                        "example": "https://www.github.com/myProfile"
                     }
                 },
                 "type": "object"

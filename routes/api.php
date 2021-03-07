@@ -43,6 +43,7 @@ Route::group([
                 Route::apiResource('/skill', 'API\V1\StudentSkillController');
                 Route::apiResource('/interest', 'API\V1\StudentInterestController')->except(["update"]);
                 Route::apiResource('/language', 'API\V1\StudentLanguageController');
+                Route::apiResource('/account', 'API\V1\StudentAccountController')->except(['update', 'show', 'destroy']);
             });
         });
     });
@@ -69,6 +70,7 @@ Route::group([
             Route::apiResource('/skill', 'API\V1\Mobile\StudentSkillController');
             Route::apiResource('/interest', 'API\V1\Mobile\StudentInterestController')->except(["update"]);
             Route::apiResource('/language', 'API\V1\Mobile\StudentLanguageController');
+            Route::apiResource('/account', 'API\V1\Mobile\StudentAccountController')->except(['update', 'show', 'destroy']);
         });
     });
 });
