@@ -270,7 +270,6 @@ class StudentCourseController extends Controller
             return $this->created((new StudentCourseResource($studentCourse))->resolve());
         }
         $studentCourse->update([
-
             'cred_url' => $request->input('cred_url'),
             'from' => $request->input('from'),
             'to' => $request->input('to'),
