@@ -23,7 +23,6 @@ class StudentResource extends JsonResource
     {
         $date = explode("-", $this->date_of_birth);
         return [
-            'id' => $this->id,
             "name" => $this->name,
             "image" => asset('storage/images/avatars/' . $this->image),
             "email" => $this->email,
