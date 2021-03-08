@@ -48,7 +48,7 @@ class StudentResource extends JsonResource
             'gpa' => $this->gpa,
             'start_year' => $this->start_year,
             'end_year' => $this->end_year,
-            'accounts' => (new StudentAccountResource($this->studentAccount))->resolve(),
+            // 'accounts' => (new StudentAccountResource($this->studentAccount))->resolve(),
             // 'educations' => StudentEducationResource::collection($this->studentEducations)->resolve(),
             // 'work_experience' => StudentWorkExperienceResource::collection($this->studentExperience)->resolve(),
             // 'courses' => StudentCourseResource::collection($this->studentCourses)->resolve(),
