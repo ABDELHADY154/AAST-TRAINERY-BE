@@ -55,7 +55,9 @@ Route::group([
     'prefix' => '/A',
 ], function () {
     Route::prefix('student')->group(function () {
-        Route::get('/get-profile', 'API\V1\Mobile\StudentController@getProfile')->name('get-profile');
+        Route::get('/get-profilePersonal', 'API\V1\Mobile\StudentController@getProfile')->name('get-profilePersonal');
+        Route::get('/get-profileExperience', 'API\V1\Mobile\StudentController@getProfileExperience')->name('get-profileExperience');
+        Route::get('/studentImg', 'API\V1\Mobile\StudentController@getImg')->name('student.get.image');
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
             Route::put('/academic', 'API\V1\Mobile\StudentProfileController@academicInfo')->name('student.update.academic.info');

@@ -162,14 +162,108 @@
                 ]
             }
         },
-        "/A/student/get-profile": {
+        "/A/student/get-profilePersonal": {
             "get": {
                 "tags": [
                     "A-Student Profile"
                 ],
                 "summary": "Get Student Profile ",
                 "description": " Get Student Profile ",
-                "operationId": "AgetStudentProfile",
+                "operationId": "AgetStudentProfilePersonal",
+                "responses": {
+                    "200": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/get-profileExperience": {
+            "get": {
+                "tags": [
+                    "A-Student Profile"
+                ],
+                "summary": "Get Student Profile ",
+                "description": " Get Student Profile ",
+                "operationId": "AgetStudentProfileExperience",
+                "responses": {
+                    "200": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/studentImg": {
+            "get": {
+                "tags": [
+                    "A-Student Profile"
+                ],
+                "summary": "Get Student Image ",
+                "description": " Get Student Image ",
+                "operationId": "AgetStudentImage",
                 "responses": {
                     "200": {
                         "description": "Student Data to success",
@@ -2345,7 +2439,7 @@
                 ]
             }
         },
-        "/W/studentImg": {
+        "/W/student/studentImg": {
             "get": {
                 "tags": [
                     "W-Student Profile"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Mobile;
 
+use App\Http\Resources\StudentAccountResource;
 use App\Http\Resources\StudentCourseResource;
 use App\Http\Resources\StudentEducationResource;
 use App\Http\Resources\StudentInterestResource;
@@ -41,12 +42,20 @@ class StudentResource extends JsonResource
             'profile_score' => $this->profile_score,
             'address' => $this->address,
             'phone_number' => $this->phone_number,
-            'educations' => StudentEducationResource::collection($this->studentEducations)->resolve(),
-            'work_experience' => StudentWorkExperienceResource::collection($this->studentExperience)->resolve(),
-            'courses' => StudentCourseResource::collection($this->studentCourses)->resolve(),
-            'skills' => StudentSkillResource::collection($this->studentSkills)->resolve(),
-            'interests' => StudentInterestResource::collection($this->studentInterests)->resolve(),
-            'languages' => StudentLanguageResource::collection($this->studentLanguages)->resolve(),
+            'university' => $this->university,
+            'department' => $this->studentDepartment->department_name,
+            'reg_no' => $this->reg_no,
+            'period' => $this->period,
+            'gpa' => $this->gpa,
+            'start_year' => $this->start_year,
+            'end_year' => $this->end_year,
+            'accounts' => (new StudentAccountResource($this->studentAccount))->resolve(),
+            // 'educations' => StudentEducationResource::collection($this->studentEducations)->resolve(),
+            // 'work_experience' => StudentWorkExperienceResource::collection($this->studentExperience)->resolve(),
+            // 'courses' => StudentCourseResource::collection($this->studentCourses)->resolve(),
+            // 'skills' => StudentSkillResource::collection($this->studentSkills)->resolve(),
+            // 'interests' => StudentInterestResource::collection($this->studentInterests)->resolve(),
+            // 'languages' => StudentLanguageResource::collection($this->studentLanguages)->resolve(),
             "created_at" => $this->created_at->timestamp,
         ];
     }

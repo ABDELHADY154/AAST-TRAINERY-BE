@@ -76,6 +76,8 @@ class StudentController extends Controller
      *     )
      * )
      */
+
+
     public function getProfile()
     {
         $student = $this->student;
@@ -92,7 +94,7 @@ class StudentController extends Controller
 
     /**
      * @OA\GET(
-     *      path="/W/studentImg",
+     *      path="/W/student/studentImg",
      *      operationId="WgetStudentImage",
      *      description=" Get Student Image ",
      *      summary="Get Student Image ",
