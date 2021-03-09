@@ -29,8 +29,8 @@ class StudentEducationRequest extends FormRequest
             'cred_url' => ['url'],
             'country' => ['required', 'string'],
             'city' => ['required', 'string'],
-            'from' => ['required', 'date', 'date_format:d-m-Y'],
-            'to' => ['required', 'date', 'date_format:d-m-Y'],
+            'from' => ['required', 'date', 'date_format:m-d-Y'],
+            'to' => ['required', 'date', 'date_format:m-d-Y'],
         ];
     }
 }
