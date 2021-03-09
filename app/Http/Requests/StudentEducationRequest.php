@@ -29,8 +29,16 @@ class StudentEducationRequest extends FormRequest
             'cred_url' => ['url'],
             'country' => ['required', 'string'],
             'city' => ['required', 'string'],
-            'from' => ['required', 'date', 'date_format:m-d-Y'],
-            'to' => ['required', 'date', 'date_format:m-d-Y'],
+            'from' => ['required', 'date', 'date_format:Y-m-d'],
+            'to' => ['required', 'date', 'date_format:Y-m-d'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "from.date_format" => "The Date Format Not Valid",
+            "to.date_format" => "The Date Format Not Valid"
         ];
     }
 }
