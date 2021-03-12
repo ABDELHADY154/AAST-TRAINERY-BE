@@ -8,6 +8,7 @@ use App\Http\Requests\Mobile\StudentAcademicInfoRequest;
 use App\Http\Requests\Mobile\StudentPersonalInfoRequest;
 use App\Http\Resources\Mobile\StudentAcademicInfoResource;
 use App\Http\Resources\Mobile\StudentPersonalInfoResource;
+use App\Student;
 use Illuminate\Http\Request;
 
 class StudentProfileController extends Controller
@@ -167,5 +168,64 @@ class StudentProfileController extends Controller
     public function getAcademicInfo()
     {
         return $this->created((new StudentAcademicInfoResource($this->student))->resolve());
+    }
+
+    /**
+     * @OA\POST(
+     *      path="/A/student/profile/image",
+     *      summary="Update Student Profile Image",
+     *      tags={"A-Student Profile"},
+     *      description="Update Student Profile Image",
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *          mediaType="multipart/form-data",
+     *              @OA\Schema(ref="#/components/schemas/StudentProfileImageRequest")
+     *   )
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="200",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
+     */
+    public function updateImage(Request $request)
+    {
+        $request->validate([
+            'image' => ['required', 'file', 'mimes:png,jpg,jpeg',]
+        ]);
+        $student = Student::where('id', auth('api')->id())->first();
+
+        if ($request->file('image')) {
+            $fileName = $request->file('image')->hashName();
+            $path = $request->file('image')->storeAs(
+                'public/images/avatars',
+                $fileName
+            );
+
+            $student->update([
+                'image' => $fileName,
+            ]);
+            $student->save();
+            return $this->created(['image' => asset('storage/images/avatars/' . $student->image),]);
+        }
+        return $this->notFound(['message' => 'File Not Found']);
     }
 }

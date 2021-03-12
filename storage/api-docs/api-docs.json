@@ -1646,6 +1646,63 @@
                 ]
             }
         },
+        "/A/student/profile/image": {
+            "post": {
+                "tags": [
+                    "A-Student Profile"
+                ],
+                "summary": "Update Student Profile Image",
+                "description": "Update Student Profile Image",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\Mobile\\StudentProfileController::updateImage",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentProfileImageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/A/student/profile/skill": {
             "get": {
                 "tags": [
@@ -5113,6 +5170,22 @@
                         "description": "Student date of birth",
                         "type": "string",
                         "example": "1997-04-15"
+                    }
+                },
+                "type": "object"
+            },
+            "StudentProfileImageRequest": {
+                "title": "Student Profile Request",
+                "description": "Student Profile Request body data",
+                "required": [
+                    "image"
+                ],
+                "properties": {
+                    "image": {
+                        "title": "Student Image",
+                        "description": "Student Image",
+                        "type": "string",
+                        "format": "binary"
                     }
                 },
                 "type": "object"
