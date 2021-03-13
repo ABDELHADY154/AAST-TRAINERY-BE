@@ -52,8 +52,8 @@ class StudentAccountController extends Controller
     public function index()
     {
         $studentAccount = StudentAccount::where('student_id', auth('api')->id())->get();
-        $studentAccount =  StudentAccountResource::collection($studentAccount);
         if ($studentAccount) {
+            $studentAccount =  StudentAccountResource::collection($studentAccount);
             return $this->ok($studentAccount->resolve());
         } else {
             return $this->ok(['data' => []]);
