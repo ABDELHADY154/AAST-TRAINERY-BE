@@ -43,6 +43,7 @@ class StudentResource extends JsonResource
             'skills' => StudentSkillResource::collection($this->studentSkills)->resolve(),
             'interests' => StudentInterestResource::collection($this->studentInterests)->resolve(),
             'languages' => StudentLanguageResource::collection($this->studentLanguages)->resolve(),
+            'accounts' => (new StudentAccountResource($this->studentAccount))->resolve(),
             "created_at" => $this->created_at->timestamp,
         ];
     }
