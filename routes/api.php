@@ -74,6 +74,7 @@ Route::group([
             Route::post('/course/{id}', 'API\V1\Mobile\StudentCourseController@update')->name('student.course.update');
             Route::apiResource('/skill', 'API\V1\Mobile\StudentSkillController');
             Route::apiResource('/interest', 'API\V1\Mobile\StudentInterestController')->except(["update"]);
+            Route::put('/interest', 'API\V1\Mobile\StudentInterestController@update')->name('student.update.interest');
             Route::apiResource('/language', 'API\V1\Mobile\StudentLanguageController');
             Route::apiResource('/account', 'API\V1\Mobile\StudentAccountController')->except(['update', 'show', 'destroy']);
         });

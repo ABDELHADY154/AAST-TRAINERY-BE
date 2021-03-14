@@ -241,4 +241,57 @@ class StudentInterestController extends Controller
         $studentInterest->destroy($id);
         return $this->ok(['message' => 'Deleted']);
     }
+    /**
+     * @OA\Put(
+     *      path="/A/student/profile/interest",
+     *      description="Create Student Interest",
+     *      summary="Create Student Interest",
+     *      tags={"A-Student Interests"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StudentInterestListRequest")
+     *     ),
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
+     */
+    public function update(StudentInterestRequest $request)
+    {
+        StudentInterest::where('student_id', auth('api')->id())->forceDelete();
+        $InterestsArr = $request->all();
+        $studentInterestsArr = [];
+        foreach ($InterestsArr["interests"] as $key => $interest) {
+            if (isset($interest["interest"])) {
+                $studentInterest = StudentInterest::create([
+                    'interest' =>  $interest["interest"],
+                    'student_id' => auth('api')->id(),
+                ]);
+                $studentInterestsArr[] = $studentInterest;
+            } else {
+
+                return $this->invalidRequest(['message' => 'interest is required']);
+                break;
+            }
+        }
+
+        return $this->created(StudentInterestResource::collection($studentInterestsArr)->resolve());
+    }
 }
