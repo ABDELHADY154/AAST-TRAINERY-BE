@@ -92,6 +92,7 @@ class StudentInterestController extends Controller
      *     )
      * )
      */
+
     public function store(StudentInterestRequest $request)
     {
 
@@ -113,7 +114,38 @@ class StudentInterestController extends Controller
 
         return $this->created(StudentInterestResource::collection($studentInterestsArr)->resolve());
     }
-
+    /**
+     * @OA\Put(
+     *      path="/W/student/profile/interest",
+     *      description="Create Student Interest",
+     *      summary="Create Student Interest",
+     *      tags={"W-Student Interests"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StudentInterestListRequest")
+     *     ),
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
+     */
     public function update(StudentInterestRequest $request)
     {
         $studentDeleteAllInterests = StudentInterest::withTrashed()->where('student_id', auth('api')->id());
