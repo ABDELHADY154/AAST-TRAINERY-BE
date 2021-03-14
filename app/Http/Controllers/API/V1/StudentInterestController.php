@@ -94,6 +94,7 @@ class StudentInterestController extends Controller
      */
     public function store(StudentInterestRequest $request)
     {
+
         $InterestsArr = $request->all();
         $studentInterestsArr = [];
         foreach ($InterestsArr["interests"] as $key => $interest) {
@@ -113,6 +114,27 @@ class StudentInterestController extends Controller
         return $this->created(StudentInterestResource::collection($studentInterestsArr)->resolve());
     }
 
+    public function update(StudentInterestRequest $request)
+    {
+        $studentDeleteAllInterests = StudentInterest::withTrashed()->where('student_id', auth('api')->id());
+        $InterestsArr = $request->all();
+        $studentInterestsArr = [];
+        foreach ($InterestsArr["interests"] as $key => $interest) {
+            if (isset($interest["interest"])) {
+                $studentInterest = StudentInterest::create([
+                    'interest' =>  $interest["interest"],
+                    'student_id' => auth('api')->id(),
+                ]);
+                $studentInterestsArr[] = $studentInterest;
+            } else {
+
+                return $this->invalidRequest(['message' => 'interest is required']);
+                break;
+            }
+        }
+
+        return $this->created(StudentInterestResource::collection($studentInterestsArr)->resolve());
+    }
 
     /**
      * @OA\Get(
