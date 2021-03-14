@@ -148,7 +148,7 @@ class StudentInterestController extends Controller
      */
     public function update(StudentInterestRequest $request)
     {
-        $studentDeleteAllInterests = StudentInterest::withTrashed()->where('student_id', auth('api')->id());
+        StudentInterest::where('student_id', auth('api')->id())->forceDelete();
         $InterestsArr = $request->all();
         $studentInterestsArr = [];
         foreach ($InterestsArr["interests"] as $key => $interest) {
