@@ -9,10 +9,15 @@ class StudentDepartment extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['department_name'];
+    protected $fillable = ['department_name', 'university_id'];
 
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function university()
+    {
+        return $this->belongsTo(StudentUniversity::class, 'university_id');
     }
 }

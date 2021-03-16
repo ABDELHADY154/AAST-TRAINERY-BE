@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://admin.aast-trainery.com/api/",
+            "url": "http://localhost:8000/api/",
             "description": "Trainery Demo Server"
         }
     ],

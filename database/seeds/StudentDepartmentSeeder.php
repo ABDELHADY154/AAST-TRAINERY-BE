@@ -18,31 +18,40 @@ class StudentDepartmentSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         StudentDepartment::create([
-            'department_name' => 'Business Information Systems'
+            'department_name' => 'Business Information Systems',
+            'university_id' => 1
         ]);
         StudentDepartment::create([
-            'department_name' => 'Marketing'
+            'department_name' => 'Marketing',
+            'university_id' => 1
         ]);
         StudentDepartment::create([
-            'department_name' => 'Media Management'
+            'department_name' => 'Media Management',
+            'university_id' => 1
         ]);
         StudentDepartment::create([
-            'department_name' => 'Accounting'
+            'department_name' => 'Accounting',
+            'university_id' => 1
         ]);
         StudentDepartment::create([
-            'department_name' => 'Finance'
+            'department_name' => 'Finance',
+            'university_id' => 1
         ]);
         StudentDepartment::create([
-            'department_name' => 'Political Science'
+            'department_name' => 'Political Science',
+            'university_id' => 1
         ]);
         StudentDepartment::create([
-            'department_name' => 'Media'
+            'department_name' => 'Media',
+            'university_id' => 2
         ]);
         StudentDepartment::create([
-            'department_name' => 'Language and translation'
+            'department_name' => 'Language and translation',
+            'university_id' => 2
         ]);
         StudentDepartment::create([
-            'department_name' => 'Humanities'
+            'department_name' => 'Humanities',
+            'university_id' => 2
         ]);
     }
 }

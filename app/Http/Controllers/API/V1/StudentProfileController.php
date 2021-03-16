@@ -55,6 +55,8 @@ class StudentProfileController extends Controller
      */
     public function generalInfo(StudentGeneralInfoRequest $request)
     {
+        $score = $this->student->profile_score + 0.125;
+        // dd(round($score, 2));
         if ($request->file('image')) {
 
             $imageName = $request->file('image')->hashName();
@@ -62,6 +64,7 @@ class StudentProfileController extends Controller
                 'public/images/avatars',
                 $imageName
             );
+
             $student = $this->student->update([
                 'phone_number' => $request->input('phone_number'),
                 'university' => $request->input('university'),
@@ -77,7 +80,8 @@ class StudentProfileController extends Controller
                 'reg_no' => $request->input('reg_no'),
                 'name' => $request->input('name'),
                 'department_id' => $request->input('department_id'),
-                'image' => $imageName
+                'image' => $imageName,
+                'profile_updated' => 1
             ]);
         }
         // dd($request->all());
@@ -96,7 +100,8 @@ class StudentProfileController extends Controller
             'reg_no' => $request->input('reg_no'),
             'name' => $request->input('name'),
             'department_id' => $request->input('department_id'),
-            // 'image' => $imageName
+            'profile_updated' => 1
+
         ]);
         $this->student->save();
         return $this->created((new StudentGeneralInfoResource(auth('api')->user()))->resolve());
