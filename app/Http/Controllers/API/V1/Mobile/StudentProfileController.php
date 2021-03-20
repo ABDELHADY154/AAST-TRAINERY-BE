@@ -54,7 +54,12 @@ class StudentProfileController extends Controller
      */
     public function personalInfo(StudentPersonalInfoRequest $request)
     {
-
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        if (!$this->student->profile_updated) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
         $this->student->update($request->all());
         $this->student->save();
         return $this->created((new StudentPersonalInfoResource($this->student))->resolve());
@@ -94,6 +99,12 @@ class StudentProfileController extends Controller
      */
     public function academicInfo(StudentAcademicInfoRequest $request)
     {
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        if (!$this->student->profile_updated) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
         $this->student->update($request->all());
         $this->student->save();
         return $this->created((new StudentAcademicInfoResource($this->student))->resolve());

@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 class StudentInterestController extends Controller
 {
     use CoreJsonResponse;
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -94,6 +98,7 @@ class StudentInterestController extends Controller
      */
     public function store(StudentInterestRequest $request)
     {
+
         $InterestsArr = $request->all();
         $studentInterestsArr = [];
         foreach ($InterestsArr["interests"] as $key => $interest) {
@@ -109,7 +114,13 @@ class StudentInterestController extends Controller
                 break;
             }
         }
-
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        $studentInterests = StudentInterest::where('student_id', $this->student->id)->get();
+        if (count($studentInterests) == 0) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
         return $this->created(StudentInterestResource::collection($studentInterestsArr)->resolve());
     }
 

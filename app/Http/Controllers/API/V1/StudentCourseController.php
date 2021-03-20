@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Storage;
 class StudentCourseController extends Controller
 {
     use CoreJsonResponse;
+
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -99,6 +104,13 @@ class StudentCourseController extends Controller
      */
     public function store(StudentCourseRequest $request)
     {
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        $studentCourses = StudentCourse::where('student_id', $this->student->id)->get();
+        if (count($studentCourses) == 0) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
         if ($request->file('cred')) {
             $fileName = $request->file('cred')->hashName();
             $path = $request->file('cred')->storeAs(

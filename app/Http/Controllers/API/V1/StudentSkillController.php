@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 class StudentSkillController extends Controller
 {
     use CoreJsonResponse;
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -94,6 +98,13 @@ class StudentSkillController extends Controller
      */
     public function store(StudentSkillRequest $request)
     {
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        $studentSkills = StudentSkill::where('student_id', $this->student->id)->get();
+        if (count($studentSkills) == 0) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
 
         $studentSkill = StudentSkill::create([
             'skill_name' =>  $request->input('skill_name'),

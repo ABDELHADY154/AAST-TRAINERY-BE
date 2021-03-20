@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 class StudentLanguageController extends Controller
 {
     use CoreJsonResponse;
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -94,6 +98,13 @@ class StudentLanguageController extends Controller
      */
     public function store(StudentLanguageRequest $request)
     {
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        $studentLanguages = StudentLanguage::where('student_id', $this->student->id)->get();
+        if (count($studentLanguages) == 0) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
         $studentLanguage = StudentLanguage::create([
             'language' => $request->input('language'),
             'level' => $request->input('level'),
