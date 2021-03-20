@@ -26,7 +26,7 @@ class StudentAcademicInfoRequest extends FormRequest
         return [
             'university' => ['required', 'string'],
             'department_id' => ['required', 'integer', 'exists:student_departments,id'],
-            'reg_no' => ['required', 'integer', 'digits:8', 'unique:students,reg_no'],
+            'reg_no' => ['required', 'integer', 'digits:8', 'unique:students'],
             'period' => ['required', 'integer', 'max:8'],
             'gpa' => ['required', 'numeric', 'between:1.0,4'],
             'start_year' => ['required', "integer", 'between:2005,2030'],
