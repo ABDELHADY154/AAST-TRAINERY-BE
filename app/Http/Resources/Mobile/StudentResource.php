@@ -38,7 +38,7 @@ class StudentResource extends JsonResource
             'country' => $this->country,
             'city' => $this->city,
             'profile_updated' => $this->profile_updated,
-            'profile_score' => $this->profile_score,
+            'profile_score' => ($this->profile_score * 100) == 100 ? 100 : $this->profile_score * 100,
             'address' => $this->address,
             'phone_number' => $this->phone_number,
             'university' => $this->university,

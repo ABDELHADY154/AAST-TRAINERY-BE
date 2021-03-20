@@ -34,7 +34,7 @@ class StudentResource extends JsonResource
             'country' => $this->country,
             'city' => $this->city,
             'profile_updated' => $this->profile_updated  == 0 ? false : true,
-            'profile_score' => $this->profile_score * 100,
+            'profile_score' => ($this->profile_score * 100) == 100 ? 100 : $this->profile_score * 100,
             'university' => $this->university,
             'phone_number' => $this->phone_number,
             'educations' => StudentEducationResource::collection($this->studentEducations)->resolve(),

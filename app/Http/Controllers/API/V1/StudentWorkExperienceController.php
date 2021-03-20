@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentWorkExperienceRequest;
+use App\Http\Resources\Mobile\StudentExperienceReource;
 use App\Http\Resources\StudentWorkExperienceResource;
 use App\StudentWorkExperience;
 use Illuminate\Http\Request;
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Storage;
 class StudentWorkExperienceController extends Controller
 {
     use CoreJsonResponse;
+
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -102,6 +108,13 @@ class StudentWorkExperienceController extends Controller
     public function store(StudentWorkExperienceRequest $request)
     {
 
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        $studentExperiences = StudentWorkExperience::where('student_id', $this->student->id)->get();
+        if (count($studentExperiences) == 0) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
         if ($request->file('cred')) {
             $fileName = $request->file('cred')->hashName();
             $path = $request->file('cred')->storeAs(

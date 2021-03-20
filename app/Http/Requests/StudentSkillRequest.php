@@ -25,7 +25,7 @@ class StudentSkillRequest extends FormRequest
     {
         return [
             'skill_name' => ['required', 'string'],
-            'years_of_exp' => ['required', 'numeric', 'between:0,10']
+            'years_of_exp' => ['required', 'numeric', 'between:1,5']
         ];
     }
 }

@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 class StudentAccountController extends Controller
 {
     use CoreJsonResponse;
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -101,6 +105,13 @@ class StudentAccountController extends Controller
      */
     public function store(StudentAccountRequest $request)
     {
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        $studentAccounts = StudentAccount::where('student_id', $this->student->id)->get();
+        if (count($studentAccounts) == 0) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
         $studentAccount = StudentAccount::where('student_id', auth('api')->id())->get();
         if (count($studentAccount) == 0) {
             $sudentAccount = StudentAccount::create([
