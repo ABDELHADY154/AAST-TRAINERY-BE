@@ -128,6 +128,7 @@ class StudentWorkExperienceController extends Controller
                 'to' => $request->input('to'),
                 "job_title" => $request->input('job_title'),
                 "company_name" => $request->input('company_name'),
+                "company_website" => $request->input('company_website'),
                 'student_id' => auth('api')->id(),
             ]);
             return $this->created((new StudentWorkExperienceResource($studentExp))->resolve());
@@ -144,6 +145,7 @@ class StudentWorkExperienceController extends Controller
             'to' => $request->input('to'),
             "job_title" => $request->input('job_title'),
             "company_name" => $request->input('company_name'),
+            "company_website" => $request->input('company_website'),
             'student_id' => auth('api')->id(),
         ]);
         return $this->created((new StudentWorkExperienceResource($studentExp))->resolve());
@@ -289,6 +291,7 @@ class StudentWorkExperienceController extends Controller
                 'to' => $request->input('to'),
                 "job_title" => $request->input('job_title'),
                 "company_name" => $request->input('company_name'),
+                "company_website" => $request->input('company_website'),
                 'student_id' => auth('api')->id(),
             ]);
             $studentExp->save();
@@ -304,6 +307,7 @@ class StudentWorkExperienceController extends Controller
             'to' => $request->input('to'),
             "job_title" => $request->input('job_title'),
             "company_name" => $request->input('company_name'),
+            "company_website" => $request->input('company_website'),
             'student_id' => auth('api')->id(),
         ]);
         $studentExp->save();
