@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentGeneralInfoRequest extends FormRequest
 {
@@ -22,10 +23,10 @@ class StudentGeneralInfoRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    { //'unique:students,reg_no,' . auth('api')->user()
         return [
             'name' => ['required', "regex:/[a-z][A-Z]$/i"],
-            'reg_no' => ['required', 'integer', 'digits:8', 'unique:students,reg_no,' . auth('api')->user()->id],
+            'reg_no' => ['required', 'integer', 'digits:8', Rule::unique('students')->ignore(auth('api')->id())],
             'period' => ['required', 'integer', 'between:2,9'],
             'gpa' => ['required', 'numeric', 'between:1.0,4'],
             'image' => ['file', 'mimes:png,jpg,jpeg'],
