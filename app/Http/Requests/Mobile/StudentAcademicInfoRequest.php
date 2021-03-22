@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Mobile;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentAcademicInfoRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class StudentAcademicInfoRequest extends FormRequest
         return [
             'university' => ['required', 'string'],
             'department_id' => ['required', 'integer', 'exists:student_departments,id'],
-            'reg_no' => ['required', 'integer', 'digits:8', 'unique:students'],
+            'reg_no' => ['required', 'integer', 'digits:8', Rule::unique('students')->ignore(auth('api')->id())],
             'period' => ['required', 'integer', 'max:8'],
             'gpa' => ['required', 'numeric', 'between:1.0,4'],
             'start_year' => ['required', "integer", 'between:2005,2030'],
