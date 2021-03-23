@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentWorkExperienceSeeder::class);
         $this->call(StudentCourseSeeder::class);
         $this->call(StudentSkillSeeder::class);
-        $this->call(StudentInterestSeeder::class);
         $this->call(StudentLanguageSeeder::class);
         $this->call(CompanySeeder::class);
         $this->call(InternshipPostSeeder::class);
-
-        // $this->call(StudentAccountSeeder::class);
+        $this->call(StudentInterestSeeder::class);
+        $this->call(InternshipRequirementSeeder::class);
+        $this->call(InternshipPostDepartmentSeeder::class);
     }
 }

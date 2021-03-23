@@ -23,6 +23,7 @@ class CreateInternshipPostsTable extends Migration
             $table->string('type');
             $table->string('salary')->nullable();
             $table->date('application_deadline')->nullable();
+            $table->longText('location')->nullable();
             $table->longText('desc')->nullable();
             $table->softDeletes();
             $table->timestamps();

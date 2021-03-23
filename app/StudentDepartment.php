@@ -20,4 +20,9 @@ class StudentDepartment extends Model
     {
         return $this->belongsTo(StudentUniversity::class, 'university_id');
     }
+
+    public function internshipPostDepartments()
+    {
+        return $this->hasMany(InternshipPostDepartment::class);
+    }
 }

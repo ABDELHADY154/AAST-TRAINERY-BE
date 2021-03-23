@@ -19,11 +19,27 @@ class InternshipPost extends Model
         'type',
         'salary',
         'application_deadline',
-        'desc'
+        'desc',
+        'location'
     ];
 
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function internshipReqs()
+    {
+        return $this->hasMany(InternshipRequirement::class);
+    }
+
+    public function internDepartments()
+    {
+        return $this->hasMany(InternshipPostDepartment::class);
+    }
+
+    public function studentInterests()
+    {
+        return $this->hasMany(StudentInterest::class);
     }
 }

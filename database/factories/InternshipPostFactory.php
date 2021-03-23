@@ -21,6 +21,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
         'type' => $postType[rand(0, 1)],
         'salary' => $salary[rand(0, 1)],
         'application_deadline' => $faker->date(),
-        'desc' => $faker->text(500)
+        'desc' => $faker->text(500),
+        'location' => $faker->address,
     ];
 });
