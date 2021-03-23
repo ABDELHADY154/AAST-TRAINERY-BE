@@ -16,7 +16,14 @@ class CreateInternshipPostsTable extends Migration
         Schema::create('internship_posts', function (Blueprint $table) {
             $table->id();
             $table->string('internship_title');
-            $table->date('date');
+            $table->string('image');
+            $table->date('published_on');
+            $table->integer('vacancy');
+            $table->string('gender');
+            $table->string('type');
+            $table->string('salary')->nullable();
+            $table->date('application_deadline')->nullable();
+            $table->longText('desc')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
