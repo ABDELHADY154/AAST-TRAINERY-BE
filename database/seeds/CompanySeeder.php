@@ -18,6 +18,6 @@ class CompanySeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
-        factory(Company::class, 10)->create();
+        factory(Company::class, 50)->create();
     }
 }

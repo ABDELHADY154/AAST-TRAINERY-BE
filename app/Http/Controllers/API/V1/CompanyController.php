@@ -38,6 +38,47 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/W/student/company/{id}",
+     *      operationId="showCompanyProfile",
+     *      description="Get Company Profile",
+     *      summary="Get Company Profile",
+     *      tags={"W-Profiles"},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Company Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
     public function show($id)
     {
         return $this->ok((new CompanyResource(Company::where('id', $id)->first()))->resolve());

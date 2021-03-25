@@ -35,7 +35,7 @@ class InternshipPost extends Model
 
     public function internDepartments()
     {
-        return $this->hasMany(InternshipPostDepartment::class);
+        return $this->belongsToMany(StudentDepartment::class, 'internship_post_departments')->withPivot('student_department_id', 'internship_post_id');
     }
 
     public function studentInterests()

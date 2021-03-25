@@ -14,9 +14,9 @@ class CreateInternshipPostDepartmentsTable extends Migration
     public function up()
     {
         Schema::create('internship_post_departments', function (Blueprint $table) {
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('student_department_id');
             $table->unsignedBigInteger('internship_post_id');
-            $table->foreign('department_id')->references('id')->on('student_departments');
+            $table->foreign('student_department_id')->references('id')->on('student_departments');
             $table->foreign('internship_post_id')->references('id')->on('internship_posts');
             $table->softDeletes();
             $table->timestamps();

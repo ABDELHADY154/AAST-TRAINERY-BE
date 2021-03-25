@@ -22,7 +22,8 @@ class CompanyResource extends JsonResource
             'company_desc' => $this->company_desc,
             'phone_number' => $this->phone_number,
             'website' => $this->website,
-            'email' => $this->email
+            'email' => $this->email,
+            'internshipPosts' => CompanyInternshipResource::collection($this->internshipPosts)->resolve()
         ];
     }
 }
