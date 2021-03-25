@@ -1,6 +1,7 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4" style=" background-color: #1E4274">
      <a href="{{route('home')}}" class="brand-link text-center">
-         <span class="brand-text font-weight-light">AAST TRAINERY</span>
+         <img src="/admin-style/Images/iconw.png" alt="Trainery Logo" class="brand-image img-circle " style="opacity: .8">
+         <span class="brand-text font-weight-light mr-5 ">AAST Trainery</span>
      </a>
 
      <div class="sidebar">
