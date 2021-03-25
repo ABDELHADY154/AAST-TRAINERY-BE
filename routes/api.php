@@ -31,6 +31,7 @@ Route::group([
         Route::get('/studentImg', 'API\V1\StudentController@getImg')->name('student.get.image');
         Route::prefix('student')->group(function () {
             Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
+            Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');
@@ -43,7 +44,6 @@ Route::group([
                 Route::apiResource('/skill', 'API\V1\StudentSkillController');
                 Route::apiResource('/interest', 'API\V1\StudentInterestController')->except(["update"]);
                 Route::put('/interest', 'API\V1\StudentInterestController@update')->name('student.update.interest');
-
                 Route::apiResource('/language', 'API\V1\StudentLanguageController');
                 Route::apiResource('/account', 'API\V1\StudentAccountController')->except(['update', 'show', 'destroy']);
             });
