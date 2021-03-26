@@ -6,8 +6,11 @@ use App\Company;
 use Faker\Generator as Faker;
 
 $factory->define(Company::class, function (Faker $faker) {
+    $imagesArr = [
+        'bis.jpg', 'clc.png', 'cmt.png', 'fad.jpg', 'mib.jpg', 'mm.jpg'
+    ];
     return [
-        'image' => $faker->imageUrl(),
+        'image' => $imagesArr[rand(0, 5)], //asset('storage/images/logo/' . ),
         'company_name' => $faker->company,
         'address' => $faker->address,
         'company_field' => $faker->jobTitle,

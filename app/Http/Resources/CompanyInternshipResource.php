@@ -16,8 +16,10 @@ class CompanyInternshipResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'company_name' => $this->company->company_name,
-            'company_logo' => $this->image,
+            'company_logo' => asset('storage/images/logo/' . $this->company->image),
+            'title' => $this->internship_title,
             'description' => $this->desc,
             'application_deadline' => $this->application_deadline,
             'salary' => $this->salary,
