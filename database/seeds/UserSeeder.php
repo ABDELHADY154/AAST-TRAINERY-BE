@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         User::create([
-            'name' => 'Admin',
+            'name' => 'Mohamed Abdelhady Elshamy',
             'email' => 'admin@aast-trainery.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123123123'),

@@ -3,20 +3,17 @@
 @section('title', 'Companies')
 
 @section('css')
-<!-- DataTables -->
 <link rel="stylesheet" href="/admin-style/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="/admin-style/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="/admin-style/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 @section('content')
-{{-- <div class="content-wrapper"> --}}
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 d-flex">
                 <h1 class="m-0 text-dark">Company</h1>
-                <a href="" class="btn btn-dark ml-3">
+                <a href="{{route('company.create')}}" class="btn btn-dark ml-3">
                     <i class="fas fa-plus"></i>
                 </a>
             </div><!-- /.col -->
@@ -64,9 +61,14 @@
                                 <a href="mailto:{{$company->email}}">{{$company->email}}</a>
                             </td>
                             <td class="text-center">
-                                <a href="" class="btn btn-primary">View</a>
-                                <a href="" class="btn btn-success">Edit</a>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="{{route('company.show',$company->id)}}" class="btn btn-primary">View</a>
+                                <a href="{{route('company.edit',$company->id)}}" class="btn btn-success">Edit</a>
+                                <form method="POST" action="{{route('company.destroy',$company->id)}}" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                {{-- <a href="{{route('company.destroy',$company->id)}}" class="btn btn-danger">Delete</a> --}}
                             </td>
                         </tr>
                         @endforeach
