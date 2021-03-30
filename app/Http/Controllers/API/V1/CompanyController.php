@@ -44,7 +44,7 @@ class CompanyController extends Controller
      *      operationId="showCompanyProfile",
      *      description="Get Company Profile",
      *      summary="Get Company Profile",
-     *      tags={"W-Profiles"},
+     *      tags={"W-Get Company Profile"},
      *      @OA\Parameter(
      *          name="id",
      *          description="Company Id",
