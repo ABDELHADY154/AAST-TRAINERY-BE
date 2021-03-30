@@ -22,7 +22,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
     if ($postT == 'companyPost') {
         $internship_title = $faker->jobTitle;
         $published_on = $faker->date();
-        $company_id = rand(null, rand(1, Company::all()->count()));
+        $company_id = rand(1, Company::all()->count());
         $sponser_image = null; //$imagesArr[rand(0, 5)],
         $vacancy = rand(1, 10);
         $gender = $genderArr[rand(0, 2)];
@@ -36,7 +36,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
     } elseif ($postT == 'advisorPost') {
         $internship_title = $faker->jobTitle;
         $published_on = $faker->date();
-        $company_id = rand(null, rand(1, Company::all()->count()));
+        $company_id = rand(1, Company::all()->count());
         $sponser_image = null; //$imagesArr[rand(0, 5)],
         $vacancy = rand(1, 10);
         $gender = $genderArr[rand(0, 2)];
@@ -50,7 +50,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
     } elseif ($postT == 'promotedPost') {
         $internship_title = $faker->jobTitle;
         $published_on = $faker->date();
-        $company_id = rand(null, rand(1, Company::all()->count()));
+        $company_id = rand(1, Company::all()->count());
         $sponser_image = null; //$imagesArr[rand(0, 5)],
         $vacancy = rand(1, 10);
         $gender = $genderArr[rand(0, 2)];
@@ -64,7 +64,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
     } elseif ($postT == 'adsPost') {
         $internship_title = null;
         $published_on = $faker->date();
-        $company_id = rand(null, rand(1, Company::all()->count()));
+        $company_id = rand(1, Company::all()->count());
         $sponser_image = $imagesArr[rand(0, 5)];
         $vacancy = null;
         $gender = null;
