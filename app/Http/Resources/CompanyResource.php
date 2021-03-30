@@ -15,7 +15,7 @@ class CompanyResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'image' => asset('storage/images/logo/' . $this->image),
+            'logo' => asset('storage/images/companyLogo/' . $this->image),
             'company_name' => $this->company_name,
             'address' => $this->address,
             'company_field' => $this->company_field,
