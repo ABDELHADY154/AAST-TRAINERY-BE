@@ -64,7 +64,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
     } elseif ($postT == 'adsPost') {
         $internship_title = null;
         $published_on = $faker->date();
-        $company_id = rand(0, rand(1, Company::all()->count()));
+        $company_id = rand(null, rand(1, Company::all()->count()));
         $sponser_image = $imagesArr[rand(0, 5)];
         $vacancy = null;
         $gender = null;
