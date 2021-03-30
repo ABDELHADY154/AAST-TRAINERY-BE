@@ -52,7 +52,7 @@
                         @foreach ($posts as $post)
                         <tr>
                             <td>{{$post->id}}</td>
-                            <td>
+                            <td style="width: 20%">
                                 {{$post->internship_title}}
                             </td>
                             <td>

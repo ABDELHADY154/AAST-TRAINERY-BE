@@ -18,6 +18,6 @@ class InternshipPostSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
-        factory(InternshipPost::class, 100)->create();
+        factory(InternshipPost::class, 200)->create();
     }
 }

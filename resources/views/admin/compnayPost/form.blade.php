@@ -27,21 +27,21 @@
         const rowId = Date.now();
         const productRow = `
             <tr id="product-${rowId}">
-
                 <td>
-                    <input type="text"
-                    name="tags[${rowId}]"
-
-                    row-id="product-${rowId}"
-                    class="form-control input-product-quantity">
+                    <select name="deps[${rowId}]" class="form-control input-product-product_id"  row-id="product-${rowId}">
+                        @foreach($departments as $dep)
+                        <option value="{{ $dep->id }}">
+                            {{ $dep->department_name }}
+                        </option>
+                        @endforeach
+                    </select>
                 </td>
-
                 <td>
                     <button id="product-${rowId}"  type="button" class="btn btn-danger row-delete" row-id="product-${rowId}">-</button>
                 </td>
             </tr>
             `;
-        $('#tags-list').append(productRow);
+        $('#deps-list').append(productRow);
     }
     $(document).on('click', '.row-delete', function() {
         const rowId = '#' + $(this).attr('row-id');
@@ -52,8 +52,8 @@
 
 
 <div class="form-group">
-    <label for="parent_id">Company</label>
-    <select name="parent_id" id="parent_id" class="form-control">
+    <label for="company_id">Company</label>
+    <select name="company_id" id="company_id" class="form-control">
         <option value="0">Not set</option>
         @foreach($companies as $company)
         {{-- @if(isset($company) && $company->id == $company->id) --}}
@@ -63,9 +63,9 @@
         {{-- @endif --}}
         @endforeach
     </select>
-    @if ($errors->first('parent_id'))
+    @if ($errors->first('company_id'))
     <span class="text-danger">
-        {{ $errors->first('parent_id') }}
+        {{ $errors->first('company_id') }}
     </span>
     @endif
 </div>
@@ -139,12 +139,39 @@
     </span>
     @endif
 </div>
+<div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" name="location" id="location" class="form-control">
+    @if ($errors->first('location'))
+    <span class=" text-danger">
+        {{ $errors->first('location') }}
+    </span>
+    @endif
+</div>
+<div class="form-group">
+    <label for="location_url">Location URL</label>
+    <input type="text" name="location_url" id="location_url" class="form-control">
+    @if ($errors->first('location_url'))
+    <span class=" text-danger">
+        {{ $errors->first('location_url') }}
+    </span>
+    @endif
+</div>
+<div class="form-group">
+    <label for="vacancy">Vacancies Availble</label>
+    <input type="number" name="vacancy" id="vacancy" class="form-control">
+    @if ($errors->first('vacancy'))
+    <span class=" text-danger">
+        {{ $errors->first('vacancy') }}
+    </span>
+    @endif
+</div>
 <div class="row">
     <div class="col">
         <label>Internship Requirements
-            @if ($errors->first('products'))
+            @if ($errors->first('reqs'))
             <span class="text-danger">
-                {{ $errors->first('products') }}
+                {{ $errors->first('reqs') }}
             </span>
             @endif
 
@@ -187,37 +214,31 @@
 </div>
 <div class="row">
     <div class="col">
-        <label>Internship Tags
-            @if ($errors->first('tags'))
+        <label>Related Departments
+            @if ($errors->first('deps'))
             <span class="text-danger">
-                {{ $errors->first('tags') }}
+                {{ $errors->first('deps') }}
             </span>
             @endif
 
         </label>
 
-        <button type="button" onclick="addNewTagRow()" class="btn btn-info">Add Tag</button>
+        <button type="button" onclick="addNewTagRow()" class="btn btn-info">Add Department</button>
     </div>
     <table class="table mt-3">
 
-        <tbody id="tags-list">
+        <tbody id="deps-list">
 
-            @if (old('tags'))
-            @foreach(old('tags') as $rowId => $rowProduct)
+            @if (old('deps'))
+            @foreach(old('deps') as $rowId => $rowProduct)
             <tr id="product-${rowId}">
-                {{-- <td>
-                    <input type="text" name="tags[${rowId}]" row-id="product-${rowId}" class="form-control input-product-quantity">
-                </td> --}}
+
                 <td>
                     <select name="products[{{$rowId}}]" class="form-control input-product-product_id" row-id="product-{{$rowId}}">
-                        @foreach($studentInterests as $interest)
-                        {{-- @if ($interest->id == $rowProduct) --}}
-
-                        {{-- @else --}}
-                        <option value="{{ $interest->id }}">
-                            {{ $interest->name }}
+                        @foreach($departments as $dep)
+                        <option value="{{ $dep->id }}">
+                            {{ $dep->department_name }}
                         </option>
-                        {{-- @endif --}}
                         @endforeach
                     </select>
 
@@ -234,24 +255,20 @@
             </tr>
             @endforeach
             @else
-
             <tr id="product-1">
-
-                <td>
+                {{-- <td>
                     <select name="products[1]" class="form-control input-product-product_id" row-id="product-1">
-                        @foreach($studentInterests as $interest)
-                        <option value="{{ $interest->id }}">
-                            {{ $interest->interest }}
-                        </option>
-                        @endforeach
-                    </select>
-
-
+                        @foreach($departments as $dep)
+                        <option value="{{ $dep->id }}">
+                {{ $dep->department_name }}
+                </option>
+                @endforeach
+                </select>
                 </td>
 
                 <td>
                     <button type="button" class="btn btn-danger row-delete" row-id="product-1">-</button>
-                </td>
+                </td> --}}
             </tr>
             @endif
 
@@ -261,7 +278,7 @@
 </div>
 {{-- <div class="form-group">
     <label for="reqs">Internship Requirements</label>
-    <input type="text" name="reqs" id="reqs" class="form-control" data-role="tagsinput">
+    <input type="text" name="reqs" id="reqs" class="form-control" data-role="depsinput">
     <span>
         <button class="btn btn-danger">-</button>
 

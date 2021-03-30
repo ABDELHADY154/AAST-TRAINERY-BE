@@ -19,7 +19,10 @@ class InternshipPost extends Model
         'salary',
         'application_deadline',
         'desc',
-        'location'
+        'location',
+        'ended',
+        'post_type',
+        'location_url'
     ];
 
     public function company()
