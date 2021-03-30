@@ -17,7 +17,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
     return [
         'internship_title' => $faker->jobTitle,
         'published_on' => $faker->date(),
-        'company_id' => rand(1, Company::all()->count()),
+        'company_id' => rand(null, rand(1, Company::all()->count())),
         'sponser_image' => $imagesArr[rand(0, 5)],
         'vacancy' => rand(1, 10),
         'gender' => $gender[rand(0, 2)],

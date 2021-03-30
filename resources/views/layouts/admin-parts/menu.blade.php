@@ -42,6 +42,23 @@
                      </ul>
                  </li>
 
+                 <li class="nav-item">
+                     <a href=" #" class="nav-link ">
+                         <i class="fas fa-stream"></i>
+                         <p>
+                             Internship Posts
+                             <i class="right fas fa-angle-left"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{route('companyInternshipPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'company.index'? 'active' : '' }}">
+                                 <i class="fas fa-building mr-2"></i>
+                                 <p>Company Posts</p>
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
              </ul>
          </nav>
 
