@@ -22,7 +22,7 @@
         "/W/student/company/{id}": {
             "get": {
                 "tags": [
-                    "W-Profiles"
+                    "W-Get Company Profile"
                 ],
                 "summary": "Get Company Profile",
                 "description": "Get Company Profile",

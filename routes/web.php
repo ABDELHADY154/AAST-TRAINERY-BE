@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Sopamo\LaravelFilepond\Http\Controllers\FilepondController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,16 @@ Route::prefix('student')->group(function () {
 });
 
 
-
+// Route::post('upload', 'UploadController@store');
+// Route::prefix('api')->group(function () {
+//     Route::post('/process', [FilepondController::class, 'upload'])->name('filepond.upload');
+//     Route::delete('/process', [FilepondController::class, 'delete'])->name('filepond.delete');
+// });
 /////////////////////
 Route::group([
     'middleware' => 'auth'
 ], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/company', 'CompanyController');
+    Route::resource('/companyInternshipPost', 'CompanyInternshipPostController');
 });

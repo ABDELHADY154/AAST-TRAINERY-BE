@@ -12,15 +12,15 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 d-flex">
-                <h1 class="m-0 text-dark">Company</h1>
-                <a href="{{route('company.create')}}" class="btn btn-dark ml-3">
+                <h1 class="m-0 text-dark">Company Internship Posts</h1>
+                <a href="{{route('companyInternshipPost.create')}}" class="btn btn-dark ml-3">
                     <i class="fas fa-plus"></i>
                 </a>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Company</li>
+                    <li class="breadcrumb-item active">Company Internship Posts</li>
 
                 </ol>
 
@@ -40,35 +40,42 @@
                     <thead>
                         <tr class="text-center">
                             <th>#ID</th>
-                            <th>Company Name</th>
-                            <th>Phone Number</th>
-                            <th>E-Mail</th>
+                            <th>Internship Title</th>
+                            <th>Type</th>
+                            <th>Payment</th>
+                            <th>Published On</th>
+                            <th>Deadline</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($companies as $company)
+                        @foreach ($posts as $post)
                         <tr>
-                            <td>{{$company->id}}</td>
-                            <td>
-                                {{$company->company_name}}
+                            <td>{{$post->id}}</td>
+                            <td style="width: 20%">
+                                {{$post->internship_title}}
                             </td>
                             <td>
-                                {{$company->phone_number}}
+                                {{$post->type}}
                             </td>
 
                             <td>
-                                <a href="mailto:{{$company->email}}">{{$company->email}}</a>
+                                {{$post->salary}}
+                            </td>
+                            <td>
+                                {{$post->published_on}}
+                            </td>
+                            <td>
+                                {{$post->application_deadline}}
                             </td>
                             <td class="text-center">
-                                <a href="{{route('company.show',$company->id)}}" class="btn btn-primary">View</a>
-                                <a href="{{route('company.edit',$company->id)}}" class="btn btn-success">Edit</a>
-                                <form method="POST" action="{{route('company.destroy',$company->id)}}" class="d-inline">
+                                <a href="{{route('companyInternshipPost.show',$post->id)}}" class="btn btn-primary">View</a>
+                                <a href="{{route('companyInternshipPost.edit',$post->id)}}" class="btn btn-success">Edit</a>
+                                <form method="POST" action="{{route('companyInternshipPost.destroy',$post->id)}}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
-                                {{-- <a href="{{route('company.destroy',$company->id)}}" class="btn btn-danger">Delete</a> --}}
                             </td>
                         </tr>
                         @endforeach

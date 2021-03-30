@@ -18,7 +18,8 @@
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
-        "pragmarx/countries": "^0.7.2"
+        "pragmarx/countries": "^0.7.2",
+        "sopamo/laravel-filepond": "^0.6.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

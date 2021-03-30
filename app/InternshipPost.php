@@ -9,7 +9,6 @@ class InternshipPost extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'company_id',
         'internship_title',
         'published_on',
         'company_id',
@@ -20,7 +19,10 @@ class InternshipPost extends Model
         'salary',
         'application_deadline',
         'desc',
-        'location'
+        'location',
+        'ended',
+        'post_type',
+        'location_url'
     ];
 
     public function company()
