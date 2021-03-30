@@ -24,6 +24,7 @@ class CompanyInternshipResource extends JsonResource
             'application_deadline' => $this->application_deadline,
             'salary' => $this->salary,
             'ended' => $this->ended == 1 ? true : false,
+            'post_type' => $this->post_type,
             'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
             'tags' => StudentInterestResource::collection($this->studentInterests)->resolve()
         ];
