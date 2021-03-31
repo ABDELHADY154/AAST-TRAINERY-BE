@@ -15,6 +15,7 @@ class CompanyInternshipResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'company_name' => $this->company->company_name,

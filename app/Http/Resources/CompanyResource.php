@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\InternshipPost;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CompanyResource extends JsonResource
@@ -14,6 +15,10 @@ class CompanyResource extends JsonResource
      */
     public function toArray($request)
     {
+        $internshipPosts  = $this->internshipPosts;
+
+
+
         return [
             'logo' => asset('storage/images/companyLogo/' . $this->image),
             'company_name' => $this->company_name,
@@ -23,7 +28,10 @@ class CompanyResource extends JsonResource
             'phone_number' => $this->phone_number,
             'website' => $this->website,
             'email' => $this->email,
-            'internshipPosts' => CompanyInternshipResource::collection($this->internshipPosts)->resolve()
+            'internshipPosts' => [
+                'ended' => CompanyInternshipResource::collection($internshipPosts->where('ended', 1))->resolve(),
+                'open' => CompanyInternshipResource::collection($internshipPosts->where('ended', 0))->resolve()
+            ]
         ];
     }
 }
