@@ -26,6 +26,7 @@ class CompanyInternshipResource extends JsonResource
             'salary' => $this->salary,
             'ended' => $this->ended == 1 ? true : false,
             'post_type' => $this->post_type,
+            'sponsor_image' => $this->post_type == 'adsPost' ? asset('storage/images/companyLogo/' . $this->sponser_image)  : null,
             'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
             'tags' => StudentInterestResource::collection($this->studentInterests)->resolve()
         ];
