@@ -56,7 +56,7 @@
 
         <option value="0">Not Set</option>
         @foreach ($departments as $dep)
-        @if($trainingAdvisor->department_id == $dep->id)
+        @if(isset($trainingAdvisor) && $trainingAdvisor->department_id == $dep->id)
         <option value="{{$dep->id}}" selected>{{$dep->department_name}}</option>
         @endif
         <option value="{{$dep->id}}">{{$dep->department_name}}</option>
