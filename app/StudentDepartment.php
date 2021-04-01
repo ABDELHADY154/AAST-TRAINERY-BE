@@ -25,4 +25,9 @@ class StudentDepartment extends Model
     {
         return $this->belongsToMany(InternshipPost::class, 'internship_post_departments')->withPivot('student_department_id', 'internship_post_id');
     }
+
+    public function advisors()
+    {
+        return $this->hasMany(TrainingAdvisor::class);
+    }
 }

@@ -53,7 +53,6 @@ class CompanyInternshipPostController extends Controller
             ];
         }
         $intern->internDepartments()->attach($deps);
-        // dd($intern, $intern->internDepartments, $intern->internshipReqs, $request->deps);
         return view('admin.compnayPost.show', ['intern' => $intern]);
     }
 

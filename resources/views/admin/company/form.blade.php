@@ -4,7 +4,7 @@
     {{-- {{ "data-image=\"".asset("images/avatar/".$user->avatar)."\"" }}
     {{asset('storage/images/avatars/'. $user->avatar) }}"
     --}}
-    <div class="avatar-upload text-center mb-3" {{ "data-image=\"".asset('storage/images/companyLogo/'. $company->image)."\"" }}>
+    <div class="avatar-upload text-center mb-3" {{isset($company)? "data-image=\"".asset('storage/images/companyLogo/'. $company->image)."\"":"" }}>
         <img class="avatar-preview" id="output" src="{{isset($company)?asset('storage/images/companyLogo/'. $company->image):""}}">
     </div>
     <div class=" row text-center justify-content-center">

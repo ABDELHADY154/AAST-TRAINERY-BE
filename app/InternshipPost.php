@@ -22,12 +22,17 @@ class InternshipPost extends Model
         'location',
         'ended',
         'post_type',
-        'location_url'
+        'location_url',
+        'training_advisor_id'
     ];
 
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+    public function advisor()
+    {
+        return $this->belongsTo(TrainingAdvisor::class, 'training_advisor_id');
     }
 
     public function internshipReqs()
