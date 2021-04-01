@@ -32,6 +32,8 @@ Route::group([
         Route::prefix('student')->group(function () {
             Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
             Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');
+            Route::get('/post/{id}', 'API\V1\InternshipPostController@show')->name('get.post');
+            Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@show')->name('get.advisor.profile');
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');

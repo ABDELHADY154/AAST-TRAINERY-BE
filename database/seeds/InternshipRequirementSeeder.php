@@ -15,10 +15,10 @@ class InternshipRequirementSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('internship_post_departments')->truncate();
+        DB::table('internship_requirements')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
-        factory(InternshipPostDepartment::class, 100)->create();
+        factory(InternshipRequirement::class, 1000)->create();
     }
 }

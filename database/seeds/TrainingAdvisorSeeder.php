@@ -1,10 +1,10 @@
 <?php
 
-use App\StudentInterest;
+use App\TrainingAdvisor;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class StudentInterestSeeder extends Seeder
+class TrainingAdvisorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,10 @@ class StudentInterestSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('student_interests')->truncate();
+        DB::table('training_advisors')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(StudentInterest::class, 1000)->create();
+
+        factory(TrainingAdvisor::class, 50)->create();
     }
 }

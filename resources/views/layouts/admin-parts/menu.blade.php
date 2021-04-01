@@ -39,6 +39,12 @@
                                  <p>Company</p>
                              </a>
                          </li>
+                         <li class="nav-item">
+                             <a href="{{route('trainingAdvisor.index')}}" class="nav-link {{ Route::currentRouteName() == 'company.index'? 'active' : '' }}">
+                                 <i class="fas fa-user-tie mr-2"></i>
+                                 <p>Training Advisors</p>
+                             </a>
+                         </li>
                      </ul>
                  </li>
 
@@ -55,6 +61,12 @@
                              <a href="{{route('companyInternshipPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'company.index'? 'active' : '' }}">
                                  <i class="fas fa-building mr-2"></i>
                                  <p>Company Posts</p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('trainingAdvisorPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'company.index'? 'active' : '' }}">
+                                 <i class="far fa-file-alt mr-2"></i>
+                                 <p>Advisor Posts</p>
                              </a>
                          </li>
                      </ul>

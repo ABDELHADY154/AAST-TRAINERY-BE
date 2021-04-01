@@ -34,5 +34,7 @@ Route::group([
 ], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/company', 'CompanyController');
+    Route::resource('/trainingAdvisor', 'TrainingAdvisorController');
+    Route::resource('/trainingAdvisorPost', 'TrainingAdvisorPostsController');
     Route::resource('/companyInternshipPost', 'CompanyInternshipPostController');
 });

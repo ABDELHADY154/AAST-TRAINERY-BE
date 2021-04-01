@@ -4,6 +4,7 @@
 
 use App\Company;
 use App\InternshipPost;
+use App\TrainingAdvisor;
 use Faker\Generator as Faker;
 
 $factory->define(InternshipPost::class, function (Faker $faker) {
@@ -33,6 +34,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
         $location = $faker->address;
         $ended = $endedArr[rand(0, 1)];
         $location_url = $faker->url;
+        $advisor_id = null;
     } elseif ($postT == 'advisorPost') {
         $internship_title = $faker->jobTitle;
         $published_on = $faker->date();
@@ -47,6 +49,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
         $location = $faker->address;
         $ended = $endedArr[rand(0, 1)];
         $location_url = $faker->url;
+        $advisor_id = rand(1, TrainingAdvisor::all()->count());
     } elseif ($postT == 'promotedPost') {
         $internship_title = $faker->jobTitle;
         $published_on = $faker->date();
@@ -60,6 +63,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
         $desc = $faker->text(500);
         $location = $faker->address;
         $ended = $endedArr[rand(0, 1)];
+        $advisor_id = null;
         $location_url = $faker->url;
     } elseif ($postT == 'adsPost') {
         $internship_title = null;
@@ -75,6 +79,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
         $location = null;
         $ended = null;
         $location_url = null;
+        $advisor_id = null;
     }
 
     return [
@@ -91,7 +96,7 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
         'desc' => $desc,
         'location' => $location,
         'ended' => $ended,
-        'location_url' => $location_url
-
+        'location_url' => $location_url,
+        'training_advisor_id' => $advisor_id
     ];
 });
