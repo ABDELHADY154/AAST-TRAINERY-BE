@@ -279,4 +279,62 @@ class InternshipPostController extends Controller
         }
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
+
+    /**
+     * @OA\Get(
+     *      path="/A/student/search/{val}",
+     *      operationId="Search for Post",
+     *      description="Search For Internship Post",
+     *      summary="Search For Internship Post",
+     *      tags={"A-Explore"},
+     *      @OA\Parameter(
+     *          name="val",
+     *          description="Search value",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function mSearch($val)
+    {
+        $posts = InternshipPost::search($val)->get();
+        $advisors = TrainingAdvisor::search($val)->get();
+        $companies = Company::search($val)->get();
+        if (count($posts) == 0) {
+            if (count($advisors)) {
+                $posts = InternshipPost::where('training_advisor_id', $advisors->first()->id)->get();
+                return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+            } elseif (count($companies)) {
+                $posts = InternshipPost::where('company_id', $companies->first()->id)->get();
+                return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+            }
+        }
+        return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+    }
 }

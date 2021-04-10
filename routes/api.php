@@ -68,6 +68,8 @@ Route::group([
         Route::get('/post/{id}', 'API\V1\InternshipPostController@mshow')->name('A.get.post');
         Route::get('/posts', 'API\V1\InternshipPostController@mGetAllPostsExplore')->name('A.get.all.posts.explore');
         Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@mshow')->name('A.get.advisor.profile');
+        Route::get('/search/{val}', 'API\V1\InternshipPostController@mSearch')->name('A.search');
+
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
             Route::post('/image', 'API\V1\Mobile\StudentProfileController@updateImage')->name('student.update.profile.image');
