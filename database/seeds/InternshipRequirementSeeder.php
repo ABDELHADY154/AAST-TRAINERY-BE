@@ -19,6 +19,6 @@ class InternshipRequirementSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
-        factory(InternshipRequirement::class, 1000)->create();
+        factory(InternshipRequirement::class, 500)->create();
     }
 }

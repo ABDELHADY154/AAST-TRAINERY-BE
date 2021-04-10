@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class InternshipPost extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Searchable;
     protected $fillable = [
         'internship_title',
         'published_on',
@@ -26,6 +27,16 @@ class InternshipPost extends Model
         'training_advisor_id'
     ];
 
+
+    public function searchableAs()
+    {
+        return 'posts_index';
+    }
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        return $array;
+    }
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');

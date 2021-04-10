@@ -6,6 +6,7 @@ use App\Company;
 use App\Http\Requests\Admin\CompanyInternshipPostRequest;
 use App\InternshipPost;
 use App\StudentDepartment;
+use App\TrainingAdvisor;
 use Illuminate\Http\Request;
 
 class TrainingAdvisorPostsController extends Controller
@@ -54,7 +55,8 @@ class TrainingAdvisorPostsController extends Controller
             'location' => $request->location,
             'location_url' => $request->location_url,
             'vacancy' => $request->vacancy,
-            'post_type' => 'advisorPost'
+            'post_type' => 'advisorPost',
+            'training_advisor_id' => rand(1, TrainingAdvisor::all()->count())
         ]);
 
         foreach ($request->reqs as $req) {

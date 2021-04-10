@@ -333,6 +333,188 @@
                 }
             }
         },
+        "/W/student/posts": {
+            "get": {
+                "tags": [
+                    "W-Explore"
+                ],
+                "summary": "Get all Internship Post",
+                "description": "Get all Internship Post ",
+                "operationId": "Internship Posts",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/posts": {
+            "get": {
+                "tags": [
+                    "A-Explore"
+                ],
+                "summary": "Get all Internship Post",
+                "description": "Get all Internship Post ",
+                "operationId": "Internship Posts",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/student/search/{val}": {
+            "get": {
+                "tags": [
+                    "W-Explore"
+                ],
+                "summary": "Search For Internship Post",
+                "description": "Search For Internship Post",
+                "operationId": "Search for Post",
+                "parameters": [
+                    {
+                        "name": "val",
+                        "in": "path",
+                        "description": "Search value",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/A/student/profile/account": {
             "get": {
                 "tags": [
@@ -6155,7 +6337,7 @@
         "securitySchemes": {
             "passport": {
                 "type": "http",
-                "description": "<b>User Token:-<b><br>\n                                        <b>Header key:</b> <i>Authorization</i><br>\n                                        <b>Scheme:</b> <i>bearer</i><br>\n                                        <b>Example:</b> <i>Authorization: Bearer {JWT_token}</i>\n                                        ",
+                "description": "<b>User Token:-<b><br>\r\n                                        <b>Header key:</b> <i>Authorization</i><br>\r\n                                        <b>Scheme:</b> <i>bearer</i><br>\r\n                                        <b>Example:</b> <i>Authorization: Bearer {JWT_token}</i>\r\n                                        ",
                 "in": "header",
                 "bearerFormat": "JWT",
                 "scheme": "bearer",
