@@ -17,6 +17,6 @@ class InternshipPostDepartmentSeeder extends Seeder
         DB::table('internship_post_departments')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(InternshipPostDepartment::class, 1000)->create();
+        factory(InternshipPostDepartment::class, 100)->create();
     }
 }

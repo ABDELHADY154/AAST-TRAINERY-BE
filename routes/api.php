@@ -32,6 +32,8 @@ Route::group([
         Route::prefix('student')->group(function () {
             Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
             Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');
+            Route::get('/posts', 'API\V1\InternshipPostController@getAllPostsExplore')->name('get.all.posts.explore');
+            Route::get('/search/{val}', 'API\V1\InternshipPostController@search')->name('search');
             Route::get('/post/{id}', 'API\V1\InternshipPostController@show')->name('get.post');
             Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@show')->name('get.advisor.profile');
             Route::prefix('profile')->group(function () {
@@ -64,6 +66,7 @@ Route::group([
         Route::get('/studentImg', 'API\V1\Mobile\StudentController@getImg')->name('student.get.image');
         Route::get('/company/{id}', 'API\V1\CompanyController@mshow')->name('A.get.company.profile');
         Route::get('/post/{id}', 'API\V1\InternshipPostController@mshow')->name('A.get.post');
+        Route::get('/posts', 'API\V1\InternshipPostController@mGetAllPostsExplore')->name('A.get.all.posts.explore');
         Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@mshow')->name('A.get.advisor.profile');
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
