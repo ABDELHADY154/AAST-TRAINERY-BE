@@ -181,17 +181,31 @@ class InternshipPostController extends Controller
      */
     public function getAllPostsExplore()
     {
-        $posts = InternshipPost::orderBy('id', 'desc')->get();
+        $query = $_GET['q'];
+        if ($query && is_int($query)) {
+            $posts = InternshipPost::orderBy('id', 'desc')->paginate($query);
+            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        }
+        $posts = InternshipPost::orderBy('id', 'desc')->paginate(10);
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
 
     /**
      * @OA\Get(
-     *      path="/A/student/posts",
+     *      path="/A/student/posts?q={q}",
      *      operationId="Internship Posts",
      *      description="Get all Internship Post ",
      *      summary="Get all Internship Post",
      *      tags={"A-Explore"},
+     *      @OA\Parameter(
+     *          name="q",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *     security={
      *          {"passport": {}},
      *     },
@@ -219,7 +233,12 @@ class InternshipPostController extends Controller
      */
     public function mGetAllPostsExplore()
     {
-        $posts = InternshipPost::orderBy('id', 'desc')->get();
+        $query = $_GET['q'];
+        if ($query && is_int($query)) {
+            $posts = InternshipPost::orderBy('id', 'desc')->paginate($query);
+            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        }
+        $posts = InternshipPost::orderBy('id', 'desc')->paginate(10);
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
     /**
@@ -266,17 +285,17 @@ class InternshipPostController extends Controller
     public function search($val)
     {
         $posts = InternshipPost::search($val)->get();
-        $advisors = TrainingAdvisor::search($val)->get();
-        $companies = Company::search($val)->get();
-        if (count($posts) == 0) {
-            if (count($advisors)) {
-                $posts = InternshipPost::where('training_advisor_id', $advisors->first()->id)->get();
-                return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-            } elseif (count($companies)) {
-                $posts = InternshipPost::where('company_id', $companies->first()->id)->get();
-                return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-            }
-        }
+        // $advisors = TrainingAdvisor::search($val)->get();
+        // $companies = Company::search($val)->get();
+        // if (count($posts) == 0) {
+        //     if (count($advisors)) {
+        //         $posts = InternshipPost::where('training_advisor_id', $advisors->first()->id)->get();
+        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        //     } elseif (count($companies)) {
+        //         $posts = InternshipPost::where('company_id', $companies->first()->id)->get();
+        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        //     }
+        // }
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
 
@@ -324,17 +343,17 @@ class InternshipPostController extends Controller
     public function mSearch($val)
     {
         $posts = InternshipPost::search($val)->get();
-        $advisors = TrainingAdvisor::search($val)->get();
-        $companies = Company::search($val)->get();
-        if (count($posts) == 0) {
-            if (count($advisors)) {
-                $posts = InternshipPost::where('training_advisor_id', $advisors->first()->id)->get();
-                return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-            } elseif (count($companies)) {
-                $posts = InternshipPost::where('company_id', $companies->first()->id)->get();
-                return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-            }
-        }
+        // $advisors = TrainingAdvisor::search($val)->get();
+        // $companies = Company::search($val)->get();
+        // if (count($posts) == 0) {
+        //     if (count($advisors)) {
+        //         $posts = InternshipPost::where('training_advisor_id', $advisors->first()->id)->get();
+        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        //     } elseif (count($companies)) {
+        //         $posts = InternshipPost::where('company_id', $companies->first()->id)->get();
+        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        //     }
+        // }
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
 }

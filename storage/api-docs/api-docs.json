@@ -390,7 +390,7 @@
                 ]
             }
         },
-        "/A/student/posts": {
+        "/A/student/posts?q={q}": {
             "get": {
                 "tags": [
                     "A-Explore"
@@ -398,6 +398,17 @@
                 "summary": "Get all Internship Post",
                 "description": "Get all Internship Post ",
                 "operationId": "Internship Posts",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "path",
+                        "description": "pagination value",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
