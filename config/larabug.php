@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'login_key' => env('LB_KEY', ''),
+    'login_key' => env('LB_KEY', 'V4AwviGoGuUJvT3EYIpYAyxsw'),
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'project_key' => env('LB_PROJECT_KEY', ''),
+    'project_key' => env('LB_PROJECT_KEY', '6MHRbgvaqYnS9kKfCq4HtJ8uZbZT2ekwtlXYfai1D02oPeCtRG'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
     */
 
     'environments' => [
-        'production'
+        'local'
     ],
 
     /*

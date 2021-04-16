@@ -40,7 +40,9 @@ return [
             'channels' => ['single', 'larabug'],
             'ignore_exceptions' => false,
         ],
-
+        'larabug' => [
+            'driver' => 'larabug',
+        ],
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
@@ -61,9 +63,7 @@ return [
             'emoji' => ':boom:',
             'level' => 'critical',
         ],
-        'larabug' => [
-            'driver' => 'larabug',
-        ],
+
         'papertrail' => [
             'driver' => 'monolog',
             'level' => 'debug',
