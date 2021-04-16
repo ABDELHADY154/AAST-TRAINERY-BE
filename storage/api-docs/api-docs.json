@@ -333,7 +333,7 @@
                 }
             }
         },
-        "/W/student/posts": {
+        "/W/student/posts?page={pageNumber}": {
             "get": {
                 "tags": [
                     "W-Explore"
@@ -341,6 +341,17 @@
                 "summary": "Get all Internship Post",
                 "description": "Get all Internship Post ",
                 "operationId": "Internship Posts",
+                "parameters": [
+                    {
+                        "name": "pageNumber",
+                        "in": "path",
+                        "description": "pagination value",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -390,7 +401,7 @@
                 ]
             }
         },
-        "/A/student/posts?q={q}": {
+        "/A/student/posts?page={pageNumber}": {
             "get": {
                 "tags": [
                     "A-Explore"
@@ -400,7 +411,7 @@
                 "operationId": "Internship Posts",
                 "parameters": [
                     {
-                        "name": "q",
+                        "name": "pageNumber",
                         "in": "path",
                         "description": "pagination value",
                         "required": false,

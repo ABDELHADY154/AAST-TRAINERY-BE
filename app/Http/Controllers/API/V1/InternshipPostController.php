@@ -149,14 +149,23 @@ class InternshipPostController extends Controller
     }
     /**
      * @OA\Get(
-     *      path="/W/student/posts",
+     *      path="/W/student/posts?page={pageNumber}",
      *      operationId="Internship Posts",
      *      description="Get all Internship Post ",
      *      summary="Get all Internship Post",
      *      tags={"W-Explore"},
-     *     security={
+     *      security={
      *          {"passport": {}},
      *     },
+     *      @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -181,24 +190,19 @@ class InternshipPostController extends Controller
      */
     public function getAllPostsExplore()
     {
-        $query = $_GET['q'];
-        if ($query && is_int($query)) {
-            $posts = InternshipPost::orderBy('id', 'desc')->paginate($query);
-            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-        }
         $posts = InternshipPost::orderBy('id', 'desc')->paginate(10);
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
 
     /**
      * @OA\Get(
-     *      path="/A/student/posts?q={q}",
+     *      path="/A/student/posts?page={pageNumber}",
      *      operationId="Internship Posts",
      *      description="Get all Internship Post ",
      *      summary="Get all Internship Post",
      *      tags={"A-Explore"},
      *      @OA\Parameter(
-     *          name="q",
+     *          name="pageNumber",
      *          description="pagination value",
      *          required=false,
      *          in="path",
@@ -233,11 +237,7 @@ class InternshipPostController extends Controller
      */
     public function mGetAllPostsExplore()
     {
-        $query = $_GET['q'];
-        if ($query && is_int($query)) {
-            $posts = InternshipPost::orderBy('id', 'desc')->paginate($query);
-            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-        }
+
         $posts = InternshipPost::orderBy('id', 'desc')->paginate(10);
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
