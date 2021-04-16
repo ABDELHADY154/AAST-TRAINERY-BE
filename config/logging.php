@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'larabug'],
             'ignore_exceptions' => false,
         ],
 
@@ -61,7 +61,9 @@ return [
             'emoji' => ':boom:',
             'level' => 'critical',
         ],
-
+        'larabug' => [
+            'driver' => 'larabug',
+        ],
         'papertrail' => [
             'driver' => 'monolog',
             'level' => 'debug',
