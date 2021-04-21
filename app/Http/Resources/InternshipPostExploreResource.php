@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\InternshipPost;
+use App\Student;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InternshipPostExploreResource extends JsonResource
@@ -14,6 +16,9 @@ class InternshipPostExploreResource extends JsonResource
      */
     public function toArray($request)
     {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $this->id)->first();
+        $savedStatus = $student->hasFavorited($post);
         if ($this->post_type == 'adsPost') {
             return [
                 'id' => $this->id,
@@ -24,6 +29,7 @@ class InternshipPostExploreResource extends JsonResource
                 'sponsor_image' => $this->post_type == 'adsPost' ? asset('storage/images/companyLogo/' . $this->sponser_image)  : null,
             ];
         } elseif ($this->post_type == 'companyPost') {
+
             return [
                 'id' => $this->id,
                 'company_name' => $this->company->company_name,
@@ -35,7 +41,8 @@ class InternshipPostExploreResource extends JsonResource
                 'ended' => $this->ended == 1 ? true : false,
                 'post_type' => $this->post_type,
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
-                'tags' => StudentInterestResource::collection($this->studentInterests)->resolve()
+                'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
+                'saved' => $savedStatus
             ];
         } elseif ($this->post_type == 'advisorPost') {
             return [
@@ -54,9 +61,13 @@ class InternshipPostExploreResource extends JsonResource
                 'ended' => $this->ended == 1 ? true : false,
                 'post_type' => $this->post_type,
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
-                'tags' => StudentInterestResource::collection($this->studentInterests)->resolve()
+                'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
+                'saved' => $savedStatus
+
             ];
         } elseif ($this->post_type == 'promotedPost') {
+
+
             return [
                 'id' => $this->id,
                 'advisor' => $this->advisor ? [
@@ -73,7 +84,8 @@ class InternshipPostExploreResource extends JsonResource
                 'ended' => $this->ended == 1 ? true : false,
                 'post_type' => $this->post_type,
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
-                'tags' => StudentInterestResource::collection($this->studentInterests)->resolve()
+                'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
+                'saved' => $savedStatus
             ];
         }
     }

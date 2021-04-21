@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
+use Algolia\AlgoliaSearch\SearchIndex;
 use App\Company;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\InternshipPostExploreResource;
@@ -11,6 +12,7 @@ use App\InternshipPost;
 use App\Student;
 use App\TrainingAdvisor;
 use Illuminate\Http\Request;
+use IlluminateAgnostic\Arr\Support\Arr;
 
 class InternshipPostController extends Controller
 {
@@ -237,7 +239,6 @@ class InternshipPostController extends Controller
      */
     public function mGetAllPostsExplore()
     {
-
         $posts = InternshipPost::orderBy('id', 'desc')->paginate(10);
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
@@ -285,17 +286,6 @@ class InternshipPostController extends Controller
     public function search($val)
     {
         $posts = InternshipPost::search($val)->get();
-        // $advisors = TrainingAdvisor::search($val)->get();
-        // $companies = Company::search($val)->get();
-        // if (count($posts) == 0) {
-        //     if (count($advisors)) {
-        //         $posts = InternshipPost::where('training_advisor_id', $advisors->first()->id)->get();
-        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-        //     } elseif (count($companies)) {
-        //         $posts = InternshipPost::where('company_id', $companies->first()->id)->get();
-        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-        //     }
-        // }
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
 
@@ -343,17 +333,306 @@ class InternshipPostController extends Controller
     public function mSearch($val)
     {
         $posts = InternshipPost::search($val)->get();
-        // $advisors = TrainingAdvisor::search($val)->get();
-        // $companies = Company::search($val)->get();
-        // if (count($posts) == 0) {
-        //     if (count($advisors)) {
-        //         $posts = InternshipPost::where('training_advisor_id', $advisors->first()->id)->get();
-        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-        //     } elseif (count($companies)) {
-        //         $posts = InternshipPost::where('company_id', $companies->first()->id)->get();
-        //         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
-        //     }
-        // }
+
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+    }
+    /**
+     * @OA\POST(
+     *      path="/W/student/save/{postId}",
+     *      summary="Save Post",
+     *      tags={"W-SavePost"},
+     *      description="Save Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function savePost($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['Post cannot be saved']);
+            } else {
+                if ($student->hasFavorited($post)) {
+                    return $this->forbidden(['message' => 'post is already saved']);
+                } else {
+                    $student->favorite($post);
+                    return $this->created(['message' => 'post saved successfullty']);
+                }
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+    /**
+     * @OA\POST(
+     *      path="/W/student/unsave/{postId}",
+     *      summary="unSave Post",
+     *      tags={"W-SavePost"},
+     *      description="unSave Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function unSavePost($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['Post cannot be unsaved']);
+            } else {
+                if (!$student->hasFavorited($post)) {
+                    return $this->forbidden(['message' => 'post is not saved to be unsaved']);
+                } else {
+                    $student->unfavorite($post);
+                    return $this->created(['message' => 'post unsaved successfullty']);
+                }
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+
+    /**
+     * @OA\POST(
+     *      path="/A/student/save/{postId}",
+     *      summary="Save Post",
+     *      tags={"A-SavePost"},
+     *      description="Save Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function mSavePost($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['Post cannot be saved']);
+            } else {
+                if ($student->hasFavorited($post)) {
+                    return $this->forbidden(['message' => 'post is already saved']);
+                } else {
+                    $student->favorite($post);
+                    return $this->created(['message' => 'post saved successfullty']);
+                }
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+    /**
+     * @OA\POST(
+     *      path="/A/student/unsave/{postId}",
+     *      summary="unSave Post",
+     *      tags={"A-SavePost"},
+     *      description="unSave Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function mUnSavePost($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['Post cannot be unsaved']);
+            } else {
+                if (!$student->hasFavorited($post)) {
+                    return $this->forbidden(['message' => 'post is not saved to be unsaved']);
+                } else {
+                    $student->unfavorite($post);
+                    return $this->created(['message' => 'post unsaved successfullty']);
+                }
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+    /**
+     * @OA\Get(
+     *      path="/A/student/saved",
+     *      summary="get saved Posts",
+     *      tags={"A-SavePost"},
+     *      description="get saved Posts",
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+
+    /**
+     * @OA\Get(
+     *      path="/W/student/saved",
+     *      summary="get saved Posts",
+     *      description="get saved Posts",
+     *      tags={"W-SavePost"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function getSavedPosts()
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $savedPosts = $student->getFavoriteItems(InternshipPost::class)->orderBy('id', 'desc')->get();
+        return $this->ok(InternshipPostExploreResource::collection($savedPosts)->resolve());
+        // dd($savedPosts);
     }
 }

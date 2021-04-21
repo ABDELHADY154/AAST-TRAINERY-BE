@@ -34,6 +34,9 @@ Route::group([
             Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');
             Route::get('/posts', 'API\V1\InternshipPostController@getAllPostsExplore')->name('get.all.posts.explore');
             Route::get('/search/{val}', 'API\V1\InternshipPostController@search')->name('search');
+            Route::post('/save/{postId}', 'API\V1\InternshipPostController@savePost')->name('student.savePost');
+            Route::post('/unsave/{postId}', 'API\V1\InternshipPostController@unSavePost')->name('student.unSavePost');
+            Route::get('/saved', 'API\V1\InternshipPostController@getSavedPosts')->name('student.get.saved.posts');
             Route::get('/post/{id}', 'API\V1\InternshipPostController@show')->name('get.post');
             Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@show')->name('get.advisor.profile');
             Route::prefix('profile')->group(function () {
@@ -69,6 +72,9 @@ Route::group([
         Route::get('/posts', 'API\V1\InternshipPostController@mGetAllPostsExplore')->name('A.get.all.posts.explore');
         Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@mshow')->name('A.get.advisor.profile');
         Route::get('/search/{val}', 'API\V1\InternshipPostController@mSearch')->name('A.search');
+        Route::post('/save/{postId}', 'API\V1\InternshipPostController@mSavePost')->name('student.savePost');
+        Route::post('/unsave/{postId}', 'API\V1\InternshipPostController@mUnSavePost')->name('student.unSavePost');
+        Route::get('/saved', 'API\V1\InternshipPostController@getSavedPosts')->name('student.get.saved.posts');
 
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');

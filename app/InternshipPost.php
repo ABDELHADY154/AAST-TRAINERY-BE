@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 class InternshipPost extends Model
 {
-    use SoftDeletes, Searchable;
+    use SoftDeletes, Searchable, Favoriteable;
     protected $fillable = [
         'internship_title',
         'published_on',
