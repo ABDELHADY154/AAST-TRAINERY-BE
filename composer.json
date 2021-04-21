@@ -10,7 +10,8 @@
     "require": {
         "php": "^7.2.5",
         "aelnemr/api-response": "^1.0",
-        "algolia/algoliasearch-client-php": "2.2",
+        "algolia/algoliasearch-client-php": "^3.0",
+        "algolia/scout-extended": "^1.17",
         "darkaonline/l5-swagger": "^8.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -21,6 +22,7 @@
         "laravel/scout": "^8.6",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
+        "overtrue/laravel-favorite": "^3.0",
         "pragmarx/countries": "^0.7.2",
         "sopamo/laravel-filepond": "^0.6.1"
     },

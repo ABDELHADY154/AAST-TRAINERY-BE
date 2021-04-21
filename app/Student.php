@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
 
 class Student extends User
 {
-    use HasApiTokens, Notifiable, SoftDeletes;
+    use HasApiTokens, Notifiable, SoftDeletes, Favoriter;
     protected $fillable = [
         'name', 'email', 'password', 'reg_no', 'period', 'gpa', 'image', 'start_year',
         'end_year', 'department_id', 'gender', 'date_of_birth', 'nationality',
