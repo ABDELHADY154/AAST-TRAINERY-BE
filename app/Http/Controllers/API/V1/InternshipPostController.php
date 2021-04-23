@@ -12,6 +12,7 @@ use App\InternshipPost;
 use App\Student;
 use App\TrainingAdvisor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use IlluminateAgnostic\Arr\Support\Arr;
 
 class InternshipPostController extends Controller
@@ -145,7 +146,7 @@ class InternshipPostController extends Controller
     {
         $students = Student::all()->count();
         $internshipPosts = InternshipPost::all()->count();
-        $applied = 500;
+        $applied = DB::table('student_internship_post_apply')->count();
         $result = ['students' => $students, 'opportunities' => $internshipPosts, 'applied' => $applied];
         return $this->ok($result);
     }
@@ -633,6 +634,313 @@ class InternshipPostController extends Controller
         $student = Student::where('id', auth('api')->id())->first();
         $savedPosts = $student->getFavoriteItems(InternshipPost::class)->orderBy('id', 'desc')->get();
         return $this->ok(InternshipPostExploreResource::collection($savedPosts)->resolve());
-        // dd($savedPosts);
+    }
+
+    /**
+     * @OA\POST(
+     *      path="/W/student/apply/{postId}",
+     *      summary="Apply Post",
+     *      tags={"W-ApplyPost"},
+     *      description="Apply Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function apply($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['you cannot apply to this post']);
+            } else {
+                foreach ($student->applications as $application) {
+                    if ($application->pivot->internship_post_id == $post->id) {
+                        return $this->forbidden(['message' => 'opportunity is already applied']);
+                        break;
+                    }
+                }
+                $student->applications()->attach($student->id, [
+                    'internship_post_id' => $post->id,
+                    'application_date' => now()->toDate(),
+                ]);
+                $student->save();
+                return $this->ok(['message' => 'student applied successfully']);
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+
+    /**
+     * @OA\POST(
+     *      path="/W/student/unApply/{postId}",
+     *      summary="unApply Post",
+     *      tags={"W-ApplyPost"},
+     *      description="unApply Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function unApply($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['this post is forbidden']);
+            } else {
+                $student->applications()->detach($post->id);
+                $student->save();
+                return $this->ok(['message' => 'student unapplied successfully']);
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+
+    /**
+     * @OA\POST(
+     *      path="/A/student/apply/{postId}",
+     *      summary="Apply Post",
+     *      tags={"A-ApplyPost"},
+     *      description="Apply Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function mApply($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['you cannot apply to this post']);
+            } else {
+                foreach ($student->applications as $application) {
+                    if ($application->pivot->internship_post_id == $post->id) {
+                        return $this->forbidden(['message' => 'opportunity is already applied']);
+                        break;
+                    }
+                }
+                $student->applications()->attach($student->id, [
+                    'internship_post_id' => $post->id,
+                    'application_date' => now()->toDate(),
+                ]);
+                $student->save();
+                return $this->ok(['message' => 'student applied successfully']);
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+
+    /**
+     * @OA\POST(
+     *      path="/A/student/unApply/{postId}",
+     *      summary="unApply Post",
+     *      tags={"A-ApplyPost"},
+     *      description="unApply Post",
+     *      @OA\Parameter(
+     *          name="postId",
+     *          description="Post id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="404",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="403",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *     )
+     * )
+     */
+    public function mUnApply($postId)
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $postId)->first();
+        if ($post) {
+            if ($post->post_type == "adsPost") {
+                return $this->forbidden(['this post is forbidden']);
+            } else {
+                $student->applications()->detach($post->id);
+                $student->save();
+                return $this->ok(['message' => 'student unapplied successfully']);
+            }
+        } else {
+            return $this->notFound(['post is not found']);
+        }
+    }
+
+
+    /**
+     * @OA\Get(
+     *      path="/A/student/applied",
+     *      summary="get applied Posts",
+     *      description="get applied Posts",
+     *      tags={"A-ApplyPost"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    /**
+     * @OA\Get(
+     *      path="/W/student/applied",
+     *      summary="get applied Posts",
+     *      description="get applied Posts",
+     *      tags={"W-ApplyPost"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function studentApplicationsPosts()
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $posts = $student->applications()->where('type', '!=', 'adsPost')->orderBy('id', 'desc')->get();
+        return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
 }

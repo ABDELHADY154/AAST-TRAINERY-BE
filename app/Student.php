@@ -58,4 +58,9 @@ class Student extends User
     {
         return $this->hasOne(StudentAccount::class);
     }
+
+    public function applications()
+    {
+        return $this->belongsToMany(InternshipPost::class, 'student_internship_post_apply')->withPivot('student_id', 'internship_post_id', 'application_status', 'application_date');
+    }
 }
