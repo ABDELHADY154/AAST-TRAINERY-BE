@@ -38,7 +38,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Total Accepted Students</span>
-                                    <span class="info-box-number text-center text-muted mb-0">2300</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{count($intern->appliedStudents()->where('application_status','accepted')->get())}}</span>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Total Applied Students</span>
-                                    <span class="info-box-number text-center text-muted mb-0">2000</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{$intern->appliedStudents()->count()}}</span>
                                 </div>
                             </div>
                         </div>
@@ -54,40 +54,46 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Total Rejected Students</span>
-                                    <span class="info-box-number text-center text-muted mb-0">20</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{$intern->appliedStudents()->where('application_status','rejected')->count()}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <table class="table">
-                            <thead class="thead-dark">
+                        <table class="table table-striped">
+                            <thead class="">
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">#ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    {{-- <th scope="col">Status</th> --}}
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+
+                                @foreach ($intern->appliedStudents as $student)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <th scope="row">{{$student->id}}</th>
+                                    <td><a href="{{route('student.show',$student->id)}}">{{$student->name}}</a></td>
+                                    <td>{{$student->email}}</td>
+                                    {{-- <td>{{$student->pivot->application_status}}</td> --}}
+                                    <td>
+                                        @if($student->pivot->application_status == 'applied')
+                                        <a href="{{route('accept.student', ['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-success">Accept</a>
+                                        <a href="{{route('reject.student',['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-danger">Reject</a>
+                                        @elseif ($student->pivot->application_status == 'accepted')
+                                        <a href="#" class="btn btn-success disabled">Accepted</a>
+                                        <a href="{{route('reject.student',['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-danger">Reject</a>
+                                        @elseif ($student->pivot->application_status == 'rejected')
+                                        <a href="{{route('accept.student', ['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-success ">Accept</a>
+                                        <a href="#" class="btn btn-danger disabled">Rejected</a>
+                                        @endif
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @endforeach
+
+
                             </tbody>
                         </table>
                     </div>
@@ -210,10 +216,10 @@
                         </li>
                         @endforeach
                     </ul>
-                    <div class="text-center mt-5 mb-3">
+                    {{-- <div class="text-center mt-5 mb-3">
                         <a href="#" class="btn btn-sm btn-primary">Add files</a>
                         <a href="#" class="btn btn-sm btn-warning">Report contact</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
