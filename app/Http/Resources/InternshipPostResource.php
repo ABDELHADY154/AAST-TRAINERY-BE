@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\InternshipPost;
 use App\Student;
 use Illuminate\Http\Resources\Json\JsonResource;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class PostReq extends JsonResource
 {
@@ -29,6 +30,8 @@ class InternshipPostResource extends JsonResource
         $student = Student::where('id', auth('api')->id())->first();
         $post = InternshipPost::where('id', $this->id)->first();
         $savedStatus = $student->hasFavorited($post);
+        $application = $student->applications()->where('internship_post_id', $this->id)->first();
+        $applied = $application ? true : false;
         return [
             'id' => $this->id,
             'company_name' => $this->company->company_name,
@@ -47,7 +50,8 @@ class InternshipPostResource extends JsonResource
             'requirements' => PostReq::collection($this->internshipReqs)->resolve(),
             'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
             'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
-            'saved' => $savedStatus
+            'saved' => $savedStatus,
+            'applied' => $applied
         ];
     }
 }
