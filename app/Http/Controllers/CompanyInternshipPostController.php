@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Http\Requests\Admin\CompanyInternshipPostRequest;
 use App\InternshipPost;
+use App\Student;
 use App\StudentDepartment;
 use App\StudentInterest;
 use Illuminate\Http\Request;
@@ -67,5 +68,36 @@ class CompanyInternshipPostController extends Controller
         $intern =  InternshipPost::where('id', $id)->first();
         $intern->delete();
         return redirect(route('companyInternshipPost.index'));
+    }
+
+
+    public function acceptStudent()
+    {
+        $student = Student::where('id', $_GET['s'])->first();
+        foreach ($student->applications as $application) {
+            if ($application->pivot->student_id == $student->id && $application->pivot->internship_post_id == $_GET['p']) {
+                $student->applications()->updateExistingPivot($_GET['p'], ['application_status' => "accepted"]);
+                $student->save();
+                break;
+            }
+        }
+        return redirect(route('companyInternshipPost.show', $_GET['p']));
+    }
+
+    public function rejectStudent()
+    {
+        $student = Student::where('id', $_GET['s'])->first();
+        if ($student) {
+            foreach ($student->applications as $application) {
+                if ($application->pivot->student_id == $student->id && $application->pivot->internship_post_id == $_GET['p']) {
+                    $student->applications()->updateExistingPivot($_GET['p'], ['application_status' => "rejected"]);
+                    $student->save();
+                    break;
+                }
+            }
+            return redirect(route('companyInternshipPost.show', $_GET['p']));
+        } else {
+            return redirect(route('companyInternshipPost.index'));
+        }
     }
 }

@@ -26,7 +26,7 @@
                  </li>
                  <li class="nav-item">
                      <a href=" #" class="nav-link ">
-                         <i class="fas fa-users mr-2"></i>
+                         <i class="fas fa-users mr-2 ml-1"></i>
                          <p>
                              Users
                              <i class="right fas fa-angle-left"></i>
@@ -40,9 +40,16 @@
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{route('trainingAdvisor.index')}}" class="nav-link {{ Route::currentRouteName() == 'company.index'? 'active' : '' }}">
+                             <a href="{{route('trainingAdvisor.index')}}" class="nav-link {{ Route::currentRouteName() == 'trainingAdvisor.index'? 'active' : '' }}">
                                  <i class="fas fa-user-tie mr-2"></i>
                                  <p>Training Advisors</p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('student.index')}}" class="nav-link {{ Route::currentRouteName() == 'student.index'? 'active' : '' }}">
+
+                                 <i class="fas fa-user-graduate mr-2"></i>
+                                 <p>Students</p>
                              </a>
                          </li>
                      </ul>
@@ -50,7 +57,7 @@
 
                  <li class="nav-item">
                      <a href=" #" class="nav-link ">
-                         <i class="fas fa-stream"></i>
+                         <i class="fas fa-stream mr-2 ml-1"></i>
                          <p>
                              Internship Posts
                              <i class="right fas fa-angle-left"></i>
