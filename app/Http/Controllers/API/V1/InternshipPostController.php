@@ -245,7 +245,7 @@ class InternshipPostController extends Controller
     }
     /**
      * @OA\Get(
-     *      path="/W/student/search/{val}",
+     *      path="/W/student/search/{val}?page={pageNumber}",
      *      operationId="Search for Post",
      *      description="Search For Internship Post",
      *      summary="Search For Internship Post",
@@ -257,6 +257,15 @@ class InternshipPostController extends Controller
      *          in="path",
      *          @OA\Schema(
      *              type="string"
+     *          )
+     *      ),
+     *         @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
      *          )
      *      ),
      *     security={
@@ -286,7 +295,7 @@ class InternshipPostController extends Controller
      */
     public function search($val)
     {
-        $posts = InternshipPost::search($val)->get();
+        $posts = InternshipPost::search($val)->paginate(10);
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
 
@@ -334,7 +343,6 @@ class InternshipPostController extends Controller
     public function mSearch($val)
     {
         $posts = InternshipPost::search($val)->get();
-
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
     }
     /**

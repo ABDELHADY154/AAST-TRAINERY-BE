@@ -26,7 +26,7 @@ class InternshipPostExploreResource extends JsonResource
                 'company_logo' => asset('storage/images/companyLogo/' . $this->company->image),
                 'description' => $this->desc,
                 'post_type' => $this->post_type,
-                'sponsor_image' => $this->post_type == 'adsPost' ? asset('storage/images/companyLogo/' . $this->sponser_image)  : null,
+                'sponsor_image' => $this->post_type == 'adsPost' ? asset('storage/images/adsImages/' . $this->sponser_image)  : null,
             ];
         } elseif ($this->post_type == 'companyPost') {
 

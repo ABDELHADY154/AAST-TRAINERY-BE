@@ -42,6 +42,10 @@ Route::group([
             Route::post('/unApply/{postId}', 'API\V1\InternshipPostController@unApply')->name('student.unApply');
             Route::get('/applied', 'API\V1\InternshipPostController@studentApplicationsPosts')->name('student.get.applciations');
             Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@show')->name('get.advisor.profile');
+            Route::get('/studentApplied', 'API\V1\StudentActivityController@getAppliedPosts')->name('student.get.applied.posts');
+            Route::get('/studentAccepted', 'API\V1\StudentActivityController@getAcceptedPosts')->name('student.get.accepted.posts');
+            Route::get('/studentSaved', 'API\V1\StudentActivityController@getSavedPosts')->name('student.get.saved.posts');
+
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');
@@ -80,8 +84,10 @@ Route::group([
         Route::get('/saved', 'API\V1\InternshipPostController@getSavedPosts')->name('student.get.saved.posts');
         Route::post('/apply/{postId}', 'API\V1\InternshipPostController@mApply')->name('student.mapply');
         Route::post('/unApply/{postId}', 'API\V1\InternshipPostController@mUnApply')->name('student.munApply');
-        Route::get('/applied', 'API\V1\InternshipPostController@studentApplicationsPosts')->name('student.get.applciations');
-
+        Route::get('/applied', 'API\V1\InternshipPostController@studentApplicationsPosts')->name('student.mGet.applciations');
+        Route::get('/studentApplied', 'API\V1\StudentActivityController@mGetAppliedPosts')->name('student.mGet.applied.posts');
+        Route::get('/studentAccepted', 'API\V1\StudentActivityController@mGetAcceptedPosts')->name('student.mGet.accepted.posts');
+        Route::get('/studentSaved', 'API\V1\StudentActivityController@mGetSavedPosts')->name('student.mGet.saved.posts');
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
             Route::post('/image', 'API\V1\Mobile\StudentProfileController@updateImage')->name('student.update.profile.image');
