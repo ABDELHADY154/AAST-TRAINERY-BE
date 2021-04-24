@@ -15,10 +15,10 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
     $imagesArr = [
         'bis.jpg', 'clc.png', 'cmt.png', 'fad.jpg', 'mib.jpg', 'mm.jpg'
     ];
-    $postTypes = ['companyPost', 'advisorPost', 'promotedPost', 'adsPost'];
+    $postTypes = ['companyPost', 'advisorPost', 'promotedPost'];
     $endedArr = [true, false];
 
-    $postT = $postTypes[rand(0, 3)];
+    $postT = $postTypes[rand(0, 2)];
 
     if ($postT == 'companyPost') {
         $internship_title = $faker->jobTitle;
@@ -65,21 +65,6 @@ $factory->define(InternshipPost::class, function (Faker $faker) {
         $ended = $endedArr[rand(0, 1)];
         $advisor_id = null;
         $location_url = $faker->url;
-    } elseif ($postT == 'adsPost') {
-        $internship_title = null;
-        $published_on = $faker->date();
-        $company_id = rand(1, Company::all()->count());
-        $sponser_image = $imagesArr[rand(0, 5)];
-        $vacancy = null;
-        $gender = null;
-        $type = null;
-        $salary = null;
-        $application_deadline = null;
-        $desc = $faker->text(500);
-        $location = null;
-        $ended = null;
-        $location_url = null;
-        $advisor_id = null;
     }
 
     return [
