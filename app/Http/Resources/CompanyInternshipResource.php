@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\InternshipPost;
+use App\Student;
 use App\StudentDepartment;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,6 +17,15 @@ class CompanyInternshipResource extends JsonResource
      */
     public function toArray($request)
     {
+        $student = Student::where('id', auth('api')->id())->first();
+        $post = InternshipPost::where('id', $this->id)->first();
+        $savedStatus = $student->hasFavorited($post);
+        $appliedStatus = false;
+        foreach ($post->appliedStudents as $stu) {
+            if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
+                $appliedStatus = true;
+            }
+        }
 
         return [
             'id' => $this->id,
@@ -28,7 +39,9 @@ class CompanyInternshipResource extends JsonResource
             'post_type' => $this->post_type,
             'sponsor_image' => $this->post_type == 'adsPost' ? asset('storage/images/companyLogo/' . $this->sponser_image)  : null,
             'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
-            'tags' => StudentInterestResource::collection($this->studentInterests)->resolve()
+            'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
+            'saved' => $savedStatus,
+            'applied' => $appliedStatus
         ];
     }
 }

@@ -19,6 +19,13 @@ class InternshipPostExploreResource extends JsonResource
         $student = Student::where('id', auth('api')->id())->first();
         $post = InternshipPost::where('id', $this->id)->first();
         $savedStatus = $student->hasFavorited($post);
+        $appliedStatus = false;
+        foreach ($post->appliedStudents as $stu) {
+            if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
+                $appliedStatus = true;
+            }
+        }
+
         if ($this->post_type == 'adsPost') {
             return [
                 'id' => $this->id,
@@ -32,6 +39,7 @@ class InternshipPostExploreResource extends JsonResource
 
             return [
                 'id' => $this->id,
+                'company_id' => $this->company->id,
                 'company_name' => $this->company->company_name,
                 'company_logo' => asset('storage/images/companyLogo/' . $this->company->image),
                 'title' => $this->internship_title,
@@ -42,7 +50,8 @@ class InternshipPostExploreResource extends JsonResource
                 'post_type' => $this->post_type,
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
-                'saved' => $savedStatus
+                'saved' => $savedStatus,
+                'applied' => $appliedStatus
             ];
         } elseif ($this->post_type == 'advisorPost') {
             return [
@@ -52,6 +61,7 @@ class InternshipPostExploreResource extends JsonResource
                     'name' => $this->advisor->advisor_name,
                     'image' => asset('storage/images/advisorsLogo/' . $this->advisor->advisor_image),
                 ] : null,
+                'company_id' => $this->company->id,
                 'company_name' => $this->company->company_name,
                 'company_logo' => asset('storage/images/companyLogo/' . $this->company->image),
                 'title' => $this->internship_title,
@@ -62,12 +72,10 @@ class InternshipPostExploreResource extends JsonResource
                 'post_type' => $this->post_type,
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
-                'saved' => $savedStatus
-
+                'saved' => $savedStatus,
+                'applied' => $appliedStatus
             ];
         } elseif ($this->post_type == 'promotedPost') {
-
-
             return [
                 'id' => $this->id,
                 'advisor' => $this->advisor ? [
@@ -75,6 +83,7 @@ class InternshipPostExploreResource extends JsonResource
                     'name' => $this->advisor->advisor_name,
                     'image' => asset('storage/images/advisorsLogo/' . $this->advisor->advisor_image),
                 ] : null,
+                'company_id' => $this->company->id,
                 'company_name' => $this->company->company_name,
                 'company_logo' => asset('storage/images/companyLogo/' . $this->company->image),
                 'title' => $this->internship_title,
@@ -85,7 +94,8 @@ class InternshipPostExploreResource extends JsonResource
                 'post_type' => $this->post_type,
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
-                'saved' => $savedStatus
+                'saved' => $savedStatus,
+                'applied' => $appliedStatus
             ];
         }
     }
