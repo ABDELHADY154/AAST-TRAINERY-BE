@@ -29,6 +29,7 @@ class CompanyInternshipResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'company_id' => $this->company->id,
             'company_name' => $this->company->company_name,
             'company_logo' => asset('storage/images/companyLogo/' . $this->company->image),
             'title' => $this->internship_title,
