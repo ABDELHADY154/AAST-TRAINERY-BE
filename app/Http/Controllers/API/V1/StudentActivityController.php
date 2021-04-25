@@ -123,8 +123,13 @@ class StudentActivityController extends Controller
      */
     public function getSavedPosts()
     {
-        $student = Student::where('id', auth('api')->id())->first();
-        $savedPosts = $student->getFavoriteItems(InternshipPost::class)->orderBy('id', 'desc')->get();
+        $student = auth()->guard('api')->user();
+        $posts = $student->favorites()->get();
+        $postIdArr = [];
+        foreach ($posts as $post) {
+            $postIdArr[] = $post->favoriteable_id;
+        }
+        $savedPosts =  InternshipPost::whereIn('id', $postIdArr)->orderBy('id', 'desc')->get();
         return $this->ok(InternshipPostExploreResource::collection($savedPosts)->resolve());
     }
 
@@ -238,8 +243,13 @@ class StudentActivityController extends Controller
      */
     public function mGetSavedPosts()
     {
-        $student = Student::where('id', auth('api')->id())->first();
-        $savedPosts = $student->getFavoriteItems(InternshipPost::class)->orderBy('id', 'desc')->get();
+        $student = auth()->guard('api')->user();
+        $posts = $student->favorites()->get();
+        $postIdArr = [];
+        foreach ($posts as $post) {
+            $postIdArr[] = $post->favoriteable_id;
+        }
+        $savedPosts =  InternshipPost::whereIn('id', $postIdArr)->orderBy('id', 'desc')->get();
         return $this->ok(InternshipPostExploreResource::collection($savedPosts)->resolve());
     }
 }
