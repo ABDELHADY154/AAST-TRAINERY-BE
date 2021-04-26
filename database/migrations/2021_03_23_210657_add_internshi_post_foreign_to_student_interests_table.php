@@ -14,7 +14,7 @@ class AddInternshiPostForeignToStudentInterestsTable extends Migration
     public function up()
     {
         Schema::table('student_interests', function (Blueprint $table) {
-            $table->unsignedBigInteger('internship_post_id');
+            $table->unsignedBigInteger('internship_post_id')->nullable();
             $table->foreign('internship_post_id')->references('id')->on('internship_posts');
         });
     }
