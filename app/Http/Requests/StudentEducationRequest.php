@@ -26,7 +26,7 @@ class StudentEducationRequest extends FormRequest
         return [
             'school_name' => ['required', 'string'],
             'cred' => ['file', 'mimes:pdf,docx,doc,txt'],
-            'cred_url' => ['url'],
+            'cred_url' => ['nullable', 'url'],
             'country' => ['required', 'string'],
             'city' => ['required', 'string'],
             'from' => ['required', 'date', 'date_format:Y-m-d'],
