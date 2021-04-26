@@ -17,6 +17,6 @@ class StudentInterestSeeder extends Seeder
         DB::table('student_interests')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(StudentInterest::class, 500)->create();
+        factory(StudentInterest::class, 200)->create();
     }
 }
