@@ -6,6 +6,7 @@ use AElnemr\RestFullResponse\CoreJsonResponse;
 use Algolia\AlgoliaSearch\SearchIndex;
 use App\Company;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CompanyLogoesResource;
 use App\Http\Resources\InternshipPostExploreResource;
 use App\Http\Resources\InternshipPostResource;
 use App\InternshipPost;
@@ -152,6 +153,36 @@ class InternshipPostController extends Controller
     }
     /**
      * @OA\Get(
+     *      path="/W/landingLogoes",
+     *      operationId="getLandingPageCompanies",
+     *      tags={"Landing Page"},
+     *      summary="Get landing page Companies Logoes",
+     *      description="Returns landing page counter data",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      )
+     *     )
+     */
+    public function getLandingLogoes()
+    {
+        $companies = Company::all();
+
+        return $this->ok(CompanyLogoesResource::collection($companies)->resolve());
+    }
+    /**
+     * @OA\Get(
      *      path="/W/student/posts?page={pageNumber}",
      *      operationId="Internship Posts",
      *      description="Get all Internship Post ",
@@ -191,6 +222,8 @@ class InternshipPostController extends Controller
      *      )
      * )
      */
+
+
     public function getAllPostsExplore()
     {
         $posts = InternshipPost::orderBy('id', 'desc')->paginate(10);

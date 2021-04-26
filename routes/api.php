@@ -27,6 +27,7 @@ Route::group([
     'prefix' => '/W',
 ], function () {
     Route::get('/landingCount', 'API\V1\InternshipPostController@getLandingCounts');
+    Route::get('/landingLogoes', 'API\V1\InternshipPostController@getLandingLogoes');
     Route::group(['middleware' => ['studentAuth']], function () {
         Route::get('/studentImg', 'API\V1\StudentController@getImg')->name('student.get.image');
         Route::prefix('student')->group(function () {
