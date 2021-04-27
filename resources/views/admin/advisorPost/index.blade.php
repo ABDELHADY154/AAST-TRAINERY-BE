@@ -70,7 +70,7 @@
                             </td>
                             <td class="text-center">
                                 <a href="{{route('trainingAdvisorPost.show',$post->id)}}" class="btn btn-primary">View</a>
-                                <a href="{{route('trainingAdvisorPost.edit',$post->id)}}" class="btn btn-success">Edit</a>
+                                {{-- <a href="{{route('trainingAdvisorPost.edit',$post->id)}}" class="btn btn-success">Edit</a> --}}
                                 <form method="POST" action="{{route('trainingAdvisorPost.destroy',$post->id)}}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
