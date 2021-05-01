@@ -133,6 +133,63 @@
                 ]
             }
         },
+        "/A/sessions": {
+            "get": {
+                "tags": [
+                    "A-Career Coaching"
+                ],
+                "summary": "Get all sessions",
+                "description": "Get all sessions ",
+                "operationId": "Asessions",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/W/session/{id}": {
             "get": {
                 "tags": [
@@ -189,6 +246,328 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/bookSession/{id}": {
+            "post": {
+                "tags": [
+                    "W-Career Coaching"
+                ],
+                "summary": "student book session",
+                "description": "student book session",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\CareerCoachingController::bookSession",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "session id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Student Book Session Date and time",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SessionBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/bookSession/cancelBooking/{id}": {
+            "post": {
+                "tags": [
+                    "W-Career Coaching"
+                ],
+                "summary": "student cancel session",
+                "description": "student cancel session",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\CareerCoachingController::unBookSession",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "session id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/session/{id}": {
+            "get": {
+                "tags": [
+                    "A-Career Coaching"
+                ],
+                "summary": "Get session",
+                "description": "Get session ",
+                "operationId": "AgetSession",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "session ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/bookSession/{id}": {
+            "post": {
+                "tags": [
+                    "A-Career Coaching"
+                ],
+                "summary": "student book session",
+                "description": "student book session",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\CareerCoachingController::mBookSession",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "session id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Student Book Session Date and time",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SessionBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/bookSession/cancelBooking/{id}": {
+            "post": {
+                "tags": [
+                    "A-Career Coaching"
+                ],
+                "summary": "student cancel session",
+                "description": "student cancel session",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\CareerCoachingController::mUnBookSession",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "session id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
                                 }
                             }
                         }
@@ -4328,6 +4707,120 @@
                 ]
             }
         },
+        "/W/student/studentSessions": {
+            "get": {
+                "tags": [
+                    "W-StudentActivity"
+                ],
+                "summary": "Student Booked Sessions",
+                "description": "Student Booked Sessions",
+                "operationId": "Student Booked Sessions",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/studentSessions": {
+            "get": {
+                "tags": [
+                    "A-StudentActivity"
+                ],
+                "summary": "Student Booked Sessions",
+                "description": "Student Booked Sessions",
+                "operationId": "Student Booked Sessions",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/students": {
             "get": {
                 "tags": [
@@ -6816,6 +7309,22 @@
                 "xml": {
                     "name": "Student"
                 }
+            },
+            "SessionBookRequest": {
+                "title": "Student Book Session",
+                "description": "Student Book Session body data",
+                "required": [
+                    "booking_date"
+                ],
+                "properties": {
+                    "booking_date": {
+                        "title": "booking date",
+                        "description": "booking date and time",
+                        "type": "string",
+                        "example": "05-03-2021 09:05:00"
+                    }
+                },
+                "type": "object"
             },
             "StudentAcademicInfoRequest": {
                 "title": "Student Login Request",

@@ -21,7 +21,7 @@ Route::post('/forgot', 'ForgotPasswordController@forgot')->name('forgot-password
 Route::get('/students', 'API\V1\StudentController@index')->name('students-list');
 Route::get('/departments', 'API\V1\StudentDepartmentController@index')->name('departments-list');
 Route::get('/countriesList', 'API\V1\StudentDepartmentController@countriesList')->name('countries-list');
-Route::get('/stateList/{code}', 'API\V1\StudentDepartmentController@states')->name('countries-list');
+Route::get('/stateList/{code}', 'API\V1\StudentDepartmentController@states')->name('cities-list');
 //WEB API //
 Route::group([
     'prefix' => '/W',
@@ -34,6 +34,8 @@ Route::group([
         Route::get('/coaches', 'API\V1\CareerCoachingController@getAllCoaches')->name('get.all.coaches');
         Route::get('/sessions', 'API\V1\CareerCoachingController@getAllSessions')->name('get.all.sessions');
         Route::get('/session/{id}', 'API\V1\CareerCoachingController@getSession')->name('get.session');
+        Route::post('/bookSession/{id}', 'API\V1\CareerCoachingController@bookSession')->name('book.sessioon');
+        Route::post('/bookSession/cancelBooking/{id}', 'API\V1\CareerCoachingController@unBookSession')->name('unbook.sessioon');
         Route::prefix('student')->group(function () {
             Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
             Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');
@@ -49,7 +51,8 @@ Route::group([
             Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@show')->name('get.advisor.profile');
             Route::get('/studentApplied', 'API\V1\StudentActivityController@getAppliedPosts')->name('student.get.applied.posts');
             Route::get('/studentAccepted', 'API\V1\StudentActivityController@getAcceptedPosts')->name('student.get.accepted.posts');
-            Route::get('/studentSaved', 'API\V1\StudentActivityController@getSavedPosts')->name('student.get.saved.posts');
+            Route::get('/studentSaved', 'API\V1\StudentActivityController@getSavedPosts')->name('student.activity.get.saved.posts');
+            Route::get('/studentSessions', 'API\V1\StudentActivityController@getStudentSessions')->name('student.activity.get.sessions');
 
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
@@ -74,7 +77,12 @@ Route::group([
 Route::group([
     'middleware' => ['studentAuth'],
     'prefix' => '/A',
+    'as' => 'app.'
 ], function () {
+    Route::get('/sessions', 'API\V1\CareerCoachingController@mGetAllSessions')->name('get.all.sessions');
+    Route::get('/session/{id}', 'API\V1\CareerCoachingController@mGetSession')->name('get.session');
+    Route::post('/bookSession/{id}', 'API\V1\CareerCoachingController@mBookSession')->name('book.sessioon');
+    Route::post('/bookSession/cancelBooking/{id}', 'API\V1\CareerCoachingController@mUnBookSession')->name('unbook.sessioon');
     Route::prefix('student')->group(function () {
         Route::get('/get-profilePersonal', 'API\V1\Mobile\StudentController@getProfile')->name('get-profilePersonal');
         Route::get('/get-profileExperience', 'API\V1\Mobile\StudentController@getProfileExperience')->name('get-profileExperience');
@@ -93,6 +101,8 @@ Route::group([
         Route::get('/studentApplied', 'API\V1\StudentActivityController@mGetAppliedPosts')->name('student.mGet.applied.posts');
         Route::get('/studentAccepted', 'API\V1\StudentActivityController@mGetAcceptedPosts')->name('student.mGet.accepted.posts');
         Route::get('/studentSaved', 'API\V1\StudentActivityController@mGetSavedPosts')->name('student.mGet.saved.posts');
+        Route::get('/studentSessions', 'API\V1\StudentActivityController@mGetStudentSessions')->name('student.activity.get.sessions');
+
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
             Route::post('/image', 'API\V1\Mobile\StudentProfileController@updateImage')->name('student.update.profile.image');
@@ -115,9 +125,9 @@ Route::group([
 });
 
 // fallback route////  $todo : make a fallback function in a controller of the student
-Route::fallback(function () {
-    $message = [
-        'error' => 'Route is not found'
-    ];
-    return $message;
-});
+// Route::fallback(function () {
+//     $message = [
+//         'error' => 'Route is not found'
+//     ];
+//     return $message;
+// });

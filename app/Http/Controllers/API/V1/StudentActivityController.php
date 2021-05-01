@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\InternshipPostExploreResource;
+use App\Http\Resources\SessionResource;
 use App\InternshipPost;
 use App\Student;
 use Illuminate\Http\Request;
@@ -300,5 +301,81 @@ class StudentActivityController extends Controller
         }
 
         return $this->ok(InternshipPostExploreResource::collection($resultArr)->resolve());
+    }
+    /**
+     * @OA\Get(
+     *      path="/W/student/studentSessions",
+     *      operationId="Student Booked Sessions",
+     *      description="Student Booked Sessions",
+     *      summary="Student Booked Sessions",
+     *      tags={"W-StudentActivity"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function getStudentSessions()
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $sessions = $student->sessions()->get();
+        return $this->ok(SessionResource::collection($sessions)->resolve());
+    }
+    /**
+     * @OA\Get(
+     *      path="/A/student/studentSessions",
+     *      operationId="Student Booked Sessions",
+     *      description="Student Booked Sessions",
+     *      summary="Student Booked Sessions",
+     *      tags={"A-StudentActivity"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function mGetStudentSessions()
+    {
+        $student = Student::where('id', auth('api')->id())->first();
+        $sessions = $student->sessions()->get();
+        return $this->ok(SessionResource::collection($sessions)->resolve());
     }
 }
