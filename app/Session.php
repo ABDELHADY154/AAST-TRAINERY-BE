@@ -13,6 +13,12 @@ class Session extends Model
         'title',
         'desc',
         'price',
-        'image'
+        'image',
+        'coach_id'
     ];
+
+    public function coach()
+    {
+        return $this->belongsTo(Coach::class, 'coach_id');
+    }
 }

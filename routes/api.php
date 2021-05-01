@@ -31,6 +31,9 @@ Route::group([
     Route::group(['middleware' => ['studentAuth']], function () {
         Route::get('/studentImg', 'API\V1\StudentController@getImg')->name('student.get.image');
         Route::get('/activity', 'API\V1\StudentActivityController@homeActivity')->name('Home.activity.section');
+        Route::get('/coaches', 'API\V1\CareerCoachingController@getAllCoaches')->name('get.all.coaches');
+        Route::get('/sessions', 'API\V1\CareerCoachingController@getAllSessions')->name('get.all.sessions');
+        Route::get('/session/{id}', 'API\V1\CareerCoachingController@getSession')->name('get.session');
         Route::prefix('student')->group(function () {
             Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
             Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');

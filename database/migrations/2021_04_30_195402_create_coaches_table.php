@@ -18,6 +18,7 @@ class CreateCoachesTable extends Migration
             $table->string('name');
             $table->longText('bio')->nullable();
             $table->string('job_title');
+            $table->string('image');
             $table->longText('fb_url')->nullable();
             $table->longText('in_url')->nullable();
             $table->longText('y_url')->nullable();

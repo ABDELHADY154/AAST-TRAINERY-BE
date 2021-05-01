@@ -12,4 +12,9 @@ class Coach extends Model
     protected $fillable = [
         'name', 'bio', 'job_title', 'fb_url', 'in_url', 'y_url', 'insta_url'
     ];
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
 }

@@ -27,11 +27,20 @@ class InternshipPostResource extends JsonResource
      */
     public function toArray($request)
     {
+
         $student = Student::where('id', auth('api')->id())->first();
         $post = InternshipPost::where('id', $this->id)->first();
         $savedStatus = $student->hasFavorited($post);
-        $application = $student->applications()->where('internship_post_id', $this->id)->first();
-        $applied = $application ? true : false;
+        $appliedStatus = false;
+        $applicationStatus = false;
+        foreach ($post->appliedStudents as $stu) {
+            if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
+                $appliedStatus = true;
+                if ($stu->pivot->application_status == "accepted") {
+                    $applicationStatus = true;
+                }
+            }
+        }
         return [
             'id' => $this->id,
             'company_id' => $this->company->id,
@@ -52,7 +61,20 @@ class InternshipPostResource extends JsonResource
             'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
             'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
             'saved' => $savedStatus,
-            'applied' => $applied
+            'applied' => $appliedStatus,
+            'accepted' => $applicationStatus
         ];
     }
 }
+  // $student = Student::where('id', auth('api')->id())->first();
+        // $post = InternshipPost::where('id', $this->id)->first();
+        // $savedStatus = $student->hasFavorited($post);
+        // $application = $student->applications()->where('internship_post_id', $this->id)->first();
+        // $applied = $application ? true : false;
+        // $appliedStatus = false;
+
+        // if ($applied == true) {
+        //     if ($application->application_status == "accepted") {
+        //         $appliedStatus = true;
+        //     }
+        // }

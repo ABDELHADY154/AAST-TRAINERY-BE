@@ -1,5 +1,6 @@
 <?php
 
+use App\Coach;
 use App\Session;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +15,39 @@ class SessionSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('coaches')->truncate();
+        DB::table('sessions')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        factory(Session::class, 5)->create();
+        Session::create([
+            'title' => 'CV writing service',
+            'desc' => 'Our aim is to make you 100% satisfied with your CV; that’s why we offer a first draft that you approve before you receive the final version of your document.
+            Now you can get expert feedback on your CV and profile, Perfect your CV & profile to better reflect your skills, and Refine your job search strategy',
+            'price' => 150,
+            'image' => 'session1.png',
+            'coach_id' => rand(1, Coach::all()->count())
+        ]);
+
+        Session::create([
+            'title' => 'Interview coaching',
+            'desc' => 'Our career coaches will help you overcome your interview fears and refine your answers, to enhance your chances of getting the job. you will understand your strengths and blind spots in interviews through a personality assessment, Practice and rehearse your answers to your most challenging interview questions, Get detailed, personalized feedback on your interview answers, body language, manner of speaking, etc.',
+            'price' => 150,
+            'image' => 'session2.png',
+            'coach_id' => rand(1, Coach::all()->count())
+        ]);
+        Session::create([
+            'title' => 'Make the right career move',
+            'desc' => 'Do you want to fully prepare yourself for the right career path? your dedicated career coach will help you answer the question, “what is the best career for me?” through identifying your personality, skills, interests, and career values, Accurately identify how ready you are for your targeted career and how satisfied you would be in this career, Put together a tailored and detailed career plan for your next career move.',
+            'price' => 150,
+            'image' => 'session3.png',
+            'coach_id' => rand(1, Coach::all()->count())
+        ]);
+        Session::create([
+            'title' => 'Career Coaching & Advising Services',
+            'desc' => 'Get a career package that includes CV & Profile Review and Interview Coaching plus the career path coaching you will enhance your CV & profile to better reflect your skills, Refine your job search strategy, Understand your strengths and blind spots in interviews through a personality and body language assessment, Practice and rehearse your answers to the most challenging interview questions, and identifying your personality, skills, interests, and career values, and how ready you are for your targeted career.',
+            'price' => 700,
+            'image' => 'session1.png',
+            'coach_id' => rand(1, Coach::all()->count())
+        ]);
+        // factory(Session::class, 5)->create();
     }
 }

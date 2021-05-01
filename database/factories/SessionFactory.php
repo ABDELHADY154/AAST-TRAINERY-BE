@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Coach;
 use App\Session;
 use Faker\Generator as Faker;
 
@@ -11,6 +12,7 @@ $factory->define(Session::class, function (Faker $faker) {
         'title' => $faker->jobTitle,
         'desc' => $faker->text,
         'price' => rand(100, 500),
-        'image' => $imgArr[rand(0, 1)]
+        'image' => $imgArr[rand(0, 1)],
+        'coach_id' => rand(1, Coach::all()->count())
     ];
 });
