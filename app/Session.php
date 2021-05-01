@@ -21,4 +21,9 @@ class Session extends Model
     {
         return $this->belongsTo(Coach::class, 'coach_id');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'student_sessions')->withPivot('student_id', 'session_id', 'booking_date');
+    }
 }

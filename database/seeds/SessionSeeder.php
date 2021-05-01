@@ -2,6 +2,7 @@
 
 use App\Coach;
 use App\Session;
+use App\Student;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -48,6 +49,14 @@ class SessionSeeder extends Seeder
             'image' => 'session1.png',
             'coach_id' => rand(1, Coach::all()->count())
         ]);
+
+        for ($i = 0; $i < 10; $i++) {
+            DB::table('student_sessions')->insert([
+                'booking_date' => now()->toDateTime(),
+                'student_id' => rand(1, Student::all()->count()),
+                'session_id' => rand(1, Session::all()->count()),
+            ]);
+        }
         // factory(Session::class, 5)->create();
     }
 }
