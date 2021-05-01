@@ -20,9 +20,13 @@ class InternshipPostExploreResource extends JsonResource
         $post = InternshipPost::where('id', $this->id)->first();
         $savedStatus = $student->hasFavorited($post);
         $appliedStatus = false;
+        $applicationStatus = false;
         foreach ($post->appliedStudents as $stu) {
             if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
                 $appliedStatus = true;
+                if ($stu->pivot->application_status == "accepted") {
+                    $applicationStatus = true;
+                }
             }
         }
 
@@ -51,7 +55,8 @@ class InternshipPostExploreResource extends JsonResource
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
                 'saved' => $savedStatus,
-                'applied' => $appliedStatus
+                'applied' => $appliedStatus,
+                'accepted' => $applicationStatus
             ];
         } elseif ($this->post_type == 'advisorPost') {
             return [
@@ -73,7 +78,8 @@ class InternshipPostExploreResource extends JsonResource
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
                 'saved' => $savedStatus,
-                'applied' => $appliedStatus
+                'applied' => $appliedStatus,
+                'accepted' => $applicationStatus
             ];
         } elseif ($this->post_type == 'promotedPost') {
             return [
@@ -95,7 +101,8 @@ class InternshipPostExploreResource extends JsonResource
                 'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
                 'saved' => $savedStatus,
-                'applied' => $appliedStatus
+                'applied' => $appliedStatus,
+                'accepted' => $applicationStatus
             ];
         }
     }

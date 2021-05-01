@@ -30,6 +30,10 @@ Route::group([
     Route::get('/landingLogoes', 'API\V1\InternshipPostController@getLandingLogoes');
     Route::group(['middleware' => ['studentAuth']], function () {
         Route::get('/studentImg', 'API\V1\StudentController@getImg')->name('student.get.image');
+        Route::get('/activity', 'API\V1\StudentActivityController@homeActivity')->name('Home.activity.section');
+        Route::get('/coaches', 'API\V1\CareerCoachingController@getAllCoaches')->name('get.all.coaches');
+        Route::get('/sessions', 'API\V1\CareerCoachingController@getAllSessions')->name('get.all.sessions');
+        Route::get('/session/{id}', 'API\V1\CareerCoachingController@getSession')->name('get.session');
         Route::prefix('student')->group(function () {
             Route::get('/get-profile', 'API\V1\StudentController@getProfile')->name('get-profile');
             Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');
@@ -117,20 +121,3 @@ Route::fallback(function () {
     ];
     return $message;
 });
-
-
-///////////////////////////COMMENTED APIS//////////////////////
-// Route::get('/colleges', 'API\V1\CollegeController@index')->name('colleges-list'); //removed
-
- // profile info test routes and will be removed later
-    // Route::get('/student-workExperience', 'API\V1\WorkExperienceController@index')->name('students-workExperience');
-    // Route::get('/student-profileCourses', 'API\V1\ProfileCourseController@index')->name('students-profileCourses');
-    // Route::get('/student-skills', 'API\V1\StudentSkillController@index')->name('students-skills');
-    // Route::get('/student-lang', 'API\V1\StudentLangController@index')->name('students-lang');
-    // Route::get('/student-acc', 'API\V1\ProfileAccountsController@index')->name('students-account');
-    // ----------------//
-    // Route::get('/departments', 'API\V1\DepartmentController@index')->name('colleges-list'); //remove
-    // Route::get('/reviews', 'API\V1\ReviewController@index')->name('reviews-list');
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return new StudentResource($request->user());
-// });
