@@ -41,6 +41,9 @@ Route::group([
             Route::get('/company/{id}', 'API\V1\CompanyController@show')->name('get.company.profile');
             Route::get('/posts', 'API\V1\InternshipPostController@getAllPostsExplore')->name('get.all.posts.explore');
             Route::get('/search/{val}', 'API\V1\InternshipPostController@search')->name('search');
+            Route::post('/filterDep/{val}', 'API\V1\InternshipPostController@filterByDep')->name('filter.dep');
+            Route::post('/filterState/{val}', 'API\V1\InternshipPostController@filterByState')->name('filter.state');
+            Route::post('/filterPay/{val}', 'API\V1\InternshipPostController@filterByPay')->name('filter.pay');
             Route::post('/save/{postId}', 'API\V1\InternshipPostController@savePost')->name('student.savePost');
             Route::post('/unsave/{postId}', 'API\V1\InternshipPostController@unSavePost')->name('student.unSavePost');
             Route::get('/saved', 'API\V1\InternshipPostController@getSavedPosts')->name('student.get.saved.posts');
@@ -92,6 +95,9 @@ Route::group([
         Route::get('/posts', 'API\V1\InternshipPostController@mGetAllPostsExplore')->name('A.get.all.posts.explore');
         Route::get('/advisor/{id}', 'API\V1\TrainingAdvisorController@mshow')->name('A.get.advisor.profile');
         Route::get('/search/{val}', 'API\V1\InternshipPostController@mSearch')->name('A.search');
+        Route::post('/filterDep/{val}', 'API\V1\InternshipPostController@filterByDep')->name('filter.dep');
+        Route::post('/filterState/{val}', 'API\V1\InternshipPostController@filterByState')->name('filter.state');
+        Route::post('/filterPay/{val}', 'API\V1\InternshipPostController@filterByPay')->name('filter.pay');
         Route::post('/save/{postId}', 'API\V1\InternshipPostController@mSavePost')->name('student.savePost');
         Route::post('/unsave/{postId}', 'API\V1\InternshipPostController@mUnSavePost')->name('student.unSavePost');
         Route::get('/saved', 'API\V1\InternshipPostController@getSavedPosts')->name('student.get.saved.posts');

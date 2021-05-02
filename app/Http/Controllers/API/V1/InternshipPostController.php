@@ -11,6 +11,7 @@ use App\Http\Resources\InternshipPostExploreResource;
 use App\Http\Resources\InternshipPostResource;
 use App\InternshipPost;
 use App\Student;
+use App\StudentDepartment;
 use App\TrainingAdvisor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -330,6 +331,396 @@ class InternshipPostController extends Controller
     {
         $posts = InternshipPost::search($val)->paginate(10);
         return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+    }
+    /**
+     * @OA\POST(
+     *      path="/W/student/filterDep/{val}?page={pageNumber}",
+     *      operationId="Search for Post by department ID",
+     *      description="Search For Internship Post by department ID",
+     *      summary="Search For Internship Post by department ID",
+     *      tags={"W-Explore"},
+     *      @OA\Parameter(
+     *          name="val",
+     *          description="Search value",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *         @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=false,
+     *          description="Student Book Session Date and time",
+     *          @OA\JsonContent(ref="#/components/schemas/SearchByDepRequest")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    /**
+     * @OA\POST(
+     *      path="/A/student/filterDep/{val}?page={pageNumber}",
+     *      operationId="A Search for Post by department ID",
+     *      description="Search For Internship Post by department ID",
+     *      summary="Search For Internship Post by department ID",
+     *      tags={"A-Explore"},
+     *      @OA\Parameter(
+     *          name="val",
+     *          description="Search value",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *         @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=false,
+     *          description="Student Book Session Date and time",
+     *          @OA\JsonContent(ref="#/components/schemas/SearchByDepRequest")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function filterByDep(Request $request, $val)
+    {
+        $request->validate([
+            'department_id' => ['required', 'integer', 'exists:student_departments,id']
+        ]);
+        if ($request->department_id && $request->department_id !== 0) {
+            $deps = StudentDepartment::find($request->department_id);
+            if ($deps) {
+                $postsIDs = [];
+                $allPosts = InternshipPost::all();
+                foreach ($allPosts as $post) {
+                    $posIntern = $post->internDepartments;
+                    foreach ($posIntern as $intern) {
+                        if ($intern->pivot->student_department_id == $request->department_id) {
+                            $postsIDs[] = $intern->pivot->internship_post_id;
+                        }
+                    }
+                }
+                $posts = InternshipPost::search($val)->whereIn('id', $postsIDs)->paginate(10);
+                return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+            } else {
+                return $this->notFound(['department is not found']);
+            }
+        }
+    }
+    /**
+     * @OA\POST(
+     *      path="/W/student/filterState/{val}?page={pageNumber}",
+     *      operationId="Search for Post by post state",
+     *      description="Search For Internship Post by post state",
+     *      summary="Search For Internship Post by post state",
+     *      tags={"W-Explore"},
+     *      @OA\Parameter(
+     *          name="val",
+     *          description="Search value",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *         @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=false,
+     *          description="Student Book Session Date and time",
+     *          @OA\JsonContent(ref="#/components/schemas/SearchByStateRequest")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    /**
+     * @OA\POST(
+     *      path="/A/student/filterState/{val}?page={pageNumber}",
+     *      operationId="A Search for Post by post state",
+     *      description="Search For Internship Post by post state",
+     *      summary="Search For Internship Post by post state",
+     *      tags={"A-Explore"},
+     *      @OA\Parameter(
+     *          name="val",
+     *          description="Search value",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *         @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=false,
+     *          description="Student Book Session Date and time",
+     *          @OA\JsonContent(ref="#/components/schemas/SearchByStateRequest")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function filterByState(Request $request, $val)
+    {
+        $request->validate([
+            'state' => ['required', 'string', 'in:full time,part time']
+        ]);
+        if ($request->state == "full time") {
+            $posts = InternshipPost::search($val)->with([
+                'facetFilters' => "type:full time"
+            ])->paginate(10);
+            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        } elseif ($request->state == "part time") {
+            $posts = InternshipPost::search($val)->with([
+                'facetFilters' => "type:part time"
+            ])->paginate(10);
+            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        }
+    }
+
+    /**
+     * @OA\POST(
+     *      path="/W/student/filterPay/{val}?page={pageNumber}",
+     *      operationId="Search for Post by post salary",
+     *      description="Search For Internship Post by post salary",
+     *      summary="Search For Internship Post by post salary",
+     *      tags={"W-Explore"},
+     *      @OA\Parameter(
+     *          name="val",
+     *          description="Search value",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *         @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=false,
+     *          description="Student Book Session Date and time",
+     *          @OA\JsonContent(ref="#/components/schemas/SearchByPayRequest")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    /**
+     * @OA\POST(
+     *      path="/A/student/filterPay/{val}?page={pageNumber}",
+     *      operationId="A Search for Post by post salary",
+     *      description="Search For Internship Post by post salary",
+     *      summary="Search For Internship Post by post salary",
+     *      tags={"A-Explore"},
+     *      @OA\Parameter(
+     *          name="val",
+     *          description="Search value",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *         @OA\Parameter(
+     *          name="pageNumber",
+     *          description="pagination value",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *     @OA\RequestBody(
+     *          required=false,
+     *          description="Student Book Session Date and time",
+     *          @OA\JsonContent(ref="#/components/schemas/SearchByPayRequest")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function filterByPay(Request $request, $val)
+    {
+        $request->validate([
+            'payment' => ['required', 'string', 'in:Paid,un paid']
+        ]);
+        if ($request->payment == "Paid") {
+            $posts = InternshipPost::search($val)->with([
+                'facetFilters' => "salary:Paid"
+            ])->paginate(10);
+            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        } elseif ($request->payment == "un paid") {
+            $posts = InternshipPost::search($val)->with([
+                'facetFilters' => "salary:un paid"
+            ])->paginate(10);
+            return $this->ok(InternshipPostExploreResource::collection($posts)->resolve());
+        }
     }
 
     /**
