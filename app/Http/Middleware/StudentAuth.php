@@ -7,7 +7,7 @@ use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 use Closure;
 
-class StudentAuth extends Middleware
+class StudentAuth
 {
     use CoreJsonResponse;
     /**
