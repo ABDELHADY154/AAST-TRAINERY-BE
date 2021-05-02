@@ -24,7 +24,7 @@ class SessionBookRequest extends FormRequest
     public function rules()
     {
         return [
-            'booking_date' => ['required', 'date_format:m-d-Y H:i:s', 'date', 'after:tomorrow'],
+            'booking_date' => ['required', 'date_format:Y-m-d H:i:s', 'date', 'after:tomorrow'],
         ];
     }
 }
