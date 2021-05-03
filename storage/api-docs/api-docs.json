@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000/api/",
+            "url": "http://admin.aast-trainery.com/api/",
             "description": "Trainery Demo Server"
         }
     ],
@@ -6924,8 +6924,8 @@
                 "tags": [
                     "W-Student Review Internship"
                 ],
-                "summary": "student book session",
-                "description": "student book session",
+                "summary": "Internship All Reviews",
+                "description": "Internship All Reviews",
                 "operationId": "App\\Http\\Controllers\\API\\V1\\StudentReviewsController::getAllPostReviews",
                 "parameters": [
                     {
@@ -6980,9 +6980,134 @@
                 "tags": [
                     "W-Student Review Internship"
                 ],
-                "summary": "student book session",
-                "description": "student book session",
+                "summary": "student Review Internship",
+                "description": "student Review Internship",
                 "operationId": "App\\Http\\Controllers\\API\\V1\\StudentReviewsController::reviewPost",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Student Review Internship",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/studentReviewPostRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/review/{id}": {
+            "get": {
+                "tags": [
+                    "A-Student Review Internship"
+                ],
+                "summary": "Internship All Reviews",
+                "description": "Internship All Reviews",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentReviewsController::mGetAllPostReviews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "A-Student Review Internship"
+                ],
+                "summary": "student Review Internship",
+                "description": "student Review Internship",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentReviewsController::mReviewPost",
                 "parameters": [
                     {
                         "name": "id",

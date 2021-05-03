@@ -22,11 +22,15 @@ class CompanyInternshipResource extends JsonResource
         $savedStatus = $student->hasFavorited($post);
         $appliedStatus = false;
         $applicationStatus = false;
+        $accomplishedStatus = false;
         foreach ($post->appliedStudents as $stu) {
             if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
                 $appliedStatus = true;
                 if ($stu->pivot->application_status == "accepted") {
                     $applicationStatus = true;
+                }
+                if ($stu->pivot->application_status == "achieved") {
+                    $accomplishedStatus = true;
                 }
             }
         }
@@ -47,7 +51,9 @@ class CompanyInternshipResource extends JsonResource
             'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
             'saved' => $savedStatus,
             'applied' => $appliedStatus,
-            'accepted' => $applicationStatus
+            'accepted' => $applicationStatus,
+            'accomplished' => $accomplishedStatus,
+
         ];
     }
 }

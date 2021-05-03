@@ -21,11 +21,15 @@ class InternshipPostExploreResource extends JsonResource
         $savedStatus = $student->hasFavorited($post);
         $appliedStatus = false;
         $applicationStatus = false;
+        $accomplishedStatus = false;
         foreach ($post->appliedStudents as $stu) {
             if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
                 $appliedStatus = true;
                 if ($stu->pivot->application_status == "accepted") {
                     $applicationStatus = true;
+                }
+                if ($stu->pivot->application_status == "achieved") {
+                    $accomplishedStatus = true;
                 }
             }
         }
@@ -56,7 +60,8 @@ class InternshipPostExploreResource extends JsonResource
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
                 'saved' => $savedStatus,
                 'applied' => $appliedStatus,
-                'accepted' => $applicationStatus
+                'accepted' => $applicationStatus,
+                'accomplished' => $accomplishedStatus,
             ];
         } elseif ($this->post_type == 'advisorPost') {
             return [
@@ -79,7 +84,9 @@ class InternshipPostExploreResource extends JsonResource
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
                 'saved' => $savedStatus,
                 'applied' => $appliedStatus,
-                'accepted' => $applicationStatus
+                'accepted' => $applicationStatus,
+                'accomplished' => $accomplishedStatus,
+
             ];
         } elseif ($this->post_type == 'promotedPost') {
             return [
@@ -102,7 +109,9 @@ class InternshipPostExploreResource extends JsonResource
                 'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
                 'saved' => $savedStatus,
                 'applied' => $appliedStatus,
-                'accepted' => $applicationStatus
+                'accepted' => $applicationStatus,
+                'accomplished' => $accomplishedStatus,
+
             ];
         }
     }
