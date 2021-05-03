@@ -83,11 +83,15 @@
                                         <a href="{{route('accept.student', ['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-success">Accept</a>
                                         <a href="{{route('reject.student',['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-danger">Reject</a>
                                         @elseif ($student->pivot->application_status == 'accepted')
-                                        <a href="#" class="btn btn-success disabled">Accepted</a>
+                                        {{-- <a href="#" class="btn btn-success disabled">Accepted</a> --}}
+                                        <a href="{{route('student.achieved.intern',['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-warning">Accomplished</a>
                                         <a href="{{route('reject.student',['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-danger">Reject</a>
                                         @elseif ($student->pivot->application_status == 'rejected')
                                         <a href="{{route('accept.student', ['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-success ">Accept</a>
                                         <a href="#" class="btn btn-danger disabled">Rejected</a>
+                                        @elseif ($student->pivot->application_status == 'achieved')
+                                        <a href="#" class="btn btn-success disabled">Accomplished</a>
+                                        <a href="{{route('reject.student',['s'=>$student->id,'p'=>$intern->id])}}" class="btn btn-danger">Reject</a>
                                         @endif
                                     </td>
                                 </tr>

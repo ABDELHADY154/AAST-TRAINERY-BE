@@ -66,4 +66,13 @@ class InternshipPost extends Model
     {
         return $this->hasMany(StudentInterest::class);
     }
+    public function studentReviews()
+    {
+        return $this->belongsToMany(Student::class, 'student_internship_post_reviews')->withPivot(
+            'student_id',
+            'internship_post_id',
+            'comment',
+            'rate'
+        );
+    }
 }

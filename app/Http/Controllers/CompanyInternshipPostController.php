@@ -100,4 +100,21 @@ class CompanyInternshipPostController extends Controller
             return redirect(route('companyInternshipPost.index'));
         }
     }
+
+    public function internAchieved()
+    {
+        $student = Student::where('id', $_GET['s'])->first();
+        if ($student) {
+            foreach ($student->applications as $application) {
+                if ($application->pivot->student_id == $student->id && $application->pivot->internship_post_id == $_GET['p']) {
+                    $student->applications()->updateExistingPivot($_GET['p'], ['application_status' => "achieved"]);
+                    $student->save();
+                    break;
+                }
+            }
+            return redirect(route('companyInternshipPost.show', $_GET['p']));
+        } else {
+            return redirect(route('companyInternshipPost.index'));
+        }
+    }
 }

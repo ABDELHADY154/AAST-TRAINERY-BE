@@ -56,6 +56,8 @@ Route::group([
             Route::get('/studentAccepted', 'API\V1\StudentActivityController@getAcceptedPosts')->name('student.get.accepted.posts');
             Route::get('/studentSaved', 'API\V1\StudentActivityController@getSavedPosts')->name('student.activity.get.saved.posts');
             Route::get('/studentSessions', 'API\V1\StudentActivityController@getStudentSessions')->name('student.activity.get.sessions');
+            Route::post('/review/{postId}', 'API\V1\StudentReviewsController@reviewPost')->name('student.review.post');
+            Route::get('/review/{postId}', 'API\V1\StudentReviewsController@getAllPostReviews')->name('get.student.reviews');
 
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');

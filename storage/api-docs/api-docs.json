@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://admin.aast-trainery.com/api/",
+            "url": "http://localhost:8000/api/",
             "description": "Trainery Demo Server"
         }
     ],
@@ -6919,6 +6919,131 @@
                 ]
             }
         },
+        "/W/student/review/{id}": {
+            "get": {
+                "tags": [
+                    "W-Student Review Internship"
+                ],
+                "summary": "student book session",
+                "description": "student book session",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentReviewsController::getAllPostReviews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "W-Student Review Internship"
+                ],
+                "summary": "student book session",
+                "description": "student book session",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentReviewsController::reviewPost",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Student Review Internship",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/studentReviewPostRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/W/student/profile/skill": {
             "get": {
                 "tags": [
@@ -8548,6 +8673,29 @@
                         "description": "Currently working in the company",
                         "type": "integer",
                         "example": 0
+                    }
+                },
+                "type": "object"
+            },
+            "studentReviewPostRequest": {
+                "title": "Student Reveiw Intern",
+                "description": "Student Reveiw Intern body data",
+                "required": [
+                    "comment",
+                    "rate"
+                ],
+                "properties": {
+                    "comment": {
+                        "title": "comment",
+                        "description": "comment",
+                        "type": "string",
+                        "example": "perfect internship"
+                    },
+                    "rate": {
+                        "title": "rate",
+                        "description": "rate",
+                        "type": "integer",
+                        "example": 3
                     }
                 },
                 "type": "object"

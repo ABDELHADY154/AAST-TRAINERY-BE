@@ -40,4 +40,5 @@ Route::group([
     Route::resource('/student', 'StudentController');
     Route::get('/acceptStudent', 'CompanyInternshipPostController@acceptStudent')->name('accept.student');
     Route::get('/rejectStudent', 'CompanyInternshipPostController@rejectStudent')->name('reject.student');
+    Route::get('/internAchieved', 'CompanyInternshipPostController@internAchieved')->name('student.achieved.intern');
 });
