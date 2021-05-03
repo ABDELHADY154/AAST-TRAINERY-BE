@@ -2,8 +2,10 @@
 
 use App\Company;
 use App\InternshipPost;
+use App\Student;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Generator as Faker;
 
 class InternshipPostSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class InternshipPostSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('internship_posts')->truncate();
@@ -85,5 +87,13 @@ class InternshipPostSeeder extends Seeder
 
         ]);
         factory(InternshipPost::class, 58)->create();
+        for ($i = 0; $i < 20; $i++) {
+            DB::table('student_internship_post_reviews')->insert([
+                'student_id' => rand(1, Student::all()->count()),
+                'internship_post_id' => rand(1, InternshipPost::all()->count()),
+                'comment' => $faker->text,
+                'rate' => rand(1, 5)
+            ]);
+        }
     }
 }

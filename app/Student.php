@@ -68,4 +68,14 @@ class Student extends User
     {
         return $this->belongsToMany(Session::class, 'student_sessions')->withPivot('student_id', 'session_id', 'booking_date');
     }
+
+    public function postReviews()
+    {
+        return $this->belongsToMany(InternshipPost::class, 'student_internship_post_reviews')->withPivot(
+            'student_id',
+            'internship_post_id',
+            'comment',
+            'rate'
+        );
+    }
 }
