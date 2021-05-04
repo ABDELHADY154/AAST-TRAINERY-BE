@@ -1,0 +1,303 @@
+<?php
+
+namespace App\Http\Controllers\API\V1\Mobile;
+
+use AElnemr\RestFullResponse\CoreJsonResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentSkillRequest;
+use App\Http\Resources\StudentSkillResource;
+use App\StudentSkill;
+use Illuminate\Http\Request;
+
+class StudentSkillController extends Controller
+{
+    use CoreJsonResponse;
+    public function __construct()
+    {
+        $this->student = auth('api')->user();
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\GET(
+     *      path="/A/student/profile/skill",
+     *      operationId="getStudentAllSkills",
+     *      description="Get Student All Skills",
+     *      summary="Get Student Skills List",
+     *      tags={"A-Student Skills"},
+
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *
+     *     @OA\Response(
+     *          response="200",
+     *          description="Student Data to success",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
+     */
+    public function index()
+    {
+        $studentSkill = StudentSkillResource::collection(StudentSkill::where('student_id', auth('api')->id())->get());
+        return $this->ok($studentSkill->resolve());
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\POST(
+     *      path="/A/student/profile/skill",
+     *      description="Create Student Skill",
+     *      summary="Create Student Skill",
+     *      tags={"A-Student Skills"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StudentSkillInfoRequest")
+     *     ),
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
+     */
+    public function store(StudentSkillRequest $request)
+    {
+        $profileScore = auth('api')->user()->profile_score + 0.125;
+        $studentSkills = StudentSkill::where('student_id', $this->student->id)->get();
+        if (count($studentSkills) == 0) {
+            $this->student->update([
+                'profile_score' => $profileScore
+            ]);
+        }
+        $studentSkill = StudentSkill::create([
+            'skill_name' =>  $request->input('skill_name'),
+            'years_of_exp' => $request->input('years_of_exp'),
+            'student_id' => auth('api')->id(),
+        ]);
+        return $this->created((new StudentSkillResource($studentSkill))->resolve());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\Get(
+     *      path="/A/student/profile/skill/{id}",
+     *      operationId="showStudentSkill",
+     *      description="Get Student Skill",
+     *      summary="Get Student Skill",
+     *      tags={"A-Student Skills"},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Skill id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function show($id)
+    {
+        $studentSkill = StudentSkill::find($id);
+        if (!$studentSkill) {
+            return  $this->notFound(['message' => 'Skill not found']);
+        }
+        if ($studentSkill->student_id !== auth('api')->id()) {
+            return $this->unauthorized();
+        }
+        return $this->ok((new StudentSkillResource($studentSkill))->resolve());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Put(
+     *      path="/A/student/profile/skill/{id}",
+     *      summary="Update Student Skill",
+     *      tags={"A-Student Skills"},
+     *      description="Update Student Skill",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Skill id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     * @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StudentSkillInfoRequest")
+     *     ),
+     *
+     *
+     *     @OA\Response(
+     *          response="201",
+     *          description="Student Data to success",
+     *           @OA\JsonContent(ref="#/components/schemas/SuccessAcceptedVirtual")
+     *      ),
+     *
+     *     @OA\Response(
+     *          response="422",
+     *          description="Validation Error",
+     *           @OA\JsonContent(ref="#/components/schemas/Response422Virtual")
+     *     ),
+     *
+     *     @OA\Response(
+     *          response="401",
+     *          description="Unauthorized",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *     )
+     * )
+     */
+    public function update(StudentSkillRequest $request, $id)
+    {
+        $studentSkill = StudentSkill::find($id);
+        if (!$studentSkill) {
+            return  $this->notFound(['message' => 'Skill not found']);
+        }
+        if ($studentSkill->student_id !== auth('api')->id()) {
+            return $this->unauthorized();
+        }
+        $studentSkill->update([
+            'skill_name' =>  $request->input('skill_name'),
+            'years_of_exp' => $request->input('years_of_exp'),
+            'student_id' => auth('api')->id(),
+        ]);
+        $studentSkill->save();
+        return $this->created((new StudentSkillResource($studentSkill))->resolve());
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Delete(
+     *      path="/A/student/profile/skill/{id}",
+     *      operationId="deleteStudentSkill",
+     *      summary="Delete Student Skill ",
+     *      tags={"A-Student Skills"},
+     *      description="delete Student Skill ",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Skill id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    public function destroy($id)
+    {
+        $studentSkill = StudentSkill::find($id);
+        if (!$studentSkill) {
+            return  $this->notFound(['message' => 'Skill not found']);
+        }
+        if ($studentSkill->student_id !== auth('api')->id()) {
+            return $this->unauthorized();
+        }
+        $studentSkill->destroy($id);
+        return $this->ok(['message' => 'Deleted']);
+    }
+}
