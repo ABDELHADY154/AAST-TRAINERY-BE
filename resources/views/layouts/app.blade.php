@@ -10,6 +10,7 @@
 
     <title>{{ config('app.name') }} | @yield('title')</title>
     @include('layouts.admin-parts.css')
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">

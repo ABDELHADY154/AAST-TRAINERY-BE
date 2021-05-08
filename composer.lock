@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57579c1e9f930861449edf6bc8798f93",
+    "content-hash": "bf2444285fd3aef7e88ec8455342db11",
     "packages": [
         {
             "name": "aelnemr/api-response",
@@ -1317,6 +1317,52 @@
             "time": "2021-03-21T16:25:00+00:00"
         },
         {
+            "name": "kdion4891/laravel-livewire-forms",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kdion4891/laravel-livewire-forms.git",
+                "reference": "1dd0b4dd11a17abfeee8c921bd9f08ffe90c95b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kdion4891/laravel-livewire-forms/zipball/1dd0b4dd11a17abfeee8c921bd9f08ffe90c95b0",
+                "reference": "1dd0b4dd11a17abfeee8c921bd9f08ffe90c95b0",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kdion4891\\LaravelLivewireForms\\Providers\\FormServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kdion4891\\LaravelLivewireForms\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Dion",
+                    "email": "kdion4891@icloud.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A dynamic, responsive Laravel Livewire form component with realtime validation, file uploads, array fields, and more.",
+            "homepage": "https://github.com/kdion4891/laravel-livewire-forms",
+            "support": {
+                "issues": "https://github.com/kdion4891/laravel-livewire-forms/issues",
+                "source": "https://github.com/kdion4891/laravel-livewire-forms/tree/1.3.1"
+            },
+            "time": "2020-03-04T15:43:24+00:00"
+        },
+        {
             "name": "laminas/laminas-diactoros",
             "version": "2.5.1",
             "source": {
@@ -2504,6 +2550,78 @@
                 }
             ],
             "time": "2020-12-10T11:35:44+00:00"
+        },
+        {
+            "name": "livewire/livewire",
+            "version": "v2.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/33101c83b75728651b9e668a4559f97def7c9138",
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "illuminate/validation": "^7.0|^8.0",
+                "php": "^7.2.5|^8.0",
+                "symfony/http-kernel": "^5.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^7.0|^8.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^5.0|^6.0",
+                "orchestra/testbench-dusk": "^5.2|^6.0",
+                "phpunit/phpunit": "^8.4|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ],
+                    "aliases": {
+                        "Livewire": "Livewire\\Livewire"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v2.4.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/calebporzio",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-04-28T15:31:15+00:00"
         },
         {
             "name": "monolog/monolog",

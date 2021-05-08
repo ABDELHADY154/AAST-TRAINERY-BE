@@ -56,11 +56,11 @@
     <select name="company_id" id="company_id" class="form-control">
         <option value="0">Not set</option>
         @foreach($companies as $company)
-        {{-- @if(isset($company) && $company->id == $company->id) --}}
-        {{-- <option value="{{ $company->id }}" selected>{{ $company->company_name }}</option> --}}
-        {{-- @else --}}
+        @if(isset($company) && $post->company_id == $company->id)
+        <option value="{{ $company->id }}" selected>{{ $company->company_name }}</option>
+        @else
         <option value="{{ $company->id }}">{{ $company->company_name }}</option>
-        {{-- @endif --}}
+        @endif
         @endforeach
     </select>
     @if ($errors->first('company_id'))
@@ -71,7 +71,7 @@
 </div>
 <div class="form-group">
     <label for="name">Internship Title</label>
-    <input type="text" name="internship_title" id="internship_title" class="form-control" value="{{ isset($companyInternshipPost)?$companyInternshipPost->internship_title : old('internship_title') }}">
+    <input type="text" name="internship_title" id="internship_title" class="form-control" value="{{ isset($post)?$post->internship_title : old('internship_title') }}">
     @if ($errors->first('internship_title'))
     <span class="text-danger">
         {{ $errors->first('internship_title') }}
@@ -82,9 +82,9 @@
     <label for="gender">Gender</label>
     <select name="gender" id="gender" class="form-control">
         <option value="0">Not set</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Both">Both</option>
+        <option value="Male" {{isset($post)&& $post->gender == "male"? "selected":""}}>Male</option>
+        <option value="Female" {{isset($post)&& $post->gender == "female"? "selected":""}}>Female</option>
+        <option value="Both" {{isset($post)&& $post->gender == "both"? "selected":""}}>Both</option>
     </select>
     @if ($errors->first('gender'))
     <span class="text-danger">
@@ -96,9 +96,8 @@
     <label for="type">Type</label>
     <select name="type" id="type" class="form-control">
         <option value="0">Not set</option>
-        <option value="Full Time">Full Time</option>
-        <option value="Part Time">Part Time</option>
-
+        <option value="Full Time" {{isset($post)&& $post->type == "full time"? "selected":""}}>Full Time</option>
+        <option value="Part Time" {{isset($post)&& $post->type == "part time"? "selected":""}}>Part Time</option>
     </select>
     @if ($errors->first('type'))
     <span class="text-danger">
@@ -110,8 +109,8 @@
     <label for="salary">Payment</label>
     <select name="salary" id="salary" class="form-control">
         <option value="0">Not set</option>
-        <option value="Paid">Paid</option>
-        <option value="Un Paid">Un Paid</option>
+        <option value="Paid" {{isset($post)&& $post->salary == "Paid"? "selected":""}}>Paid</option>
+        <option value="Un Paid" {{isset($post)&& $post->salary == "un paid"? "selected":""}}>Unpaid</option>
     </select>
     @if ($errors->first('salary'))
     <span class="text-danger">
@@ -121,7 +120,7 @@
 </div>
 <div class="form-group">
     <label for="application_deadline">Application Deadline</label>
-    <input type="date" name="application_deadline" id="application_deadline" class="form-control">
+    <input type="date" name="application_deadline" id="application_deadline" class="form-control" value="{{ isset($post)?$post->application_deadline : old('application_deadline') }}">
     @if ($errors->first('application_deadline'))
     <span class=" text-danger">
         {{ $errors->first('application_deadline') }}
@@ -131,7 +130,8 @@
 <div class="form-group">
     <label for="desc">Internship Description</label>
     <textarea name="desc" id="desc" cols="30" rows="4" class="form-control">
-    {{-- {{ isset($company)?$company->company_desc : old('desc') }} --}}
+    {{ isset($post)?$post->desc : old('desc') }}
+
     </textarea>
     @if ($errors->first('desc'))
     <span class="text-danger">
@@ -141,7 +141,7 @@
 </div>
 <div class="form-group">
     <label for="location">Location</label>
-    <input type="text" name="location" id="location" class="form-control">
+    <input type="text" name="location" id="location" class="form-control" value="{{ isset($post)?$post->location : old('location') }}">
     @if ($errors->first('location'))
     <span class=" text-danger">
         {{ $errors->first('location') }}
@@ -150,7 +150,7 @@
 </div>
 <div class="form-group">
     <label for="location_url">Location URL</label>
-    <input type="text" name="location_url" id="location_url" class="form-control">
+    <input type="text" name="location_url" id="location_url" class="form-control" value="{{ isset($post)?$post->location_url : old('location_url') }}">
     @if ($errors->first('location_url'))
     <span class=" text-danger">
         {{ $errors->first('location_url') }}
@@ -159,7 +159,7 @@
 </div>
 <div class="form-group">
     <label for="vacancy">Vacancies Availble</label>
-    <input type="number" name="vacancy" id="vacancy" class="form-control">
+    <input type="number" name="vacancy" id="vacancy" class="form-control" value="{{ isset($post)?$post->vacancy : old('vacancy') }}">
     @if ($errors->first('vacancy'))
     <span class=" text-danger">
         {{ $errors->first('vacancy') }}
@@ -290,5 +290,5 @@
 @endif
 </div> --}}
 <div class="text-center">
-    <button type="submit" class="btn btn-success">{{isset($companyInternshipPost)? "Save" : "Submit"}}</button>
+    <button type="submit" class="btn btn-success">{{isset($post)? "Save" : "Submit"}}</button>
 </div>

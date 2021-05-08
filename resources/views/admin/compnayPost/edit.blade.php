@@ -31,8 +31,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('company.index')}}">Company</a></li>
-                    <li class="breadcrumb-item active">Create Company</li>
+                    <li class="breadcrumb-item active"><a href="{{route('companyInternshipPost.index')}}">Internship Posts</a></li>
+                    <li class="breadcrumb-item active">Create Internship Posts</li>
                 </ol>
 
             </div><!-- /.col -->
@@ -46,9 +46,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card card-body">
-                <form action="{{route('company.update',$company->id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('companyInternshipPost.update',$post->id)}}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
-                    @include('admin.company.form')
+                    @include('admin.compnayPost.form')
                 </form>
 
             </div>

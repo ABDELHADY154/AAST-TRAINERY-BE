@@ -46,9 +46,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card card-body">
-                <form action="{{route('companyInternshipPost.store')}}" method="POST" enctype="multipart/form-data">
-                    @include('admin.compnayPost.form')
-                </form>
+                {{-- <form action="{{route('companyInternshipPost.store')}}" method="POST" enctype="multipart/form-data">
+                @include('admin.compnayPost.form')
+                </form> --}}
+                @livewire('company-post-create-form')
 
             </div>
         </div>
