@@ -46,10 +46,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card card-body">
-                <form action="{{route('companyInternshipPost.update',$post->id)}}" method="POST" enctype="multipart/form-data">
-                    @method('PUT')
-                    @include('admin.compnayPost.form')
-                </form>
+                {{-- <form action="{{route('companyInternshipPost.update',$post->id)}}" method="POST" enctype="multipart/form-data">
+                @method('PUT')
+                @include('admin.compnayPost.form')
+                </form> --}}
+                @livewire('company-post-edit-form',['model'=>$intern])
 
             </div>
         </div>
