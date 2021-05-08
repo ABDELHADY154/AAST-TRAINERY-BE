@@ -25,37 +25,37 @@ class CompanyInternshipPostController extends Controller
         return view('admin.compnayPost.create', ['companies' => $companies, 'departments' => $departments]);
     }
 
-    public function store(CompanyInternshipPostRequest $request)
-    {
+    // public function store(CompanyInternshipPostRequest $request)
+    // {
 
-        $intern =  InternshipPost::create([
-            'company_id' => $request->company_id,
-            'internship_title' => $request->internship_title,
-            'gender' => $request->gender,
-            'type' => $request->type,
-            'salary' => $request->salary,
-            'application_deadline' => $request->application_deadline,
-            'published_on' => now(),
-            'desc' => $request->desc,
-            'location' => $request->location,
-            'location_url' => $request->location_url,
-            'vacancy' => $request->vacancy,
-            'post_type' => 'companyPost'
-        ]);
+    //     $intern =  InternshipPost::create([
+    //         'company_id' => $request->company_id,
+    //         'internship_title' => $request->internship_title,
+    //         'gender' => $request->gender,
+    //         'type' => $request->type,
+    //         'salary' => $request->salary,
+    //         'application_deadline' => $request->application_deadline,
+    //         'published_on' => now(),
+    //         'desc' => $request->desc,
+    //         'location' => $request->location,
+    //         'location_url' => $request->location_url,
+    //         'vacancy' => $request->vacancy,
+    //         'post_type' => 'companyPost'
+    //     ]);
 
-        foreach ($request->reqs as $req) {
-            $intern->internshipReqs()->create(['req' => $req, 'internship_post_id' => $intern->id]);
-        }
-        $deps = [];
-        foreach ($request->deps as  $dep) {
-            $deps[] = [
-                'internship_post_id' => $intern->id,
-                'student_department_id' => $dep
-            ];
-        }
-        $intern->internDepartments()->attach($deps);
-        return view('admin.compnayPost.show', ['intern' => $intern]);
-    }
+    //     foreach ($request->reqs as $req) {
+    //         $intern->internshipReqs()->create(['req' => $req, 'internship_post_id' => $intern->id]);
+    //     }
+    //     $deps = [];
+    //     foreach ($request->deps as  $dep) {
+    //         $deps[] = [
+    //             'internship_post_id' => $intern->id,
+    //             'student_department_id' => $dep
+    //         ];
+    //     }
+    //     $intern->internDepartments()->attach($deps);
+    //     return view('admin.compnayPost.show', ['intern' => $intern]);
+    // }
 
     public function show($id)
     {
@@ -127,9 +127,7 @@ class CompanyInternshipPostController extends Controller
     public function edit($id)
     {
         $post = InternshipPost::find($id);
-        $companies = Company::all();
-        $departments = StudentDepartment::all();
-        return view('admin.compnayPost.edit', ['post' => $post, 'companies' => $companies, 'departments' => $departments]);
+        return view('admin.compnayPost.edit', ['intern' => $post]);
     }
 
     /**
