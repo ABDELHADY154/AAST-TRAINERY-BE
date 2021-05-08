@@ -117,4 +117,29 @@ class CompanyInternshipPostController extends Controller
             return redirect(route('companyInternshipPost.index'));
         }
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $post = InternshipPost::find($id);
+        $companies = Company::all();
+        $departments = StudentDepartment::all();
+        return view('admin.compnayPost.edit', ['post' => $post, 'companies' => $companies, 'departments' => $departments]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+    }
 }
