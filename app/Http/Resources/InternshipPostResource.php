@@ -32,17 +32,36 @@ class InternshipPostResource extends JsonResource
         $post = InternshipPost::where('id', $this->id)->first();
         $savedStatus = $student->hasFavorited($post);
         $appliedStatus = false;
+        // $applicationStatus = false;
+        // $accomplishedStatus = false;
+        // foreach ($post->appliedStudents as $stu) {
+        //     if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
+        //         $appliedStatus = true;
+        //         if ($stu->pivot->application_status == "accepted") {
+        //             $applicationStatus = true;
+        //         }
+        //         if ($stu->pivot->application_status == "achieved") {
+        //             $accomplishedStatus = true;
+        //         }
+        //     }
+        // }
         $applicationStatus = false;
         $accomplishedStatus = false;
         foreach ($post->appliedStudents as $stu) {
             if ($stu->pivot->student_id == $student->id && $stu->pivot->internship_post_id == $post->id) {
-                $appliedStatus = true;
+                $applicationStatus = "applied";
                 if ($stu->pivot->application_status == "accepted") {
-                    $applicationStatus = true;
+                    $applicationStatus = "accepted";
                 }
                 if ($stu->pivot->application_status == "achieved") {
-                    $accomplishedStatus = true;
+                    $applicationStatus = "achieved";
                 }
+            }
+        }
+        $reviewStatus = false;
+        foreach ($post->studentReviews as $review) {
+            if ($review->pivot->student_id == $student->id && $review->pivot->internship_post_id == $post->id) {
+                $reviewStatus = true;
             }
         }
 
@@ -66,9 +85,11 @@ class InternshipPostResource extends JsonResource
             'departments' => StudentDepartmentResource::collection($this->internDepartments)->resolve(),
             'tags' => StudentInterestResource::collection($this->studentInterests)->resolve(),
             'saved' => $savedStatus,
-            'applied' => $appliedStatus,
-            'accepted' => $applicationStatus,
-            'accomplished' => $accomplishedStatus
+            // 'applied' => $appliedStatus,
+            // 'accepted' => $applicationStatus,
+            // 'accomplished' => $accomplishedStatus
+            'status' => $applicationStatus,
+            'reviewed' => $reviewStatus
         ];
     }
 }
