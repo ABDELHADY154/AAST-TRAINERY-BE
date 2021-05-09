@@ -46,10 +46,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card card-body">
-                <form action="{{route('trainingAdvisorPost.store')}}" method="POST" enctype="multipart/form-data">
-                    @include('admin.advisorPost.form')
-                </form>
-
+                {{-- <form action="{{route('trainingAdvisorPost.store')}}" method="POST" enctype="multipart/form-data">
+                @include('admin.advisorPost.form')
+                </form> --}}
+                @livewire('advisor-post-create-form')
             </div>
         </div>
         <!-- /.row -->

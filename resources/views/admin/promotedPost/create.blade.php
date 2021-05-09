@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create Company')
+@section('title', 'Create Promoted Post')
 
 @section('content')
 
@@ -25,14 +25,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 d-flex">
-                <h1 class="m-0 text-dark">Company</h1>
+                <h1 class="m-0 text-dark">Promoted Internship Posts</h1>
 
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('trainingAdvisorPost.index')}}">Internship Posts</a></li>
-                    <li class="breadcrumb-item active">Create Internship Posts</li>
+                    <li class="breadcrumb-item active"><a href="{{route('promotedPost.index')}}">Internship Posts</a></li>
+                    <li class="breadcrumb-item active">Create Promoted Internship Posts</li>
                 </ol>
 
             </div><!-- /.col -->
@@ -46,11 +46,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card card-body">
-                {{-- <form action="{{route('company.update',$company->id)}}" method="POST" enctype="multipart/form-data">
-                @method('PUT')
-                @include('admin.company.form')
+                {{-- <form action="{{route('companyInternshipPost.store')}}" method="POST" enctype="multipart/form-data">
+                @include('admin.compnayPost.form')
                 </form> --}}
-                @livewire('advisor-post-edit-form',['model'=>$intern])
+                @livewire('promoted-post-create-form')
 
             </div>
         </div>

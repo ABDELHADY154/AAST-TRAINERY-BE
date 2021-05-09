@@ -24,9 +24,9 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href=" #" class="nav-link ">
-                         <i class="fas fa-users mr-2 ml-1"></i>
+                 <li class="nav-item {{ Route::currentRouteName() == 'company.index' || Route::currentRouteName() == 'trainingAdvisor.index' || Route::currentRouteName() == 'student.index'? 'menu-open' : '' }}">
+                     <a href=" #" class="nav-link">
+                         <i class="fas fa-users mr-2"></i>
                          <p>
                              Users
                              <i class="right fas fa-angle-left"></i>
@@ -55,9 +55,9 @@
                      </ul>
                  </li>
 
-                 <li class="nav-item">
+                 <li class="nav-item {{ Route::currentRouteName() == 'companyInternshipPost.index' || Route::currentRouteName() == 'trainingAdvisorPost.index' || Route::currentRouteName() == 'promotedPost.index'? 'menu-open' : '' }}">
                      <a href=" #" class="nav-link ">
-                         <i class="fas fa-stream mr-2 ml-1"></i>
+                         <i class="fas fa-stream mr-2"></i>
                          <p>
                              Internship Posts
                              <i class="right fas fa-angle-left"></i>
@@ -65,15 +65,21 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href="{{route('companyInternshipPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'company.index'? 'active' : '' }}">
+                             <a href="{{route('companyInternshipPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'companyInternshipPost.index'? 'active' : '' }}">
                                  <i class="fas fa-building mr-2"></i>
                                  <p>Company Posts</p>
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{route('trainingAdvisorPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'company.index'? 'active' : '' }}">
+                             <a href="{{route('trainingAdvisorPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'trainingAdvisorPost.index'? 'active' : '' }}">
                                  <i class="far fa-file-alt mr-2"></i>
                                  <p>Advisor Posts</p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('promotedPost.index')}}" class="nav-link {{ Route::currentRouteName() == 'promotedPost.index'? 'active' : '' }}">
+                                 <i class="fas fa-location-arrow mr-2"></i>
+                                 <p>Promoted Posts</p>
                              </a>
                          </li>
                      </ul>

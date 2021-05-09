@@ -9,7 +9,7 @@ use Kdion4891\LaravelLivewireForms\ArrayField;
 use Kdion4891\LaravelLivewireForms\Field;
 use Kdion4891\LaravelLivewireForms\FormComponent;
 
-class companyPostCreateForm extends FormComponent
+class PromotedPostCreateForm extends FormComponent
 {
     public function __construct()
     {
@@ -56,7 +56,7 @@ class companyPostCreateForm extends FormComponent
             'location' => $this->form_data['location'],
             'location_url' => $this->form_data['location_url'],
             'vacancy' => $this->form_data['vacancy'],
-            'post_type' => 'companyPost'
+            'post_type' => 'promotedPost'
         ]);
         foreach ($this->form_data['reqs'] as $req) {
             $intern->internshipReqs()->create(['req' => $req['req'], 'internship_post_id' => $intern->id]);
@@ -75,11 +75,11 @@ class companyPostCreateForm extends FormComponent
 
     public function saveAndStayResponse()
     {
-        return  redirect()->route('companyInternshipPost.show', $this->model);
+        return  redirect()->route('promotedPost.show', $this->model);
     }
 
     public function saveAndGoBackResponse()
     {
-        return redirect()->route('companyInternshipPost.index');
+        return redirect()->route('promotedPost.index');
     }
 }

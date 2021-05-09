@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Training Advisor')
+@section('title', 'Companies')
 
 @section('css')
 <link rel="stylesheet" href="/admin-style/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -12,15 +12,15 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 d-flex">
-                <h1 class="m-0 text-dark">Advisor Internship Posts</h1>
-                <a href="{{route('trainingAdvisorPost.create')}}" class="btn btn-dark ml-3">
+                <h1 class="m-0 text-dark">Promoted Internship Posts</h1>
+                <a href="{{route('promotedPost.create')}}" class="btn btn-dark ml-3">
                     <i class="fas fa-plus"></i>
                 </a>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Advisor Internship Posts</li>
+                    <li class="breadcrumb-item active">Promoted Internship Posts</li>
 
                 </ol>
 
@@ -69,9 +69,9 @@
                                 {{$post->application_deadline}}
                             </td>
                             <td class="text-center">
-                                <a href="{{route('trainingAdvisorPost.show',$post->id)}}" class="btn btn-primary">View</a>
-                                <a href="{{route('trainingAdvisorPost.edit',$post->id)}}" class="btn btn-success">Edit</a>
-                                <form method="POST" action="{{route('trainingAdvisorPost.destroy',$post->id)}}" class="d-inline">
+                                <a href="{{route('promotedPost.show',$post->id)}}" class="btn btn-primary">View</a>
+                                <a href="{{route('promotedPost.edit',$post->id)}}" class="btn btn-success">Edit</a>
+                                <form method="POST" action="{{route('promotedPost.destroy',$post->id)}}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>

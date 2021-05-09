@@ -93,7 +93,8 @@ class TrainingAdvisorPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = InternshipPost::find($id);
+        return view('admin.advisorPost.edit', ['intern' => $post]);
     }
 
     /**
