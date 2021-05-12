@@ -14,7 +14,8 @@ class CoachController extends Controller
      */
     public function index()
     {
-        //
+        $coaches = Coach::all();
+        return view('admin.coach.index', ['coaches' => $coaches]);
     }
 
     /**
@@ -24,19 +25,9 @@ class CoachController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.coach.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -46,7 +37,7 @@ class CoachController extends Controller
      */
     public function show(Coach $coach)
     {
-        //
+        return view('admin.coach.show', ['coach' => $coach]);
     }
 
     /**

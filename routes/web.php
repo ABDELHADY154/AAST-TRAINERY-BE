@@ -35,9 +35,11 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/company', 'CompanyController');
     Route::resource('/trainingAdvisor', 'TrainingAdvisorController');
+    Route::resource('/coach', 'CoachController')->except(['store', 'update']);
     Route::resource('/trainingAdvisorPost', 'TrainingAdvisorPostsController');
     Route::resource('/companyInternshipPost', 'CompanyInternshipPostController');
     Route::resource('/promotedPost', 'PromotedPostsController');
+    Route::resource('/adsPost', 'AdsPostController')->except(["store", "update", "edit"]);
     Route::resource('/student', 'StudentController');
     Route::get('/acceptStudent', 'CompanyInternshipPostController@acceptStudent')->name('accept.student');
     Route::get('/rejectStudent', 'CompanyInternshipPostController@rejectStudent')->name('reject.student');

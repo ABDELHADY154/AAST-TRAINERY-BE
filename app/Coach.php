@@ -10,7 +10,7 @@ class Coach extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'bio', 'job_title', 'fb_url', 'in_url', 'y_url', 'insta_url'
+        'name', 'bio', 'job_title', 'fb_url', 'in_url', 'y_url', 'insta_url', 'image'
     ];
 
     public function sessions()
