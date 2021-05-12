@@ -25,7 +25,8 @@ class InternshipPost extends Model
         'ended',
         'post_type',
         'location_url',
-        'training_advisor_id'
+        'training_advisor_id',
+        'sponser_image'
     ];
 
 
