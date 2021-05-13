@@ -24,6 +24,6 @@ class Session extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'student_sessions')->withPivot('student_id', 'session_id', 'booking_date');
+        return $this->belongsToMany(Student::class, 'student_sessions')->withPivot('student_id', 'session_id', 'booking_date', 'book_status');
     }
 }

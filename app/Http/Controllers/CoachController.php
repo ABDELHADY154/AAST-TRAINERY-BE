@@ -48,20 +48,9 @@ class CoachController extends Controller
      */
     public function edit(Coach $coach)
     {
-        //
+        return view('admin.coach.edit', ['coach' => $coach]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Coach  $coach
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Coach $coach)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -71,6 +60,7 @@ class CoachController extends Controller
      */
     public function destroy(Coach $coach)
     {
-        //
+        $coach->delete();
+        return redirect(route('coach.index'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Coach')
+@section('title', 'Sessions')
 
 @section('css')
 <link rel="stylesheet" href="/admin-style/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -12,15 +12,15 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 d-flex">
-                <h1 class="m-0 text-dark">Coach</h1>
-                <a href="{{route('coach.create')}}" class="btn btn-dark ml-3">
+                <h1 class="m-0 text-dark">Sessions</h1>
+                <a href="{{route('session.create')}}" class="btn btn-dark ml-3">
                     <i class="fas fa-plus"></i>
                 </a>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Coach</li>
+                    <li class="breadcrumb-item active">Sessions</li>
 
                 </ol>
 
@@ -40,41 +40,31 @@
                     <thead>
                         <tr class="text-center">
                             <th>#ID</th>
-                            <th>Name</th>
-                            <th>Job Title</th>
-                            <th>URL</th>
+                            <th>Title</th>
+                            <th>Coach</th>
+                            <th>Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($coaches as $coach)
+                        @foreach ($sessions as $post)
                         <tr>
-                            <td>{{$coach->id}}</td>
-                            <td>
-                                {{$coach->name}}
+                            <td>{{$post->id}}</td>
+                            <td style="width: 20%">
+                                {{$post->title}}
                             </td>
                             <td>
-                                {{$coach->job_title}}
+                                {{$post->coach->name}}
+                            </td>
+
+                            <td>
+                                {{$post->price}} EGP
                             </td>
 
                             <td class="text-center">
-                                @if ($coach->insta_url)
-                                <a href="{{$coach->insta_url}}" target="_blank"><i class="fab fa-instagram-square fa-3x"></i></a>
-                                @endif
-                                @if ($coach->fb_url)
-                                <a href="{{$coach->fb_url}}" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
-                                @endif
-                                @if ($coach->in_url)
-                                <a href="{{$coach->in_url}}" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
-                                @endif
-                                @if ($coach->y_url)
-                                <a href="{{$coach->y_url}}" target="_blank"><i class="fab fa-youtube fa-3x"></i></a>
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                <a href="{{route('coach.show',$coach->id)}}" class="btn btn-primary">View</a>
-                                <a href="{{route('coach.edit',$coach->id)}}" class="btn btn-success">Edit</a>
-                                <form method="POST" action="{{route('coach.destroy',$coach->id)}}" class="d-inline">
+                                <a href="{{route('session.show',$post->id)}}" class="btn btn-primary">View</a>
+                                <a href="{{route('session.edit',$post->id)}}" class="btn btn-success">Edit</a>
+                                <form method="POST" action="{{route('session.destroy',$post->id)}}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -111,7 +101,7 @@
             "responsive": true
             , "lengthChange": true
             , "autoWidth": false
-            , "buttons": ["excel", "pdf", "print"] //, "colvis"]
+            , "buttons": ["excel", "pdf", "print"] //, "colvis"
 
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 

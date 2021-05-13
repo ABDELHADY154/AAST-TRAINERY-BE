@@ -48,24 +48,27 @@
                     </div> --}}
                     <!-- /.card-header -->
                     <div class="card-body">
+                        @if ($coach->fb_url)
                         <p class="text-muted">
                             <a href="{{$coach->fb_url}}" target="_blank"><strong><i class="fab fa-facebook-square"></i> Facebook</strong></a>
                         </p>
-                        <hr>
+                        @endif
+                        @if ($coach->insta_url)
                         <p class="text-muted">
                             <a href="{{$coach->insta_url}}" target="_blank"><strong><i class="fab fa-instagram-square"></i> Instagram</strong></a>
                         </p>
-                        <hr>
+                        @endif
+                        @if ($coach->in_url)
 
                         <p class="text-muted">
                             <a href="{{$coach->in_url}}" target="_blank"><strong><i class="fab fa-linkedin"></i> Linkedin</strong></a>
                         </p>
-                        <hr>
+                        @endif
+                        @if ($coach->y_url)
                         <p class="text-muted">
                             <a href="{{$coach->y_url}}" target="_blank"><strong><i class="fab fa-youtube"></i> Youtube</strong></a>
                         </p>
-
-
+                        @endif
                     </div>
                     <!-- /.card-body -->
                 </div>

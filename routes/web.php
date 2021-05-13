@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Sopamo\LaravelFilepond\Http\Controllers\FilepondController;
@@ -38,10 +39,14 @@ Route::group([
     Route::resource('/coach', 'CoachController')->except(['store', 'update']);
     Route::resource('/trainingAdvisorPost', 'TrainingAdvisorPostsController');
     Route::resource('/companyInternshipPost', 'CompanyInternshipPostController');
+    Route::resource('/session', 'SessionController')->except(['store', 'update']);
     Route::resource('/promotedPost', 'PromotedPostsController');
     Route::resource('/adsPost', 'AdsPostController')->except(["store", "update", "edit"]);
     Route::resource('/student', 'StudentController');
     Route::get('/acceptStudent', 'CompanyInternshipPostController@acceptStudent')->name('accept.student');
     Route::get('/rejectStudent', 'CompanyInternshipPostController@rejectStudent')->name('reject.student');
+    Route::get('/acceptStudentSession', 'SessionController@acceptStudent')->name('accept.student.session');
+    Route::get('/rejectStudentSession', 'SessionController@rejectStudent')->name('reject.student.session');
+    Route::get('/internAchievedSession', 'SessionController@sessionAchieved')->name('student.achieved.intern.session');
     Route::get('/internAchieved', 'CompanyInternshipPostController@internAchieved')->name('student.achieved.intern');
 });

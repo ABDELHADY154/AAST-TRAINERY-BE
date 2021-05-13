@@ -96,6 +96,24 @@
                          </li>
                      </ul>
                  </li>
+                 <li class="nav-item {{ Route::currentRouteName() == 'session.index' ? 'menu-open' : '' }}">
+                     <a href=" #" class="nav-link ">
+                         <i class="fas fa-chalkboard-teacher mr-2"></i>
+                         <p>
+                             Career Coaching
+                             <i class="right fas fa-angle-left"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{route('session.index')}}" class="nav-link {{ Route::currentRouteName() == 'session.index'? 'active' : '' }}">
+                                 <i class="fas fa-chalkboard mr-2"></i>
+                                 <p>Sessions</p>
+                             </a>
+                         </li>
+
+                     </ul>
+                 </li>
              </ul>
          </nav>
 
