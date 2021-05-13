@@ -19,6 +19,7 @@ class CreateStudentSessionsTable extends Migration
             $table->foreign('session_id')->references('id')->on('sessions');
             $table->foreign('student_id')->references('id')->on('students');
             $table->string('booking_date');
+            $table->string('book_status')->default('booked');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Edit Coach')
+@section('title', 'Create Session')
 
 @section('content')
 
@@ -10,14 +10,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 d-flex">
-                <h1 class="m-0 text-dark">Coach</h1>
+                <h1 class="m-0 text-dark">Session</h1>
 
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('coach.index')}}">Coach</a></li>
-                    <li class="breadcrumb-item active">Edit Coach</li>
+                    <li class="breadcrumb-item active"><a href="{{route('session.index')}}">Session</a></li>
+                    <li class="breadcrumb-item active">Create Session</li>
                 </ol>
 
             </div><!-- /.col -->
@@ -31,7 +31,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card card-body">
-                @livewire('coach-edit-form',['model'=>$coach])
+                {{-- <form action="{{route('companyInternshipPost.store')}}" method="POST" enctype="multipart/form-data">
+                @include('admin.compnayPost.form')
+                </form> --}}
+                @livewire('session-create-form')
+
             </div>
         </div>
         <!-- /.row -->

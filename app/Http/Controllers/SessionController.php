@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Session;
+use App\Student;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
@@ -14,7 +15,8 @@ class SessionController extends Controller
      */
     public function index()
     {
-        //
+        $sessions = Session::all();
+        return view('admin.sessions.index', ['sessions' => $sessions]);
     }
 
     /**
@@ -24,19 +26,9 @@ class SessionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.sessions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -46,7 +38,7 @@ class SessionController extends Controller
      */
     public function show(Session $session)
     {
-        //
+        return view('admin.sessions.show', ['session' => $session]);
     }
 
     /**
@@ -57,20 +49,10 @@ class SessionController extends Controller
      */
     public function edit(Session $session)
     {
-        //
+        return view('admin.sessions.edit', ['session' => $session]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Session  $session
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Session $session)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -80,6 +62,53 @@ class SessionController extends Controller
      */
     public function destroy(Session $session)
     {
-        //
+        $session->delete();
+        return redirect(route('session.index'));
+    }
+    public function acceptStudent()
+    {
+        $student = Student::where('id', $_GET['s'])->first();
+        if ($student) {
+            foreach ($student->sessions as $application) {
+                if ($application->pivot->student_id == $student->id && $application->pivot->session_id == $_GET['p']) {
+                    $student->sessions()->updateExistingPivot($_GET['p'], ['book_status' => "accepted"]);
+                    $student->save();
+                    break;
+                }
+            }
+            return redirect(route('session.show', $_GET['p']));
+        }
+        return view('admin.sessions.index');
+    }
+
+    public function rejectStudent()
+    {
+        $student = Student::where('id', $_GET['s'])->first();
+        if ($student) {
+            foreach ($student->sessions as $application) {
+                if ($application->pivot->student_id == $student->id && $application->pivot->session_id == $_GET['p']) {
+                    $student->sessions()->updateExistingPivot($_GET['p'], ['book_status' => "rejected"]);
+                    $student->save();
+                    break;
+                }
+            }
+            return redirect(route('session.show', $_GET['p']));
+        }
+        return view('admin.sessions.index');
+    }
+    public function sessionAchieved()
+    {
+        $student = Student::where('id', $_GET['s'])->first();
+        if ($student) {
+            foreach ($student->sessions as $application) {
+                if ($application->pivot->student_id == $student->id && $application->pivot->session_id == $_GET['p']) {
+                    $student->sessions()->updateExistingPivot($_GET['p'], ['book_status' => "achieved"]);
+                    $student->save();
+                    break;
+                }
+            }
+            return redirect(route('session.show', $_GET['p']));
+        }
+        return view('admin.sessions.index');
     }
 }
