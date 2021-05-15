@@ -114,6 +114,23 @@
 
                      </ul>
                  </li>
+                 <li class="nav-item {{ Route::currentRouteName() == 'internshipReview.index' ? 'menu-open' : '' }}">
+                     <a href=" #" class="nav-link ">
+                         <i class="far fa-comment-alt mr-2"></i>
+                         <p>
+                             Student Reviews
+                             <i class="right fas fa-angle-left"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{route('internshipReview.index')}}" class="nav-link {{ Route::currentRouteName() == 'internshipReview.index'? 'active' : '' }}">
+                                 <i class="fas fa-ellipsis-v mr-2"></i>
+                                 <p>Internship Reviews</p>
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
              </ul>
          </nav>
 
