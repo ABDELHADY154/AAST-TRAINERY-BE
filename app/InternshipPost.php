@@ -73,7 +73,8 @@ class InternshipPost extends Model
             'student_id',
             'internship_post_id',
             'comment',
-            'rate'
+            'rate',
+            'id'
         );
     }
 }

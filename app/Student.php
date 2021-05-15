@@ -75,7 +75,8 @@ class Student extends User
             'student_id',
             'internship_post_id',
             'comment',
-            'rate'
+            'rate',
+            'id'
         );
     }
 }
