@@ -26,4 +26,14 @@ class Session extends Model
     {
         return $this->belongsToMany(Student::class, 'student_sessions')->withPivot('student_id', 'session_id', 'booking_date', 'book_status');
     }
+    public function studentReviews()
+    {
+        return $this->belongsToMany(Student::class, 'student_session_reviews')->withPivot(
+            'student_id',
+            'session_id',
+            'comment',
+            'rate',
+            'id'
+        );
+    }
 }

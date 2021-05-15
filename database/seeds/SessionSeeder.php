@@ -5,6 +5,7 @@ use App\Session;
 use App\Student;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Generator as Faker;
 
 class SessionSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class SessionSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('sessions')->truncate();
@@ -55,6 +56,14 @@ class SessionSeeder extends Seeder
                 'booking_date' => now()->toDateTime(),
                 'student_id' => rand(1, Student::all()->count()),
                 'session_id' => rand(1, Session::all()->count()),
+            ]);
+        }
+        for ($i = 0; $i < 20; $i++) {
+            DB::table('student_session_reviews')->insert([
+                'student_id' => rand(1, Student::all()->count()),
+                'session_id' => rand(1, Session::all()->count()),
+                'comment' => $faker->text,
+                'rate' => rand(1, 5)
             ]);
         }
         // factory(Session::class, 5)->create();
