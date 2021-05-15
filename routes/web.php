@@ -44,6 +44,7 @@ Route::group([
     Route::resource('/adsPost', 'AdsPostController')->except(["store", "update", "edit"]);
     Route::resource('/student', 'StudentController');
     Route::resource('/internshipReview', 'InternshipPostReviewController')->except(['store', 'update']);
+    Route::resource('/sessionReview', 'SessionReviewController')->except(['store', 'update']);
     Route::get('/acceptStudent', 'CompanyInternshipPostController@acceptStudent')->name('accept.student');
     Route::get('/rejectStudent', 'CompanyInternshipPostController@rejectStudent')->name('reject.student');
     Route::get('/acceptStudentSession', 'SessionController@acceptStudent')->name('accept.student.session');
