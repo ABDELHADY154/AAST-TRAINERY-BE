@@ -89,4 +89,8 @@ class Student extends User
             'id'
         );
     }
+    public function notifications()
+    {
+        return $this->hasMany(StudentNotification::class);
+    }
 }

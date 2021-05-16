@@ -72,6 +72,14 @@ class SessionController extends Controller
             foreach ($student->sessions as $application) {
                 if ($application->pivot->student_id == $student->id && $application->pivot->session_id == $_GET['p']) {
                     $student->sessions()->updateExistingPivot($_GET['p'], ['book_status' => "accepted"]);
+                    $student->notifications()->firstOrCreate([
+                        'student_id' => $student->id,
+                        'session_id' => $application->pivot->session_id,
+                        'category' => "success",
+                        'message' => "Your session has been booked successfully",
+                        'type' => "session",
+                        'seen' => false
+                    ]);
                     $student->save();
                     break;
                 }
@@ -88,6 +96,14 @@ class SessionController extends Controller
             foreach ($student->sessions as $application) {
                 if ($application->pivot->student_id == $student->id && $application->pivot->session_id == $_GET['p']) {
                     $student->sessions()->updateExistingPivot($_GET['p'], ['book_status' => "rejected"]);
+                    $student->notifications()->firstOrCreate([
+                        'student_id' => $student->id,
+                        'session_id' => $application->pivot->session_id,
+                        'category' => "rejected",
+                        'message' => "Unfortunately, your session booking were rejected",
+                        'type' => "session",
+                        'seen' => false
+                    ]);
                     $student->save();
                     break;
                 }
@@ -103,6 +119,14 @@ class SessionController extends Controller
             foreach ($student->sessions as $application) {
                 if ($application->pivot->student_id == $student->id && $application->pivot->session_id == $_GET['p']) {
                     $student->sessions()->updateExistingPivot($_GET['p'], ['book_status' => "achieved"]);
+                    $student->notifications()->firstOrCreate([
+                        'student_id' => $student->id,
+                        'session_id' => $application->pivot->session_id,
+                        'category' => "important",
+                        'message' => "Review your finished session",
+                        'type' => "session",
+                        'seen' => false
+                    ]);
                     $student->save();
                     break;
                 }

@@ -77,4 +77,9 @@ class InternshipPost extends Model
             'id'
         );
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(StudentNotification::class);
+    }
 }

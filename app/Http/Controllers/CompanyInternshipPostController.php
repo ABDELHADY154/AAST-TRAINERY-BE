@@ -77,6 +77,14 @@ class CompanyInternshipPostController extends Controller
         foreach ($student->applications as $application) {
             if ($application->pivot->student_id == $student->id && $application->pivot->internship_post_id == $_GET['p']) {
                 $student->applications()->updateExistingPivot($_GET['p'], ['application_status' => "accepted"]);
+                $student->notifications()->firstOrCreate([
+                    'student_id' => $student->id,
+                    'internship_post_id' => $application->pivot->internship_post_id,
+                    'category' => "success",
+                    'message' => "Congratulations you got accepted in the applied internship",
+                    'type' => "internship",
+                    'seen' => false
+                ]);
                 $student->save();
                 break;
             }
@@ -91,6 +99,14 @@ class CompanyInternshipPostController extends Controller
             foreach ($student->applications as $application) {
                 if ($application->pivot->student_id == $student->id && $application->pivot->internship_post_id == $_GET['p']) {
                     $student->applications()->updateExistingPivot($_GET['p'], ['application_status' => "rejected"]);
+                    $student->notifications()->firstOrCreate([
+                        'student_id' => $student->id,
+                        'internship_post_id' => $application->pivot->internship_post_id,
+                        'category' => "rejected",
+                        'message' => "Unfortunately, you were rejected in the applied internship",
+                        'type' => "internship",
+                        'seen' => false
+                    ]);
                     $student->save();
                     break;
                 }
@@ -108,6 +124,14 @@ class CompanyInternshipPostController extends Controller
             foreach ($student->applications as $application) {
                 if ($application->pivot->student_id == $student->id && $application->pivot->internship_post_id == $_GET['p']) {
                     $student->applications()->updateExistingPivot($_GET['p'], ['application_status' => "achieved"]);
+                    $student->notifications()->firstOrCreate([
+                        'student_id' => $student->id,
+                        'internship_post_id' => $application->pivot->internship_post_id,
+                        'category' => "important",
+                        'message' => "Review your finished intenship",
+                        'type' => "internship",
+                        'seen' => false
+                    ]);
                     $student->save();
                     break;
                 }
