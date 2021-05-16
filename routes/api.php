@@ -61,6 +61,7 @@ Route::group([
             Route::post('/sessionReview/{sessionId}', 'API\V1\StudentReviewsController@reviewSession')->name('student.review.session');
             Route::get('/sessionReview/{sessionId}', 'API\V1\StudentReviewsController@getAllSessionReviews')->name('get.student.session.reviews');
             Route::get('/careerCoachingReviews', 'API\V1\StudentReviewsController@getAllCareerCoachingReviews')->name('get.student.careerCoaching.reviews');
+            Route::get('/notifications', 'API\V1\StudentNotificationController@index')->name('get.student.notifications');
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');
@@ -117,6 +118,8 @@ Route::group([
         Route::post('/sessionReview/{sessionId}', 'API\V1\StudentReviewsController@reviewSession')->name('student.review.session');
         Route::get('/sessionReview/{sessionId}', 'API\V1\StudentReviewsController@getAllSessionReviews')->name('get.student.session.reviews');
         Route::get('/careerCoachingReviews', 'API\V1\StudentReviewsController@getAllCareerCoachingReviews')->name('get.student.careerCoaching.reviews');
+        Route::get('/notifications', 'API\V1\StudentNotificationController@index')->name('get.student.notifications');
+
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
             Route::post('/image', 'API\V1\Mobile\StudentProfileController@updateImage')->name('student.update.profile.image');

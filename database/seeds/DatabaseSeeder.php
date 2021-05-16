@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentInternshipPostApplySeeder::class);
         $this->call(CoachSeeder::class);
         $this->call(SessionSeeder::class);
+        $this->call(StudentNotificationSeeder::class);
     }
 }
