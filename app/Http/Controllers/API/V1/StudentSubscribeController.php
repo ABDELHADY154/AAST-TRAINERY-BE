@@ -10,7 +10,70 @@ use Illuminate\Http\Request;
 class StudentSubscribeController extends Controller
 {
     use CoreJsonResponse;
-
+    /**
+     * @OA\Get(
+     *      path="/W/student/subscribe",
+     *      operationId="WsubscribeStudent",
+     *      description="student subscribe",
+     *      summary="student subscribe",
+     *      tags={"W-Account settings"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    /**
+     * @OA\Get(
+     *      path="/A/student/subscribe",
+     *      operationId="AsubscribeStudent",
+     *      description="student subscribe",
+     *      summary="student subscribe",
+     *      tags={"A-Account settings"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
     public function subscribe()
     {
         $student = Student::where('id', auth('api')->id())->first();
@@ -28,7 +91,70 @@ class StudentSubscribeController extends Controller
             return $this->notFound(['student not found']);
         }
     }
-
+    /**
+     * @OA\Get(
+     *      path="/W/student/unsubscribe",
+     *      operationId="WunSubscribeStudent",
+     *      description="student unsubscribe",
+     *      summary="student unsubscribe",
+     *      tags={"W-Account settings"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
+    /**
+     * @OA\Get(
+     *      path="/A/student/unsubscribe",
+     *      operationId="AunSubscribeStudent",
+     *      description="student unsubscribe",
+     *      summary="student unsubscribe",
+     *      tags={"A-Account settings"},
+     *     security={
+     *          {"passport": {}},
+     *     },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessOkVirtual")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *           @OA\JsonContent(ref="#/components/schemas/Response401Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(ref="#/components/schemas/Response403Virtual")
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/Response404Virtual")
+     *      )
+     * )
+     */
     public function unSubscribe()
     {
         $student = Student::where('id', auth('api')->id())->first();
