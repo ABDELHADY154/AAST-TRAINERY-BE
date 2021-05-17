@@ -4,7 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Company;
 use App\InternshipPost;
+use App\Mail\subscribeEmail;
+use App\Student;
 use App\StudentDepartment;
+use Illuminate\Support\Facades\Mail;
 use Kdion4891\LaravelLivewireForms\ArrayField;
 use Kdion4891\LaravelLivewireForms\Field;
 use Kdion4891\LaravelLivewireForms\FormComponent;
@@ -75,6 +78,11 @@ class PromotedPostCreateForm extends FormComponent
 
     public function saveAndStayResponse()
     {
+        $students = Student::where("subscribe", true)->get();
+        foreach ($students as $student) {
+            $email = $student->email;
+            Mail::to($email)->send(new subscribeEmail($this->model));
+        }
         return  redirect()->route('promotedPost.show', $this->model);
     }
 
