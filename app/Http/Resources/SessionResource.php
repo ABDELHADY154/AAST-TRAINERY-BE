@@ -34,13 +34,20 @@ class SessionResource extends JsonResource
                 }
             }
         }
+        $reviewStatus = false;
+        foreach ($session->studentReviews as $review) {
+            if ($review->pivot->student_id == $student->id && $review->pivot->session_id == $session->id) {
+                $reviewStatus = true;
+            }
+        }
         return [
             'id' => $this->id,
             'title' => $this->title,
             'desc' => $this->desc,
             'price' => $this->price,
             'image' => asset('storage/images/sessions/' . $this->image),
-            'status' => $booked
+            'status' => $booked,
+            'reviewed' => $reviewStatus
         ];
     }
 }
