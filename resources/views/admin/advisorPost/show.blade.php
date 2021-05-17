@@ -70,9 +70,9 @@
                             <div class="tab-content">
                                 <div class="active tab-pane" id="activity">
                                     <!-- Post -->
-                                    <div class="">
+                                    <div class="row">
 
-                                        <div class="">
+                                        <div class="col">
 
                                             <table class="table table-striped">
                                                 <thead class="">

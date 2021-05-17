@@ -2,550 +2,201 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
-    <!--[if !mso]-->
-    <!-- -->
-    <link href='https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700' rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel="stylesheet">
-    <!--<![endif]-->
-
-    <title>Material Design for Bootstrap</title>
-
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <style type="text/css">
-        body {
-            width: 100%;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-            mso-margin-top-alt: 0px;
-            mso-margin-bottom-alt: 0px;
-            mso-padding-alt: 0px 0px 0px 0px;
+        @media screen {
+            @font-face {
+                font-family: 'Lato';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+            }
+
+            @font-face {
+                font-family: 'Lato';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+            }
+
+            @font-face {
+                font-family: 'Lato';
+                font-style: italic;
+                font-weight: 400;
+                src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+            }
+
+            @font-face {
+                font-family: 'Lato';
+                font-style: italic;
+                font-weight: 700;
+                src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+            }
         }
 
-        p,
-        h1,
-        h2,
-        h3,
-        h4 {
-            margin-top: 0;
-            margin-bottom: 0;
-            padding-top: 0;
-            padding-bottom: 0;
+        /* CLIENT-SPECIFIC STYLES */
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
 
-        span.preheader {
-            display: none;
-            font-size: 1px;
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
         }
 
-        html {
-            width: 100%;
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        /* RESET STYLES */
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
         }
 
         table {
-            font-size: 14px;
-            border: 0;
+            border-collapse: collapse !important;
         }
 
-        /* ----------- responsivity ----------- */
+        body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
 
-        @media only screen and (max-width: 640px) {
+        /* iOS BLUE LINKS */
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
 
-            /*------ top header ------ */
-            .main-header {
-                font-size: 20px !important;
-            }
-
-            .main-section-header {
-                font-size: 28px !important;
-            }
-
-            .show {
-                display: block !important;
-            }
-
-            .hide {
-                display: none !important;
-            }
-
-            .align-center {
-                text-align: center !important;
-            }
-
-            .no-bg {
-                background: none !important;
-            }
-
-            /*----- main image -------*/
-            .main-image img {
-                width: 440px !important;
-                height: auto !important;
-            }
-
-            /* ====== divider ====== */
-            .divider img {
-                width: 440px !important;
-            }
-
-            /*-------- container --------*/
-            .container590 {
-                width: 440px !important;
-            }
-
-            .container580 {
-                width: 400px !important;
-            }
-
-            .main-button {
-                width: 220px !important;
-            }
-
-            /*-------- secions ----------*/
-            .section-img img {
-                width: 320px !important;
-                height: auto !important;
-            }
-
-            .team-img img {
-                width: 100% !important;
-                height: auto !important;
+        /* MOBILE STYLES */
+        @media screen and (max-width:600px) {
+            h1 {
+                font-size: 32px !important;
+                line-height: 32px !important;
             }
         }
 
-        @media only screen and (max-width: 479px) {
-
-            /*------ top header ------ */
-            .main-header {
-                font-size: 18px !important;
-            }
-
-            .main-section-header {
-                font-size: 26px !important;
-            }
-
-            /* ====== divider ====== */
-            .divider img {
-                width: 280px !important;
-            }
-
-            /*-------- container --------*/
-            .container590 {
-                width: 280px !important;
-            }
-
-            .container590 {
-                width: 280px !important;
-            }
-
-            .container580 {
-                width: 260px !important;
-            }
-
-            /*-------- secions ----------*/
-            .section-img img {
-                width: 280px !important;
-                height: auto !important;
-            }
+        /* ANDROID CENTER FIX */
+        div[style*="margin: 16px 0;"] {
+            margin: 0 !important;
         }
 
     </style>
-    <!--[if gte mso 9]><style type=”text/css”>
-        body {
-        font-family: arial, sans-serif!important;
-        }
-        </style>
-    <![endif]-->
 </head>
 
-
-<body class="respond" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-    <!-- pre-header -->
-
-    <!-- pre-header end -->
-    <!-- header -->
-    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
-
+<body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
+    <!-- HIDDEN PREHEADER TEXT -->
+    <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account. </div>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <!-- LOGO -->
         <tr>
-            <td align="center">
-                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
+            <td bgcolor="#FFA73B" align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
+                        <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"> </td>
                     </tr>
-
-                    <tr>
-                        <td align="center">
-
-                            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
-                                <tr>
-                                    <td align="center" height="70" style="height:70px;">
-                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="100" border="0" style="display: block; width: 100px;" src="{{asset('storage/images/AAST-TRAINERY/AAST-TRAINERY-LOGO.png')}}" alt="" /></a>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                    </tr>
-
                 </table>
             </td>
         </tr>
-    </table>
-    <!-- end header -->
-
-    <!-- big image section -->
-
-    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" class="bg_color">
-
         <tr>
-            <td align="center">
-                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
+            <td bgcolor="#FFA73B" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td align="center" style="color: #343434; font-size: 24px; font-family: Quicksand, Calibri, sans-serif; font-weight:700;letter-spacing: 3px; line-height: 35px;" class="main-header">
-                            <!-- section text ======-->
-
-                            <div style="line-height: 35px">
-
-                                AAST<span style="color: #1E4274;">Trainery</span>
-
-                            </div>
+                        <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Welcome!</h1> <img src=" https://img.icons8.com/clouds/100/000000/handshake.png" width="125" height="120" style="display: block; border: 0px;" />
                         </td>
                     </tr>
-
-                    <tr>
-                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="center">
-                            <table border="0" width="40" align="center" cellpadding="0" cellspacing="0" bgcolor="eeeeee">
-                                <tr>
-                                    <td height="2" style="font-size: 2px; line-height: 2px;">&nbsp;</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td height="20" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="left">
-                            {{-- <table border="0" width="590" align="center" cellpadding="0" cellspacing="0" class="container590">
-                                <tr>
-                                    <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
-                                        <!-- section text ======-->
-
-                                        <p style="line-height: 24px; margin-bottom:15px;">
-
-                                            Firstname,
-
-                                        </p>
-                                        <p style="line-height: 24px;margin-bottom:15px;">
-                                            Great news, you will now be the first to see exclusive previews of our latest collections, hear about news from the Abacus!
-                                            community and get the most up to date news in the world of fashion.
-                                        </p>
-                                        <p style="line-height: 24px; margin-bottom:20px;">
-                                            You can access your account at any point using the link below.
-                                        </p>
-                                        <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
-
-                                            <tr>
-                                                <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td align="center" style="color: #ffffff; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 22px; letter-spacing: 2px;">
-                                                    <!-- main section button -->
-
-                                                    <div style="line-height: 22px;">
-                                                        <a href="" style="color: #ffffff; text-decoration: none;">MY ACCOUNT</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-                                            </tr>
-
-                                        </table>
-                                        <p style="line-height: 24px">
-                                            Love,</br>
-                                            The MDB team
-                                        </p>
-
-                                    </td>
-                                </tr>
-                            </table> --}}
-                        </td>
-                    </tr>
-
-
-
-
-
-                </table>
-
-            </td>
-        </tr>
-
-        <tr>
-            <td height="40" style="font-size: 40px; line-height: 40px;">&nbsp;</td>
-        </tr>
-
-    </table>
-
-    <!-- end section -->
-
-
-    <!-- main section -->
-    {{-- <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="2a2e36">
-
-        <tr>
-            <td align="center" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/slide.jpg); background-size: cover; background-position: top center; background-repeat: no-repeat;" background="https://mdbootstrap.com/img/Photos/Others/slide.jpg">
-
-                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
-                    <tr>
-                        <td height="50" style="font-size: 50px; line-height: 50px;">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="center">
-                            <table border="0" width="380" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590">
-
-                                <tr>
-                                    <td align="center">
-                                        <table border="0" align="center" cellpadding="0" cellspacing="0" class="container580">
-                                            <tr>
-                                                <td align="center" style="color: #cccccc; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 26px;">
-                                                    <!-- section text ======-->
-
-                                                    <div style="line-height: 26px">
-
-                                                        The all new AW16 range is out. View an exclusive preview.
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="center">
-                            <table border="0" align="center" width="250" cellpadding="0" cellspacing="0" style="border:2px solid #ffffff;">
-
-                                <tr>
-                                    <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-                                </tr>
-
-                                <tr>
-                                    <td align="center" style="color: #ffffff; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 22px; letter-spacing: 2px;">
-                                        <!-- main section button -->
-
-                                        <div style="line-height: 22px;">
-                                            <a href="" style="color: #fff; text-decoration: none;">VIEW THE COLLECTION</a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-                                </tr>
-
-                            </table>
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td height="50" style="font-size: 50px; line-height: 50px;">&nbsp;</td>
-                    </tr>
-
                 </table>
             </td>
         </tr>
-
-    </table> --}}
-
-    <!-- end section -->
-
-    <!-- contact section -->
-    {{-- <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" class="bg_color">
-
         <tr>
-            <td height="60" style="font-size: 60px; line-height: 60px;">&nbsp;</td>
-        </tr>
-
-        <tr>
-            <td align="center">
-                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590 bg_color">
-
+            <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td align="center">
-                            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590 bg_color">
-
+                        <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">We're excited to have you get started. First, you need to confirm your account. Just press the button below.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#ffffff" align="left">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                    <td>
-                                        <table border="0" width="300" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590">
-
+                                    <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
+                                        <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <!-- logo -->
-                                                <td align="left">
-                                                    <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="80" border="0" style="display: block; width: 80px;" src="https://mdbootstrap.com/img/logo/mdb-email.png" alt="" /></a>
-                                                </td>
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#FFA73B"><a href="#" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;">Confirm Account</a></td>
                                             </tr>
-
-                                            <tr>
-                                                <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td align="left" style="color: #888888; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 23px;" class="text_color">
-                                                    <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600; mso-line-height-rule: exactly; line-height: 23px;">
-
-                                                        Email us: <br /> <a href="mailto:" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">contact@mdbootstrap.com</a>
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-
-                                        <table border="0" width="2" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590">
-                                            <tr>
-                                                <td width="2" height="10" style="font-size: 10px; line-height: 10px;"></td>
-                                            </tr>
-                                        </table>
-
-                                        <table border="0" width="200" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590">
-
-                                            <tr>
-                                                <td class="hide" height="45" style="font-size: 45px; line-height: 45px;">&nbsp;</td>
-                                            </tr>
-
-
-
-                                            <tr>
-                                                <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <table border="0" align="right" cellpadding="0" cellspacing="0">
-                                                        <tr>
-                                                            <td>
-                                                                <a href="https://www.facebook.com/mdbootstrap" style="display: block; border-style: none !important; border: 0 !important;"><img width="24" border="0" style="display: block;" src="http://i.imgur.com/Qc3zTxn.png" alt=""></a>
-                                                            </td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                            <td>
-                                                                <a href="https://twitter.com/MDBootstrap" style="display: block; border-style: none !important; border: 0 !important;"><img width="24" border="0" style="display: block;" src="http://i.imgur.com/RBRORq1.png" alt=""></a>
-                                                            </td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                            <td>
-                                                                <a href="https://plus.google.com/u/0/b/107863090883699620484/107863090883699620484/posts" style="display: block; border-style: none !important; border: 0 !important;"><img width="24" border="0" style="display: block;" src="http://i.imgur.com/Wji3af6.png" alt=""></a>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
                                         </table>
                                     </td>
                                 </tr>
                             </table>
+                        </td>
+                    </tr> <!-- COPY -->
+                    <tr>
+                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">If that doesn't work, copy and paste the following link in your browser:</p>
+                        </td>
+                    </tr> <!-- COPY -->
+                    <tr>
+                        <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;"><a href="#" target="_blank" style="color: #FFA73B;">https://bit.li.utlddssdstueincx</a></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">If you have any questions, just reply to this email—we're always happy to help out.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">Cheers,<br>BBB Team</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                    <tr>
+                        <td bgcolor="#FFECD1" align="center" style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <h2 style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">Need more help?</h2>
+                            <p style="margin: 0;"><a href="#" target="_blank" style="color: #FFA73B;">We&rsquo;re here to help you out</a></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                    <tr>
+                        <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;"> <br>
+                            <p style="margin: 0;">If these emails get annoying, please feel free to <a href="#" target="_blank" style="color: #111111; font-weight: 700;">unsubscribe</a>.</p>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-
-        <tr>
-            <td height="60" style="font-size: 60px; line-height: 60px;">&nbsp;</td>
-        </tr>
-
-    </table> --}}
-    <!-- end section -->
-
-    <!-- footer ====== -->
-    {{-- <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="f4f4f4">
-
-        <tr>
-            <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-        </tr>
-
-        <tr>
-            <td align="center">
-
-                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
-                    <tr>
-                        <td>
-                            <table border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590">
-                                <tr>
-                                    <td align="left" style="color: #aaaaaa; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
-                                        <div style="line-height: 24px;">
-
-                                            <span style="color: #333333;">Material Design for Bootstrap</span>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <table border="0" align="left" width="5" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590">
-                                <tr>
-                                    <td height="20" width="5" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
-                                </tr>
-                            </table>
-
-                            <table border="0" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590">
-
-                                <tr>
-                                    <td align="center">
-                                        <table align="center" border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td align="center">
-                                                    <a style="font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;color: #5caad2; text-decoration: none;font-weight:bold;" href="">UNSUBSCRIBE</a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </td>
-                    </tr>
-
-                </table>
-            </td>
-        </tr>
-
-        <tr>
-            <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-        </tr>
-
-    </table> --}}
-    <!-- end footer ====== -->
-
+    </table>
 </body>
 
 </html>

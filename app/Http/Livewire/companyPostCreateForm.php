@@ -74,6 +74,13 @@ class companyPostCreateForm extends FormComponent
         }
         $intern->internDepartments()->attach($deps);
         $this->model = $intern;
+
+        // dd($students);
+    }
+
+
+    public function saveAndStayResponse()
+    {
         $students = Student::where("subscribe", true)->get();
         $emails = [];
         foreach ($students as $student) {
@@ -84,12 +91,6 @@ class companyPostCreateForm extends FormComponent
         //     // $message->subject('TEST');
         // });
         Mail::to($emails)->send(new subscribeEmail);
-        // dd($students);
-    }
-
-
-    public function saveAndStayResponse()
-    {
         return  redirect()->route('companyInternshipPost.show', $this->model);
     }
 
