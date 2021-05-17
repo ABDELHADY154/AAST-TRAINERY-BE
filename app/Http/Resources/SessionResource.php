@@ -18,11 +18,19 @@ class SessionResource extends JsonResource
     {
         $student = Student::where('id', auth('api')->id())->first();
         $session = Session::where('id', $this->id)->first();
-        $booked = false;
+        $booked = "unbooked";
         if ($session) {
             foreach ($student->sessions as $studentSession) {
                 if ($studentSession->pivot->session_id == $session->id && $studentSession->pivot->student_id == $student->id) {
-                    $booked = true;
+                    if ($studentSession->pivot->book_status == "rejected") {
+                        $booked = "rejected";
+                    } elseif ($studentSession->pivot->book_status == "accepted") {
+                        $booked = "accepted";
+                    } elseif ($studentSession->pivot->book_status == "achieved") {
+                        $booked = "achieved";
+                    } elseif ($studentSession->pivot->book_status == "booked") {
+                        $booked = "booked";
+                    }
                 }
             }
         }
@@ -32,7 +40,7 @@ class SessionResource extends JsonResource
             'desc' => $this->desc,
             'price' => $this->price,
             'image' => asset('storage/images/sessions/' . $this->image),
-            'booked' => $booked
+            'status' => $booked
         ];
     }
 }

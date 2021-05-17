@@ -62,6 +62,8 @@ Route::group([
             Route::get('/sessionReview/{sessionId}', 'API\V1\StudentReviewsController@getAllSessionReviews')->name('get.student.session.reviews');
             Route::get('/careerCoachingReviews', 'API\V1\StudentReviewsController@getAllCareerCoachingReviews')->name('get.student.careerCoaching.reviews');
             Route::get('/notifications', 'API\V1\StudentNotificationController@index')->name('get.student.notifications');
+            Route::get('/subscribe', 'API\V1\StudentSubscribeController@subscribe')->name('student.subscribe');
+            Route::get('/unsubscribe', 'API\V1\StudentSubscribeController@unSubscribe')->name('student.unsubscribe');
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');

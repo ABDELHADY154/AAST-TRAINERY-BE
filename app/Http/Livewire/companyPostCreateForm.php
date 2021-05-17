@@ -4,7 +4,11 @@ namespace App\Http\Livewire;
 
 use App\Company;
 use App\InternshipPost;
+use App\Mail\subscribeEmail;
+use App\Student;
 use App\StudentDepartment;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Mail;
 use Kdion4891\LaravelLivewireForms\ArrayField;
 use Kdion4891\LaravelLivewireForms\Field;
 use Kdion4891\LaravelLivewireForms\FormComponent;
@@ -70,6 +74,17 @@ class companyPostCreateForm extends FormComponent
         }
         $intern->internDepartments()->attach($deps);
         $this->model = $intern;
+        $students = Student::where("subscribe", true)->get();
+        $emails = [];
+        foreach ($students as $student) {
+            $emails[] = $student->email;
+        }
+        // Mail::send('Email.test', [], function (Message $message) use ($emails) {
+        //     $message->to($emails)->subject('TEST 2');
+        //     // $message->subject('TEST');
+        // });
+        Mail::to($emails)->send(new subscribeEmail);
+        // dd($students);
     }
 
 
