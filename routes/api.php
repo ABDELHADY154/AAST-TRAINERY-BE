@@ -64,6 +64,10 @@ Route::group([
             Route::get('/notifications', 'API\V1\StudentNotificationController@index')->name('get.student.notifications');
             Route::get('/subscribe', 'API\V1\StudentSubscribeController@subscribe')->name('student.subscribe');
             Route::get('/unsubscribe', 'API\V1\StudentSubscribeController@unSubscribe')->name('student.unsubscribe');
+            Route::put('/updatePassword', 'API\V1\StudentSubscribeController@updatePassword')->name('student.update.password');
+            Route::put('/updateEmail', 'API\V1\StudentSubscribeController@updateEmail')->name('student.update.email');
+            Route::get('/studentAccount', 'API\V1\StudentSubscribeController@getStudentData')->name('get.studentaccount.settings');
+            Route::delete('/deleteAccount', 'API\V1\StudentSubscribeController@deleteAccount')->name('student.delete.account');
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');
@@ -121,8 +125,13 @@ Route::group([
         Route::get('/sessionReview/{sessionId}', 'API\V1\StudentReviewsController@getAllSessionReviews')->name('get.student.session.reviews');
         Route::get('/careerCoachingReviews', 'API\V1\StudentReviewsController@getAllCareerCoachingReviews')->name('get.student.careerCoaching.reviews');
         Route::get('/notifications', 'API\V1\StudentNotificationController@index')->name('get.student.notifications');
+        Route::get('/studentAccount', 'API\V1\StudentSubscribeController@getStudentData')->name('get.studentaccount.settings');
         Route::get('/subscribe', 'API\V1\StudentSubscribeController@subscribe')->name('student.subscribe');
         Route::get('/unsubscribe', 'API\V1\StudentSubscribeController@unSubscribe')->name('student.unsubscribe');
+        Route::put('/updatePassword', 'API\V1\StudentSubscribeController@updatePassword')->name('student.update.password');
+        Route::put('/updateEmail', 'API\V1\StudentSubscribeController@updateEmail')->name('student.update.email');
+        Route::delete('/deleteAccount', 'API\V1\StudentSubscribeController@deleteAccount')->name('student.delete.account');
+
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
             Route::post('/image', 'API\V1\Mobile\StudentProfileController@updateImage')->name('student.update.profile.image');
