@@ -8154,6 +8154,465 @@
                 ]
             }
         },
+        "/W/student/updatePassword": {
+            "put": {
+                "tags": [
+                    "W-Account settings"
+                ],
+                "summary": "Update Student Password",
+                "description": "Update Student Password",
+                "requestBody": {
+                    "description": "Student Old and new password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAcountSettingsPassword"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/updatePassword": {
+            "put": {
+                "tags": [
+                    "A-Account settings"
+                ],
+                "summary": "Update Student Password",
+                "description": "Update Student Password",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentSubscribeController::updatePassword",
+                "requestBody": {
+                    "description": "Student Old and new password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAcountSettingsPassword"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/student/updateEmail": {
+            "put": {
+                "tags": [
+                    "W-Account settings"
+                ],
+                "summary": "Update Student Email",
+                "description": "Update Student Email",
+                "requestBody": {
+                    "description": "Student Old and new password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAcountSettingsEmail"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/updateEmail": {
+            "put": {
+                "tags": [
+                    "A-Account settings"
+                ],
+                "summary": "Update Student Email",
+                "description": "Update Student Email",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentSubscribeController::updateEmail",
+                "requestBody": {
+                    "description": "Student Old and new password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAcountSettingsEmail"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/studentAccount": {
+            "get": {
+                "tags": [
+                    "A-Account settings"
+                ],
+                "summary": "student studentAccount",
+                "description": "student studentAccount",
+                "operationId": "AstudentAccountStudent",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/student/studentAccount": {
+            "get": {
+                "tags": [
+                    "W-Account settings"
+                ],
+                "summary": "student studentAccount",
+                "description": "student studentAccount",
+                "operationId": "AstudentAccountStudent",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessOkVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response403Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response404Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/W/student/deleteAccount": {
+            "delete": {
+                "tags": [
+                    "W-Account settings"
+                ],
+                "summary": "delete student account",
+                "description": "delete student account",
+                "requestBody": {
+                    "description": "Student Old and new password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAcountSettingsDeleteAcc"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/A/student/deleteAccount": {
+            "delete": {
+                "tags": [
+                    "A-Account settings"
+                ],
+                "summary": "delete student account",
+                "description": "delete student account",
+                "operationId": "App\\Http\\Controllers\\API\\V1\\StudentSubscribeController::deleteAccount",
+                "requestBody": {
+                    "description": "Student Old and new password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentAcountSettingsDeleteAcc"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student Data to success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessAcceptedVirtual"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422Virtual"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401Virtual"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/W/student/profile/experience": {
             "get": {
                 "tags": [
@@ -8938,6 +9397,75 @@
                         "description": "Github Account",
                         "type": "string",
                         "example": "https://www.github.com/myProfile"
+                    }
+                },
+                "type": "object"
+            },
+            "StudentAcountSettingsDeleteAcc": {
+                "title": "student update password",
+                "description": "student update password body data",
+                "required": [
+                    "password",
+                    "password_confirmation"
+                ],
+                "properties": {
+                    "password": {
+                        "title": "Department ID",
+                        "description": "student new password",
+                        "type": "integer",
+                        "example": "asd@123ASD"
+                    },
+                    "password_confirmation": {
+                        "title": "Department ID",
+                        "description": "student new password confirmation",
+                        "type": "integer",
+                        "example": "asd@123ASD"
+                    }
+                },
+                "type": "object"
+            },
+            "StudentAcountSettingsEmail": {
+                "title": "student update password",
+                "description": "student update password body data",
+                "required": [
+                    "email"
+                ],
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "description": "student new email",
+                        "type": "string",
+                        "example": "email@student.aast.edu"
+                    }
+                },
+                "type": "object"
+            },
+            "StudentAcountSettingsPassword": {
+                "title": "student update password",
+                "description": "student update password body data",
+                "required": [
+                    "old_password",
+                    "password",
+                    "password_confirmation"
+                ],
+                "properties": {
+                    "old_password": {
+                        "title": "Department ID",
+                        "description": "student old password",
+                        "type": "integer",
+                        "example": "ABC@123asd"
+                    },
+                    "password": {
+                        "title": "Department ID",
+                        "description": "student new password",
+                        "type": "integer",
+                        "example": "asd@123ASD"
+                    },
+                    "password_confirmation": {
+                        "title": "Department ID",
+                        "description": "student new password confirmation",
+                        "type": "integer",
+                        "example": "asd@123ASD"
                     }
                 },
                 "type": "object"

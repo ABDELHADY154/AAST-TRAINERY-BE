@@ -30,6 +30,6 @@ class subscribeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('Email.test')->subject('test')->with(['intern' => $this->internshipPost]);
+        return $this->view('Email.test')->subject('New Internship From AAST Trainery 🎉')->with(['intern' => $this->internshipPost]);
     }
 }
