@@ -417,7 +417,7 @@ class StudentSubscribeController extends Controller
         if ($student) {
             return  $this->ok([
                 'email' => $student->email,
-                'subscribed' => $student->subscribe === 0 ? false : true,
+                'subscribed' => $student->subscribe == 0 ? false : true,
             ]);
         }
     }
