@@ -422,7 +422,7 @@ class StudentSubscribeController extends Controller
         }
     }
     /**
-     * @OA\DELETE(
+     * @OA\POST(
      *      path="/W/student/deleteAccount",
      *      description="delete student account",
      *      summary="delete student account",
@@ -457,7 +457,7 @@ class StudentSubscribeController extends Controller
      */
 
     /**
-     * @OA\DELETE(
+     * @OA\POST(
      *      path="/A/student/deleteAccount",
      *      description="delete student account",
      *      summary="delete student account",

@@ -67,7 +67,7 @@ Route::group([
             Route::put('/updatePassword', 'API\V1\StudentSubscribeController@updatePassword')->name('student.update.password');
             Route::put('/updateEmail', 'API\V1\StudentSubscribeController@updateEmail')->name('student.update.email');
             Route::get('/studentAccount', 'API\V1\StudentSubscribeController@getStudentData')->name('get.studentaccount.settings');
-            Route::delete('/deleteAccount', 'API\V1\StudentSubscribeController@deleteAccount')->name('student.delete.account');
+            Route::post('/deleteAccount', 'API\V1\StudentSubscribeController@deleteAccount')->name('student.delete.account');
             Route::prefix('profile')->group(function () {
                 Route::post('/general', 'API\V1\StudentProfileController@generalInfo')->name('student.update.general.info');
                 Route::get('/general', 'API\V1\StudentProfileController@getGeneralInfo')->name('student.get.general.info');
@@ -130,7 +130,7 @@ Route::group([
         Route::get('/unsubscribe', 'API\V1\StudentSubscribeController@unSubscribe')->name('student.unsubscribe');
         Route::put('/updatePassword', 'API\V1\StudentSubscribeController@updatePassword')->name('student.update.password');
         Route::put('/updateEmail', 'API\V1\StudentSubscribeController@updateEmail')->name('student.update.email');
-        Route::delete('/deleteAccount', 'API\V1\StudentSubscribeController@deleteAccount')->name('student.delete.account');
+        Route::post('/deleteAccount', 'API\V1\StudentSubscribeController@deleteAccount')->name('student.delete.account');
 
         Route::prefix('profile')->group(function () {
             Route::put('/personal', 'API\V1\Mobile\StudentProfileController@personalInfo')->name('student.update.personal.info');
