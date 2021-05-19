@@ -29,7 +29,7 @@ class companyPostCreateForm extends FormComponent
             Field::make('Internship Title', 'internship_title')->input()->rules(['required', 'string']),
             Field::make('Gender', 'gender')->select(['male', 'female', 'any'])->rules(['required', 'string', 'in:male,female,any']),
             Field::make('Type', 'type')->select(['full time', 'part time'])->rules(['required', 'string', 'in:full time,part time']),
-            Field::make('Payment', 'salary')->select(['Paid', 'un paid'])->rules(['required', 'string', 'in:Paid,Un Paid']),
+            Field::make('Payment', 'salary')->select(['Paid', 'un paid'])->rules(['required', 'string', 'in:Paid,un paid']),
             Field::make('Application Deadline', 'application_deadline')->input('date')->rules(['required', 'date']),
             Field::make('Internship Description', 'desc')->textarea()->rules(['required', 'string']),
             Field::make('Location', 'location')->input()->rules(['required', 'string']),
