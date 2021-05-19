@@ -7,6 +7,7 @@ use App\InternshipPost;
 use App\Mail\subscribeEmail;
 use App\Student;
 use App\StudentDepartment;
+use App\TrainingAdvisor;
 use Illuminate\Support\Facades\Mail;
 use Kdion4891\LaravelLivewireForms\ArrayField;
 use Kdion4891\LaravelLivewireForms\Field;
@@ -23,8 +24,10 @@ class AdvisorPostCreateForm extends FormComponent
     {
         $companies = Company::orderBy('id')->get()->pluck('id', 'company_name')->all();
         $departments = StudentDepartment::orderBy('id')->get()->pluck('id', 'department_name')->all();
+        $advisors = TrainingAdvisor::orderBy('id')->get()->pluck('id', 'advisor_name')->all();
         return [
             Field::make('Company', 'company_id')->select($companies)->help('please choose a company')->rules('required|integer|exists:companies,id'),
+            Field::make('Training Advisor', 'training_advisor_id')->select($advisors)->help('please choose a company')->rules('required|integer|exists:training_advisors,id'),
             Field::make('Internship Title', 'internship_title')->input()->rules(['required', 'string']),
             Field::make('Gender', 'gender')->select(['male', 'female', 'any'])->rules(['required', 'string', 'in:male,female,any']),
             Field::make('Type', 'type')->select(['full time', 'part time'])->rules(['required', 'string', 'in:full time,part time']),
@@ -59,7 +62,8 @@ class AdvisorPostCreateForm extends FormComponent
             'location' => $this->form_data['location'],
             'location_url' => $this->form_data['location_url'],
             'vacancy' => $this->form_data['vacancy'],
-            'post_type' => 'advisorPost'
+            'post_type' => 'advisorPost',
+            'training_advisor_id' => $this->form_data["training_advisor_id"]
         ]);
         foreach ($this->form_data['reqs'] as $req) {
             $intern->internshipReqs()->create(['req' => $req['req'], 'internship_post_id' => $intern->id]);
