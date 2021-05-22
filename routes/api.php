@@ -64,8 +64,8 @@ Route::group([
             Route::get('/notifications', 'API\V1\StudentNotificationController@index')->name('get.student.notifications');
             Route::get('/subscribe', 'API\V1\StudentSubscribeController@subscribe')->name('student.subscribe');
             Route::get('/unsubscribe', 'API\V1\StudentSubscribeController@unSubscribe')->name('student.unsubscribe');
-            Route::get('/updatePassword', 'API\V1\StudentSubscribeController@updatePassword')->name('student.update.password');
-            Route::get('/updateEmail', 'API\V1\StudentSubscribeController@updateEmail')->name('student.update.email');
+            Route::put('/updatePassword', 'API\V1\StudentSubscribeController@updatePassword')->name('student.update.password');
+            Route::put('/updateEmail', 'API\V1\StudentSubscribeController@updateEmail')->name('student.update.email');
             Route::get('/studentAccount', 'API\V1\StudentSubscribeController@getStudentData')->name('get.studentaccount.settings');
             Route::post('/deleteAccount', 'API\V1\StudentSubscribeController@deleteAccount')->name('student.delete.account');
             Route::prefix('profile')->group(function () {

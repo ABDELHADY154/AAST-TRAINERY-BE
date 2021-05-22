@@ -174,7 +174,7 @@ class StudentSubscribeController extends Controller
         }
     }
     /**
-     * @OA\POST(
+     * @OA\PUT(
      *      path="/W/student/updatePassword",
      *      description="Update Student Password",
      *      summary="Update Student Password",
@@ -268,7 +268,7 @@ class StudentSubscribeController extends Controller
     }
 
     /**
-     * @OA\POST(
+     * @OA\PUT(
      *      path="/W/student/updateEmail",
      *      description="Update Student Email",
      *      summary="Update Student Email",

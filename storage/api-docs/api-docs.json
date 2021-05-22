@@ -8155,7 +8155,7 @@
             }
         },
         "/W/student/updatePassword": {
-            "post": {
+            "put": {
                 "tags": [
                     "W-Account settings"
                 ],
@@ -8270,7 +8270,7 @@
             }
         },
         "/W/student/updateEmail": {
-            "post": {
+            "put": {
                 "tags": [
                     "W-Account settings"
                 ],
