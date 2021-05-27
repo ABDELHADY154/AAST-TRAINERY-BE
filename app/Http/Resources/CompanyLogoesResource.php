@@ -16,6 +16,8 @@ class CompanyLogoesResource extends JsonResource
     {
         return [
             'logo' => asset('storage/images/companyLogo/' . $this->image),
+            'company_name' => $this->company_name,
+            'field' => $this->company_field
 
         ];
     }
