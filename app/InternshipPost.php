@@ -34,12 +34,7 @@ class InternshipPost extends Model
     {
         return 'posts_index';
     }
-    public function toSearchableArray()
-    {
-        $array = $this->toArray();
-        $array['advisors_index'] = $this->advisor()->toArray();
-        return $array;
-    }
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
@@ -82,5 +77,11 @@ class InternshipPost extends Model
     public function notifications()
     {
         return $this->hasMany(StudentNotification::class);
+    }
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $array['advisor'] = $this->advisor->toArray();
+        return $array;
     }
 }
