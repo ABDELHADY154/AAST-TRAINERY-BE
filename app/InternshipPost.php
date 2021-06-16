@@ -82,6 +82,7 @@ class InternshipPost extends Model
     {
         $array = $this->toArray();
         $array['advisor'] = $this->advisor;
+        $array['company'] = $this->company;
         return $array;
     }
 }
