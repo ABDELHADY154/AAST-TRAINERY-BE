@@ -37,6 +37,7 @@ class InternshipPost extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
+        $array['advisors_index'] = $this->advisor->toArray();
         return $array;
     }
     public function company()
