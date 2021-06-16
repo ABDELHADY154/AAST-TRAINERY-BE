@@ -91,11 +91,11 @@ class InternshipPost extends Model
         ];
         $array['departments'] = StudentDepartmentResource::collection($this->internDepartments)->resolve();
         $array['tags'] = StudentInterestResource::collection($this->studentInterests)->resolve();
-        $array['advisor'] = [
+        $array['advisor'] = $this->advisor ? [
             'id' => $this->advisor->id,
             'name' => $this->advisor->advisor_name,
             'image' => asset('storage/images/advisorsLogo/' . $this->advisor->advisor_image),
-        ];
+        ] : null;
         return $array;
     }
 }
