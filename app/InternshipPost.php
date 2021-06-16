@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Resources\InternshipPostExploreResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -81,8 +82,9 @@ class InternshipPost extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        $array['advisor'] = $this->advisor;
-        $array['company'] = $this->company;
-        return $array;
+        $result = InternshipPostExploreResource::collection($array)->resolve();
+        // $array['advisor'] = $this->advisor;
+        // $array['company'] = $this->company;
+        return $result;
     }
 }
