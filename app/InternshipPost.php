@@ -82,7 +82,7 @@ class InternshipPost extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        $result = InternshipPostExploreResource::collection($array)->resolve();
+        $result = (new InternshipPostExploreResource($array))->resolve(); //InternshipPostExploreResource::collection($array)->resolve();
         // $array['advisor'] = $this->advisor;
         // $array['company'] = $this->company;
         return $result;
