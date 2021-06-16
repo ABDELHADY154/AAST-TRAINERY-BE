@@ -82,9 +82,14 @@ class InternshipPost extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        $result = (new InternshipPostExploreResource($array))->resolve(); //InternshipPostExploreResource::collection($array)->resolve();
+
+        // $result = (new InternshipPostExploreResource($array))->resolve(); //InternshipPostExploreResource::collection($array)->resolve();
         // $array['advisor'] = $this->advisor;
-        // $array['company'] = $this->company;
-        return $result;
+
+        $array['company'] = [
+            'company_name' => $this->company->company_name,
+            'company_logo' => asset('storage/images/companyLogo/' . $this->company->image),
+        ];
+        return $array;
     }
 }
