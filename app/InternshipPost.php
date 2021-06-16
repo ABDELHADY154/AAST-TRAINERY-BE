@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Resources\InternshipPostExploreResource;
+use App\Http\Resources\StudentDepartmentResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -87,9 +88,11 @@ class InternshipPost extends Model
         // $array['advisor'] = $this->advisor;
 
         $array['company'] = [
+            'company_id' => $this->company->id,
             'company_name' => $this->company->company_name,
             'company_logo' => asset('storage/images/companyLogo/' . $this->company->image),
         ];
+        $array['departments'] = StudentDepartmentResource::collection($this->internDepartments)->resolve();
         return $array;
     }
 }
