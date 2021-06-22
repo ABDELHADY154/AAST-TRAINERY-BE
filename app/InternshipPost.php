@@ -96,7 +96,7 @@ class InternshipPost extends Model
             'name' => $this->advisor->advisor_name,
             'image' => asset('storage/images/advisorsLogo/' . $this->advisor->advisor_image),
         ] : null;
-        $array['ad'] = $this->post_type == 'adsPost' ? ['sponsor_image' => asset('storage/images/adsImages/' . $this->sponser_image)]  : null;
+        $array['ad'] = $this->post_type == 'adsPost' ?  asset('storage/images/adsImages/' . $this->sponser_image)  : null;
         return $array;
     }
 }
