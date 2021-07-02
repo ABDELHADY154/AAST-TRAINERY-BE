@@ -22,8 +22,7 @@ class SessionSeeder extends Seeder
 
         Session::create([
             'title' => 'CV writing service',
-            'desc' => 'Our aim is to make you 100% satisfied with your CV; that’s why we offer a first draft that you approve before you receive the final version of your document.
-            Now you can get expert feedback on your CV and profile, Perfect your CV & profile to better reflect your skills, and Refine your job search strategy',
+            'desc' => 'Our aim is to make you 100% satisfied with your CV; that’s why we offer a first draft that you approve before you receive the final version of your document. Now you can get expert feedback on your CV and profile, Perfect your CV & profile to better reflect your skills, and Refine your job search strategy',
             'price' => 150,
             'image' => 'session1.png',
             'coach_id' => rand(1, Coach::all()->count())
