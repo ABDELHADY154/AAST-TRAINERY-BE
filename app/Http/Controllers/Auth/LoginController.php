@@ -84,7 +84,6 @@ class LoginController extends Controller
 
     public function studentLogin(StudentLoginRequest $request)
     {
-
         $student = Student::where('email', $request->email)->first();
 
         if (!$student || !Hash::check($request->password, $student->password) || ($student == null)) {
@@ -92,7 +91,6 @@ class LoginController extends Controller
                 'email' => ['Incorrect Email or Password'],
             ]);
         }
-
         $token = $student->createToken('Auth Token')->accessToken;
         return $this->ok((new AuthResource([$student, $token]))->resolve());
     }
